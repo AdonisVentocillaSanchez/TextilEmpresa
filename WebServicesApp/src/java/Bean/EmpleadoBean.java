@@ -11,4 +11,18 @@ package Bean;
  */
 public class EmpleadoBean {
     
+    private int idempleado;
+    private String nombres;
+    private String apellidopaterno;
+    private String apellidomaterno;
+    private String sexo;
+    private String estadocivil1;
+    private String fechanacimiento;
+    private String nacionalidad;
+    private String direccion;
+    private String telefono;
+    private String dni;
+    private String cargo;
+    
+    
 }

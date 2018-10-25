@@ -11,4 +11,10 @@ package Bean;
  */
 public class ProveedorBean {
     
+    private int idproveedor;
+    private String nombre;
+    private String telefono;
+    private String direccion;
+    private String celular;
+    
 }

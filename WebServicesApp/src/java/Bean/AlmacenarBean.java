@@ -12,5 +12,10 @@ package Bean;
 public class AlmacenarBean {
     
     private int idalmacenar;
-    private int String 
+    private String fecha;
+    private int cantidad;
+    private int idproducto;
+    private int idalmacen;
+    
+    
 }
