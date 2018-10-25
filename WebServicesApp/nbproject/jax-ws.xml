@@ -4,6 +4,9 @@
     <service name="WebServices">
       <implementation-class>WebServices.WebServices</implementation-class>
     </service>
+    <service name="WebCliente">
+      <implementation-class>WebServices.WebCliente</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
