@@ -8,6 +8,7 @@ package Servlets;
 import WebServices.WebServices_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,22 +35,14 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<form method='post' action='Vista/PortalAdministrador'>"
-                    + "<d1>Usuario:</d1><input type='text' name='txtusu'><br>"
-                    + "<d1>Password:</d1><input type='password' name='txtpass'><br>"
-                    + "<input type='submit' value='enviar'>"
-                    + "</form>");
-            out.println("</body>");
-            out.println("</html>");
+        String usu= request.getParameter("usuario");
+        String contra = request.getParameter("password");
+        System.out.println(""+usu+" "+contra);
+        String P=login(usu, contra);
+        System.out.println("Volvio al SERVERLT y va a verificarse con el P :"+P);
+        if(P.equals("CONECTADO")){
+             System.out.println("Ya conectó, solo despachealo");
+             response.sendRedirect("Vista/PortalAdministrador.jsp");
         }
     }
 
@@ -80,9 +73,7 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        String usu= request.getParameter("usuario");
-        String contra = request.getParameter("password");
-        login(usu, contra);
+        
     }
 
     /**

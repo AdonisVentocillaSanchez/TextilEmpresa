@@ -17,17 +17,17 @@
         
         <div class="bg-1" style="border-color: black" >
   
-            <form name="form" method="POST">
+            <form name="form" action="<%=request.getContextPath()%>/LoginServlet">
     
       
     <div class="container" role='form'>
       <label for="usuario"><b>Usuario</b></label>
-      <input type="text" placeholder="Enter Username" name="txtusu" id="txtusu">
+      <input type="text" placeholder="Enter Username" name="usuario" id="txtusu">
 
       <label for="clave"><b>Contraseña</b></label>
-      <input type="password" placeholder="Enter Password" name="txtcla" id="txtcla">
+      <input type="password" placeholder="Enter Password" name="password" id="txtcla">
         
-      <button type="button" action="entrar('<%=request.getContextPath()%>','LoginServlet')">Entrar</button>
+      <button type="submit">Entrar</button>
       
     </div>
 
