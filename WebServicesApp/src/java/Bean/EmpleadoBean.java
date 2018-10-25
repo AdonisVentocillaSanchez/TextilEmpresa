@@ -23,11 +23,13 @@ public class EmpleadoBean {
     private String telefono;
     private String dni;
     private String cargo;
+    private String usuario_empleado;
+    private String contraseña_empleado;
 
     public EmpleadoBean() {
     }
 
-    public EmpleadoBean(int idempleado, String nombres, String apellidopaterno, String apellidomaterno, char sexo, String estadocivil1, String fechanacimiento, String nacionalidad, String direccion, String telefono, String dni, String cargo) {
+    public EmpleadoBean(int idempleado, String nombres, String apellidopaterno, String apellidomaterno, char sexo, String estadocivil1, String fechanacimiento, String nacionalidad, String direccion, String telefono, String dni, String cargo, String usuario_empleado, String contraseña_empleado) {
         this.idempleado = idempleado;
         this.nombres = nombres;
         this.apellidopaterno = apellidopaterno;
@@ -40,6 +42,8 @@ public class EmpleadoBean {
         this.telefono = telefono;
         this.dni = dni;
         this.cargo = cargo;
+        this.usuario_empleado = usuario_empleado;
+        this.contraseña_empleado = contraseña_empleado;
     }
 
     public int getIdempleado() {
@@ -137,6 +141,21 @@ public class EmpleadoBean {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
-    
+
+    public String getUsuario_empleado() {
+        return usuario_empleado;
+    }
+
+    public void setUsuario_empleado(String usuario_empleado) {
+        this.usuario_empleado = usuario_empleado;
+    }
+
+    public String getContraseña_empleado() {
+        return contraseña_empleado;
+    }
+
+    public void setContraseña_empleado(String contraseña_empleado) {
+        this.contraseña_empleado = contraseña_empleado;
+    }
     
 }

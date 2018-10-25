@@ -12,7 +12,7 @@ public class ConexionBD {
             usu="Ventocilla";
             pas="ella";
         }
-        String conn = "jdbc:oracle:thin:@197.168.2.7:1521:XE";
+        String conn = "jdbc:oracle:thin:@197.168.10.8:1521:XE";
         Connection cx=null;
         try {
            Class.forName("oracle.jdbc.OracleDriver");
