@@ -17,7 +17,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <script src="js/jquery-3.3.1.js" type="text/javascript"></script>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="js/BuscadorTabla.js" type="text/javascript"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
@@ -85,17 +84,17 @@
         <div class="container">
             <br>
             <div class="form-inline has-error text-center">
-            <label class="control-label " for="inputError" >DNI:</label>
+            <label class="control-label " for="inputError" >ID:</label>
             <input class="form-control text-center" type="text" id="DNI" name="DNI" value="" placeholder="Ingrese el DNI">
-            <label class="control-label ">Nombre:</label>            
+            <label class="control-label ">Nombres:</label>            
             <input class="form-control text-center" type="text" id="nombre" name="nombre" value="" placeholder="Nombres">
-            <label class="control-label ">Apellido:</label>            
-            <input class="form-control text-center" type="text" id="apellido" name="apellido" value="" placeholder="Apellidos" >
+            <label class="control-label ">Apellido paterno:</label>            
+            <input class="form-control text-center" type="text" id="apellido" name="apellidopat" value="" placeholder="Apellido paterno" >
             </div>
             <br>
             <div class="form-inline has-warning text-center">
-            <label class="control-label">Seguro:</label> 
-            <input class="form-control text-center" type="text" id="seguro" name="seguro" value="" placeholder="Seguro">
+            <label class="control-label">Apellido Materno:</label> 
+            <input class="form-control text-center" type="text" id="seguro" name="aoellidomat" value="" placeholder="Apellido meterno">
             <label class="control-label">Estado civil:</label>    
             <input class="form-control text-center" type="text" id="ecivil" name="ecivil" value="" placeholder="Estado Civil" >
             <label class="control-label">Telefono:</label>            
@@ -113,8 +112,10 @@
             <input class="form-control text-center" type="date" id="fechanac" name="fechanac" value="" placeholder="Fecha Nac." >
             <label class="control-label">Direccion:</label>            
             <input class="form-control text-center" type="text" id="direccion" name="direccion" value="" placeholder="Direccion">
-            <label class="control-label">Nro Historial Medico:</label>            
-            <input class="form-control text-center" type="text" id="nhistmed" name="nhistmed" value="" placeholder="Nro.Historial">
+            <label class="control-label">DNI:</label>            
+            <input class="form-control text-center" type="text" id="direccion" name="dni" value="" placeholder="DNI">
+            <label class="control-label">Cargo:</label>            
+            <input class="form-control text-center" type="text" id="nhistmed" name="cargo" value="" placeholder="Cargo">
             </div>
             <br>
             <div class="container text-center">

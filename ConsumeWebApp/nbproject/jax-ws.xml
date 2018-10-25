@@ -5,7 +5,7 @@
     <client name="WebServices">
       <wsdl-url>http://localhost:8083/WebServices/WebServices?wsdl</wsdl-url>
       <local-wsdl-file>localhost_8083/WebServices/WebServices.wsdl</local-wsdl-file>
-      <package-name forceReplace="true">WebConsume</package-name>
+      <package-name forceReplace="true">WebServices</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>
         <wsimport-option>
@@ -34,7 +34,7 @@
         </wsimport-option>
         <wsimport-option>
           <wsimport-option-name>package</wsimport-option-name>
-          <wsimport-option-value>WebConsume</wsimport-option-value>
+          <wsimport-option-value>WebServices</wsimport-option-value>
         </wsimport-option>
       </wsimport-options>
     </client>
