@@ -19,11 +19,12 @@ public class ClienteBean {
     private String telefono;
     private String usuario_cliente;
     private String contraseña_cliente;
+    private String email;
 
     public ClienteBean() {
     }
 
-    public ClienteBean(int idcliente, String nombre, String dni, String nombre_empresa, String celular, String telefono, String usuario_cliente, String contraseña_cliente) {
+    public ClienteBean(int idcliente, String nombre, String dni, String nombre_empresa, String celular, String telefono, String usuario_cliente, String contraseña_cliente, String email) {
         this.idcliente = idcliente;
         this.nombre = nombre;
         this.dni = dni;
@@ -32,6 +33,7 @@ public class ClienteBean {
         this.telefono = telefono;
         this.usuario_cliente = usuario_cliente;
         this.contraseña_cliente = contraseña_cliente;
+        this.email = email;
     }
 
     public int getIdcliente() {
@@ -97,5 +99,14 @@ public class ClienteBean {
     public void setContraseña_cliente(String contraseña_cliente) {
         this.contraseña_cliente = contraseña_cliente;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     
 }
