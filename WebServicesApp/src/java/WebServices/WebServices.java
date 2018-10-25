@@ -32,16 +32,17 @@ public class WebServices {
     @WebMethod(operationName = "login")
     public String login(@WebParam(name = "user") String user, @WebParam(name = "pass") String pass) {
         //TODO write your implementation code here
-        String usuario="";
+        String contra="";
         try {
             conexion = Conexion.ConexionBD.getConexion("", "");
             sentencia = conexion.createStatement();
-        String sql = "SELECT USERNAME FROM dba_users WHERE USERNAME = '"+user+"'";
+        String sql = "SELECT USERNAME, USER_ID FROM dba_users WHERE USERNAME = '"+pass+"' AND USER_ID='"+user+"'";
         resultado = sentencia.executeQuery(sql);
             while (resultado.next()) {                
-                usuario = resultado.getString("USERNAME");
+                contra = resultado.getString("USERNAME");
+                
             }
-            if (usuario.isEmpty()) {
+            if (contra.equals("")) {
                 respuesta = "nc";
             }else{
                 respuesta = "c";

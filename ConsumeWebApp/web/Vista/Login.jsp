@@ -12,25 +12,23 @@
         <title>JSP Page</title>
         <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet">
         <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet">
-    
+        <script src="<%=request.getContextPath()%>/js/javascript.js" type="text/javascript"></script>
     <body>
         
-        <div class="bg-1" style="border-color: black">
+        <div class="bg-1" style="border-color: black" >
   
-  <form>
+            <form name="form" method="POST">
     
       
-    <div class="container">
-      <label for="uname"><b>Usuario</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" >
+    <div class="container" role='form'>
+      <label for="usuario"><b>Usuario</b></label>
+      <input type="text" placeholder="Enter Username" name="txtusu" id="txtusu">
 
-      <label for="psw"><b>Contraseña</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" >
+      <label for="clave"><b>Contraseña</b></label>
+      <input type="password" placeholder="Enter Password" name="txtcla" id="txtcla">
         
-      <button type="submit">Entrar</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
-      </label>
+      <button type="button" action="entrar('<%=request.getContextPath()%>','LoginServlet')">Entrar</button>
+      
     </div>
 
     

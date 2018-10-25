@@ -7,10 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Portal Esto</title>
+    <title>:: ALPACA S.A.C ::</title>
 
     <!-- Bootstrap -->
-    <link href="css/talvar.css" rel="stylesheet">
+    <link href="<%request.getContextPath();%>css/talvar.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
     
@@ -108,7 +108,7 @@
     <ul class="list-group">
       <li class="list-group-item">September <span class="label label-danger">Proximamente!</span></li>
       <li class="list-group-item">October <span class="label label-danger">Proximamente!</span></li> 
-      <li class="list-group-item">November <span class="label-danger">Proximamente!</span></li> 
+      <li class="list-group-item">November <span class="label label-danger">Proximamente!</span></li> 
     </ul>
     
     <div class="row text-center">

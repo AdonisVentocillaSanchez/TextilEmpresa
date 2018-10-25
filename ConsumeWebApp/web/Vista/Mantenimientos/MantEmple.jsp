@@ -7,9 +7,9 @@
 <%--<%@page import="Entidades.Paciente"%>--%>
 <%@page import ="java.util.ArrayList"%>
 
-<%!
+<%--!
     	ArrayList<Paciente>  listReg;
-%>
+--%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -159,7 +159,7 @@
                     </tr>
                 </thead>    
                 <tbody>
-                <%if((listReg= (ArrayList<Paciente>)request.getAttribute("lista"))!=null){
+                <%--if((listReg= (ArrayList<Paciente>)request.getAttribute("lista"))!=null){
                     for(Paciente u:listReg)
                     {
                 %>
@@ -187,7 +187,7 @@
                     }
 
                 
-                }%>
+                }--%>
                     
             </table>
         
