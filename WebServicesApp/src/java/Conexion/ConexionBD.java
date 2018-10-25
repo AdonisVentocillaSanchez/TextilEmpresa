@@ -5,53 +5,49 @@ import java.sql.*;
 
 public class ConexionBD {
     
-    private Connection conexion;
-    
-    public Connection getConexion(){
-        return conexion;
-    }
-    
-    public void setConexion(Connection conexion){
-        this.conexion = conexion;
-    }
-    
-    public void Conectar(){
-        try {
-            String user = "Aparcana";
-            String pass = "aparcana";
-            Class.forName("oracle.jdbc.OracleDriver");
-            String conn = "jdbc:oracle:thin:@197.168.10.8:1521:XE";
-            setConexion(DriverManager.getConnection(conn, user, pass));
-            System.out.println("Conectado a Oracle");
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Error : " + e.toString());
+    public static Connection getConexion(String user, String pass){
+        String usu = user;
+        String pas = pass;
+        if(usu.isEmpty() & pas.isEmpty()){
+            usu="Ventocilla";
+            pas="ella";
         }
+        String conn = "jdbc:oracle:thin:@localhost:1521:XE";
+        Connection cx=null;
+        try {
+           Class.forName("oracle.jdbc.OracleDriver");
+           cx=DriverManager.getConnection(conn,usu,pas);
+            System.out.println("SE CONECTO");
+        } catch (Exception e) {
+            System.out.println("NO SE CONECTO");
+        }
+        return cx;
     }
     
-//    Para verificar si se ha conectado la base de datos
+    public static ResultSet Consulta(String consulta) {
+        Connection con = getConexion("","");
+        ResultSet respuesta = null;
+        Statement declara;
+        try {
+            declara = con.createStatement();
+            respuesta = declara.executeQuery(consulta);
+            
+        } catch (SQLException e) {
+            respuesta = null;
+        }
+        
+        return respuesta;
+    }
+    
     public static void main(String[] args) {
         
         
         
         ConexionBD bd = new ConexionBD();
-        bd.Conectar();
+        bd.getConexion("Ventocilla","ella");
 
 
     
     }
-    
-//    public static ResultSet Consulta(String consulta) {
-//        Connection con = getConexion();
-//        Statement declara;
-//        try {
-//            declara = con.createStatement();
-//            ResultSet respuesta = declara.executeQuery(consulta);
-//            return respuesta;
-//        } catch (SQLException e) {
-//            System.out.println("Error : " + e.toString());
-//        }
-//        
-//        return null;
-//    }
     
 }
