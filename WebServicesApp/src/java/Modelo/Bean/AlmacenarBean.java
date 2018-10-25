@@ -3,39 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bean;
+package Modelo.Bean;
 
 /**
  *
  * @author Erika Sanchez
  */
-public class SuministrarBean {
+public class AlmacenarBean {
     
-    private int idSuministrar;
+    private int idalmacenar;
     private String fecha;
     private int cantidad;
-    private double preciocompra;
     private int idproducto;
-    private int idproveedor;
+    private int idalmacen;
 
-    public SuministrarBean() {
+    public AlmacenarBean() {
     }
 
-    public SuministrarBean(int idSuministrar, String fecha, int cantidad, double preciocompra, int idproducto, int idproveedor) {
-        this.idSuministrar = idSuministrar;
+    public AlmacenarBean(int idalmacenar, String fecha, int cantidad, int idproducto, int idalmacen) {
+        this.idalmacenar = idalmacenar;
         this.fecha = fecha;
         this.cantidad = cantidad;
-        this.preciocompra = preciocompra;
         this.idproducto = idproducto;
-        this.idproveedor = idproveedor;
+        this.idalmacen = idalmacen;
     }
 
-    public int getIdSuministrar() {
-        return idSuministrar;
+    public int getIdalmacenar() {
+        return idalmacenar;
     }
 
-    public void setIdSuministrar(int idSuministrar) {
-        this.idSuministrar = idSuministrar;
+    public void setIdalmacenar(int idalmacenar) {
+        this.idalmacenar = idalmacenar;
     }
 
     public String getFecha() {
@@ -54,14 +52,6 @@ public class SuministrarBean {
         this.cantidad = cantidad;
     }
 
-    public double getPreciocompra() {
-        return preciocompra;
-    }
-
-    public void setPreciocompra(double preciocompra) {
-        this.preciocompra = preciocompra;
-    }
-
     public int getIdproducto() {
         return idproducto;
     }
@@ -70,14 +60,13 @@ public class SuministrarBean {
         this.idproducto = idproducto;
     }
 
-    public int getIdproveedor() {
-        return idproveedor;
+    public int getIdalmacen() {
+        return idalmacen;
     }
 
-    public void setIdproveedor(int idproveedor) {
-        this.idproveedor = idproveedor;
+    public void setIdalmacen(int idalmacen) {
+        this.idalmacen = idalmacen;
     }
-    
     
     
 }
