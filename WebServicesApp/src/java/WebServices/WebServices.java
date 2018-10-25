@@ -43,9 +43,11 @@ public class WebServices {
                 
             }
             if (contra.equals("")) {
-                respuesta = "nc";
+                respuesta = "NO SE CONECTO";
+                System.out.println(""+respuesta);
             }else{
-                respuesta = "c";
+                respuesta = "CONECTADO";
+                System.out.println(""+respuesta);
             }
         } catch (SQLException e) {
             respuesta = "Error en la base de datos";
