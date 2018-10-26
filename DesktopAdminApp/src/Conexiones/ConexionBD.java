@@ -12,8 +12,8 @@ public class ConexionBD {
         String pas = pass;
         
         if (usu.isEmpty() & pas.isEmpty()) {
-            usu = "VENTOCILLA";
-            pas = "ella";
+            usu = "APARCANA";
+            pas = "aparcana";
         }
         
         String conn = "jdbc:oracle:thin:@197.168.1.8:1521:XE";

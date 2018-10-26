@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package DAO;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author Erika Sanchez
- */
+
 public class UsuarioDAO extends Conexiones.ConexionBD {
     
     PreparedStatement pst=null;
@@ -21,11 +14,12 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificar(String usu,String pass,String tablespace,String temptablespace,int quota)
     {
         try{
+            System.out.println(""+usu+pass+tablespace+temptablespace+quota);
             modificarUsuXPass(usu,pass);
             modificarTableSpace(usu, tablespace);
             modificarTempTableSpace(usu, temptablespace);
             modificarQuota(usu, quota, tablespace);
-            
+            return true;
         }catch(Exception ex)
         {
             System.out.println(""+ex);
@@ -35,7 +29,7 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarUsuXPass(String usu,String pass)
     {
         try{
-            consulta="alter user ? identified by ?;commit;";
+            consulta="ALTER USER \"?\" IDENTIFIED BY ? ;commit;";
             pst=getConexion("", "").prepareStatement(consulta);
             pst.setString(1, usu);
             pst.setString(2, pass);
@@ -54,7 +48,7 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarTableSpace(String usu,String tablespace)
     {
         try{
-            consulta="ALTER USER ? DEFAULT TABLESPACE ?;commit;";
+            consulta="ALTER USER \"?\" DEFAULT TABLESPACE ? ;";
             pst=getConexion("", "").prepareStatement(consulta);
             pst.setString(1, usu);
             pst.setString(2, tablespace);
@@ -71,7 +65,7 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarTempTableSpace(String usu,String temptablespace)
     {
         try{
-            consulta="ALTER USER ? TEMPORARY TABLESPACE ?;commit;";
+            consulta="ALTER USER \"?\" TEMPORARY TABLESPACE ? ;commit;";
             pst=getConexion("", "").prepareStatement(consulta);
             pst.setString(1, usu);
             pst.setString(2, temptablespace);
@@ -88,7 +82,7 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarQuota(String usu,int quota,String tablespace)
     {
         try{
-            consulta="alter user ? quota ?K on ?;commit;";
+            consulta="alter user \"?\" quota ? K on ? ;";
             pst=getConexion("", "").prepareStatement(consulta);
             pst.setString(1, usu);
             pst.setInt(2, quota);

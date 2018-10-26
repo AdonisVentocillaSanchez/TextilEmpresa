@@ -298,8 +298,10 @@ UsuarioBean usubean = new UsuarioBean();
         UsuarioDAO p=new UsuarioDAO();
         String usu = (String)jcbuser.getSelectedItem();
         String pass= newpass.getText();
-        String tablespace = (String)jcbtablespace.getSelectedItem();
-        String temptablespace = (String)jcbtemporary.getSelectedItem();
+       // String tablespace = (String)jcbtablespace.getSelectedItem();
+        String tablespace="USERS";
+        String temptablespace="TEMP";
+        //String temptablespace = (String)jcbtemporary.getSelectedItem();
         int quota=Integer.parseInt(newquota.getText());
         p.modificar(usu, pass, tablespace, temptablespace, quota);
     }//GEN-LAST:event_btnmodificarMouseClicked
