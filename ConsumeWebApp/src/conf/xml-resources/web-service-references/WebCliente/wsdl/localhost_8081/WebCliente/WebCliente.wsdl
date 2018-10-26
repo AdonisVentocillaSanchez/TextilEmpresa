@@ -10,15 +10,34 @@
 <message name="AgregarResponse">
 <part name="parameters" element="tns:AgregarResponse"/>
 </message>
+<message name="Logear">
+<part name="parameters" element="tns:Logear"/>
+</message>
+<message name="LogearResponse">
+<part name="parameters" element="tns:LogearResponse"/>
+</message>
 <portType name="WebCliente">
 <operation name="Agregar">
 <input wsam:Action="http://WebServices/WebCliente/AgregarRequest" message="tns:Agregar"/>
 <output wsam:Action="http://WebServices/WebCliente/AgregarResponse" message="tns:AgregarResponse"/>
 </operation>
+<operation name="Logear">
+<input wsam:Action="http://WebServices/WebCliente/LogearRequest" message="tns:Logear"/>
+<output wsam:Action="http://WebServices/WebCliente/LogearResponse" message="tns:LogearResponse"/>
+</operation>
 </portType>
 <binding name="WebClientePortBinding" type="tns:WebCliente">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="Agregar">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="Logear">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

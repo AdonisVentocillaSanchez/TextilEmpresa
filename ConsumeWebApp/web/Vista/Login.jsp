@@ -17,7 +17,7 @@
         
         <div class="bg-1" style="border-color: black" >
   
-            <form name="form" action="<%=request.getContextPath()%>/LoginServlet">
+            <form name="form" action="<%=request.getContextPath()%>/LoginServlet" method="post">
     
       
     <div class="container" role='form'>

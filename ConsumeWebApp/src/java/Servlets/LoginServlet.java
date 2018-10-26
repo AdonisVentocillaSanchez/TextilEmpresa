@@ -6,7 +6,8 @@
 package Servlets;
 
 
-import WebServices.WebServices_Service;
+
+import ClienWebServices.WebCliente_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -22,11 +23,10 @@ import javax.xml.ws.WebServiceRef;
  */
 public class LoginServlet extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/WebServices/WebServices.wsdl")
-    private WebServices_Service service_1;
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/WebCliente/WebCliente.wsdl")
+    private WebCliente_Service service;
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8083/WebServices/WebServices.wsdl")
-    private WebServices_Service service;
+
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,15 +39,7 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String usu= request.getParameter("usuario");
-        String contra = request.getParameter("password");
-        System.out.println(""+usu+" "+contra);
-        String P=login(usu, contra);
-        System.out.println("Volvio al SERVERLT y va a verificarse con el P :"+P);
-        if(P.equals("CONECTADO")){
-             System.out.println("Ya conectó, solo despachealo");
-             response.sendRedirect("Vista/PortalAdministrador.jsp");
-        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -76,7 +68,16 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String usu= request.getParameter("usuario");
+        String contra = request.getParameter("password");
+        System.out.println(""+usu+" "+contra);
+        String P=logear(usu, contra);
+        
+        System.out.println("Volvio al SERVERLT y va a verificarse con el P :"+P);
+        if(P.equals("Logeado")){
+             System.out.println("Ya conectó, solo despachealo");
+             response.sendRedirect("Vista/PortalAdministrador.jsp");
+        }
         
     }
 
@@ -90,12 +91,14 @@ public class LoginServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String login(java.lang.String user, java.lang.String pass) {
+    private String logear(java.lang.String user, java.lang.String pass) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        WebServices.WebServices port = service_1.getWebServicesPort();
-        return port.login(user, pass);
+        ClienWebServices.WebCliente port = service.getWebClientePort();
+        return port.logear(user, pass);
     }
+
+    
 
     
 

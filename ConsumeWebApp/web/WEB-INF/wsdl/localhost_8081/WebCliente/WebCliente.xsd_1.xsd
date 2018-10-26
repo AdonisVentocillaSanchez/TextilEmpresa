@@ -4,6 +4,10 @@
 
 <xs:element name="AgregarResponse" type="tns:AgregarResponse"/>
 
+<xs:element name="Logear" type="tns:Logear"/>
+
+<xs:element name="LogearResponse" type="tns:LogearResponse"/>
+
 <xs:complexType name="Agregar">
 <xs:sequence>
 <xs:element name="id" type="xs:int"/>
@@ -19,6 +23,19 @@
 </xs:complexType>
 
 <xs:complexType name="AgregarResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Logear">
+<xs:sequence>
+<xs:element name="user" type="xs:string" minOccurs="0"/>
+<xs:element name="pass" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="LogearResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
 </xs:sequence>
