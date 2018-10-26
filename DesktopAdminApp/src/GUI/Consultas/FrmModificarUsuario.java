@@ -4,6 +4,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import Bean.UsuarioBean;
+import DAO.UsuarioDAO;
     
 
 public class FrmModificarUsuario extends javax.swing.JFrame {
@@ -33,8 +34,8 @@ UsuarioBean usubean = new UsuarioBean();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        newpass = new javax.swing.JTextField();
+        newquota = new javax.swing.JTextField();
         btnmodificar = new javax.swing.JButton();
         jcbtablespace = new javax.swing.JComboBox<>();
         jcbtemporary = new javax.swing.JComboBox<>();
@@ -70,12 +71,17 @@ UsuarioBean usubean = new UsuarioBean();
         jLabel5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel5.setText("Quota Temporary Tablespace :");
 
-        jTextField2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        newpass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
-        jTextField5.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        newquota.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
         btnmodificar.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         btnmodificar.setText("MODIFICAR USUARIO");
+        btnmodificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnmodificarMouseClicked(evt);
+            }
+        });
 
         jcbtablespace.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jcbtablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -100,8 +106,8 @@ UsuarioBean usubean = new UsuarioBean();
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(newpass, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(newquota, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(btnmodificar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jcbtablespace, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcbtemporary, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -118,7 +124,7 @@ UsuarioBean usubean = new UsuarioBean();
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -129,7 +135,7 @@ UsuarioBean usubean = new UsuarioBean();
                     .addComponent(jcbtemporary, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newquota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(45, 45, 45)
                 .addComponent(btnmodificar)
@@ -286,6 +292,17 @@ UsuarioBean usubean = new UsuarioBean();
             }
         }
     }//GEN-LAST:event_jcbtipoItemStateChanged
+
+    private void btnmodificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmodificarMouseClicked
+        // TODO add your handling code here:
+        UsuarioDAO p=new UsuarioDAO();
+        String usu = (String)jcbuser.getSelectedItem();
+        String pass= newpass.getText();
+        String tablespace = (String)jcbtablespace.getSelectedItem();
+        String temptablespace = (String)jcbtemporary.getSelectedItem();
+        int quota=Integer.parseInt(newquota.getText());
+        p.modificar(usu, pass, tablespace, temptablespace, quota);
+    }//GEN-LAST:event_btnmodificarMouseClicked
 
     //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){
@@ -498,13 +515,13 @@ UsuarioBean usubean = new UsuarioBean();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JComboBox<String> jcbprivi;
     private javax.swing.JComboBox<String> jcbtablespace;
     private javax.swing.JComboBox<String> jcbtemporary;
     private javax.swing.JComboBox<String> jcbtipo;
     private javax.swing.JComboBox<String> jcbuser;
     private javax.swing.JComboBox<String> jcbusers;
+    private javax.swing.JTextField newpass;
+    private javax.swing.JTextField newquota;
     // End of variables declaration//GEN-END:variables
 }
