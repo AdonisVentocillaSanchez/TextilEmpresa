@@ -41,13 +41,13 @@ public class UsuarioBean {
         return op;
     }
     
-    public DefaultComboBoxModel Obt_user(){
+    public DefaultComboBoxModel Obt_date(String tabla){
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.addElement("[SELECCIONAR]");
-        ResultSet res = Conexiones.ConexionBD.Consulta("SELECT * FROM DBA_USERS");
+        ResultSet res = Conexiones.ConexionBD.Consulta("SELECT DISTINCT " + tabla + " FROM DBA_USERS");
         try {
             while (res.next()) {                
-                ListaModelo.addElement(res.getString("USERNAME"));
+                ListaModelo.addElement(res.getString(tabla));
             }
         } catch (Exception e) {
         }
