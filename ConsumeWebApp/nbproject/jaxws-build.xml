@@ -28,8 +28,8 @@
     </target>
     <target name="wsimport-client-WebServices" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/WebServices"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServices" destdir="${build.generated.dir}/jax-wsCache/WebServices" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WebServices/wsdl/localhost_8083/WebServices/WebServices.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8083/WebServices/WebServices?wsdl" xnocompile="true" xendorsed="true" package="WebServices">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WebServices/wsdl/localhost_8083/WebServices/WebServices.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebServices" destdir="${build.generated.dir}/jax-wsCache/WebServices" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WebServices/wsdl/localhost_8081/WebServices/WebServices.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8081/WebServices/WebServices?wsdl" xnocompile="true" xendorsed="true" package="WebServices">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WebServices/wsdl/localhost_8081/WebServices/WebServices.wsdl"/>
             <produces dir="${build.generated.dir}/jax-wsCache/WebServices"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
@@ -42,5 +42,21 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/WebServices"/>
         <delete dir="${build.generated.dir}/jax-wsCache/WebServices"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-WebServices"/>
+    <target name="wsimport-client-WebCliente" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/WebCliente"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/WebCliente" destdir="${build.generated.dir}/jax-wsCache/WebCliente" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/WebCliente/wsdl/localhost_8081/WebCliente/WebCliente.wsdl" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8081/WebCliente/WebCliente?wsdl" xnocompile="true" xendorsed="true" package="ClienWebServices">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/WebCliente/wsdl/localhost_8081/WebCliente/WebCliente.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/WebCliente"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/WebCliente">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-WebCliente" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/ClienWebServices"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/WebCliente"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-WebServices, wsimport-client-WebCliente"/>
 </project>

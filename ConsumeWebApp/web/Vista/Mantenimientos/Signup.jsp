@@ -13,10 +13,6 @@
         <link  href="<%=request.getContextPath()%>/css/signup.css" rel="stylesheet">
         <script>
              function agregar(){
-                alert("Entro");
-                
-                alert("Entro1");
-                
                 
                 var id =document.getElementById("id").value;
                 var nom=document.getElementById("name").value;

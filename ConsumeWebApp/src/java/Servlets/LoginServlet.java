@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+
 import WebServices.WebServices_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,9 @@ import javax.xml.ws.WebServiceRef;
  * @author AUTONOMA
  */
 public class LoginServlet extends HttpServlet {
+
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/WebServices/WebServices.wsdl")
+    private WebServices_Service service_1;
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8083/WebServices/WebServices.wsdl")
     private WebServices_Service service;
@@ -89,8 +93,10 @@ public class LoginServlet extends HttpServlet {
     private String login(java.lang.String user, java.lang.String pass) {
         // Note that the injected javax.xml.ws.Service reference as well as port objects are not thread safe.
         // If the calling of port operations may lead to race condition some synchronization is required.
-        WebServices.WebServices port = service.getWebServicesPort();
+        WebServices.WebServices port = service_1.getWebServicesPort();
         return port.login(user, pass);
     }
+
+    
 
 }
