@@ -38,4 +38,18 @@ public class WebCliente {
         }
         return rs;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "Logear")
+    public String Logear(@WebParam(name = "user") String usuario, @WebParam(name = "pass") String contraseña) {
+        //TODO write your implementation code here:
+        if(clientedao.Logear(usuario,contraseña)){
+            rs="Logeado";
+        }else{
+            rs="No logeado";
+        }
+        return rs;
+    }
 }

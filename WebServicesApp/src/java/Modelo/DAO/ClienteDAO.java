@@ -7,6 +7,8 @@ package Modelo.DAO;
 
 import Modelo.Bean.ClienteBean;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -14,13 +16,15 @@ import java.sql.PreparedStatement;
  */
 public class ClienteDAO extends Conexion.ConexionBD {
     ClienteBean p;
-    
+    String consulta="";
+    ResultSet rs=null;
+    PreparedStatement pst=null;
     public boolean registrar(ClienteBean p)
       {
           System.out.println("Ha llegado al método"+p.getNombre());
-        PreparedStatement pst=null;
+        
         try{
-        String consulta= "INSERT INTO \"APARCANA\".\"CLIENTE\" (IDCLIENTE, NOMBRE, DNI, NOMBRE_EMPRESA, CELULAR, TELEFONO, USUARIO_CLIENTE, \"CONTRASEÑA_CLIENTE\", EMAIL) VALUES"
+        consulta= "INSERT INTO \"APARCANA\".\"CLIENTE\" (IDCLIENTE, NOMBRE, DNI, NOMBRE_EMPRESA, CELULAR, TELEFONO, USUARIO_CLIENTE, \"CONTRASEÑA_CLIENTE\", EMAIL) VALUES"
                 + "(?,?,?,?,?,?,?,?,?)";
         pst= getConexion("", "").prepareStatement(consulta); 
         pst.setInt(1, p.getIdcliente());
@@ -38,12 +42,33 @@ public class ClienteDAO extends Conexion.ConexionBD {
         pst.close();
         getConexion("","").close();
         
-    }catch(Exception ex){
+    }catch(SQLException ex){
         System.out.println("error "+ex);
         
         return false;
     }
     return true;
      
+    }
+    public boolean Logear(String user,String pass)
+    {
+        try
+        {
+            System.out.println("u: "+user+" ps: "+pass);
+            consulta="select * from \"APARCANA\".\"CLIENTE\" where USUARIO_CLIENTE=? and \"CONTRASEÑA_CLIENTE\"=? ";
+            System.out.println("Consulta : "+consulta);
+            pst = getConexion("","").prepareStatement(consulta);
+            pst.setString(1, user);
+            pst.setString(2, pass);
+            System.out.println(""+pst.toString());
+            rs=pst.executeQuery();
+            if(rs.next()){
+                System.out.println("HOLA");
+                return true;
+            }
+        }catch(SQLException ex){
+            System.out.println("Error : "+ex);
+        }
+        return false;
     }
 }
