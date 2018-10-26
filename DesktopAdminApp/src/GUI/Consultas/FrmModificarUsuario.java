@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import Bean.UsuarioBean;
 import DAO.UsuarioDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
     
 
 public class FrmModificarUsuario extends javax.swing.JFrame {
@@ -14,8 +19,13 @@ UsuarioBean usubean = new UsuarioBean();
     public FrmModificarUsuario() {
         initComponents();
         
-        this.jcbuser.setModel(usubean.Obt_user());
-        this.jcbusers.setModel(usubean.Obt_user());
+        this.jcbuser.setModel(usubean.Obt_date("USERNAME"));
+        this.jcbusers.setModel(usubean.Obt_date("USERNAME"));
+        this.jcbtablespace.setModel(usubean.Obt_date("DEFAULT_TABLESPACE"));
+        this.jcbtemporary.setModel(usubean.Obt_date("TEMPORARY_TABLESPACE"));
+        
+        
+        mostrar_privi();
     }
 
     /**
@@ -42,7 +52,7 @@ UsuarioBean usubean = new UsuarioBean();
         jcbuser = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jtableprivi = new javax.swing.JTable();
         btnactualizarprivi = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -144,8 +154,8 @@ UsuarioBean usubean = new UsuarioBean();
 
         jTabbedPane5.addTab("USUARIO", jPanel1);
 
-        jTable1.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jtableprivi.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        jtableprivi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -156,7 +166,7 @@ UsuarioBean usubean = new UsuarioBean();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jtableprivi);
 
         btnactualizarprivi.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         btnactualizarprivi.setText("ACTUALIZAR PRIVILEGIOS DE USUARIO");
@@ -462,7 +472,22 @@ UsuarioBean usubean = new UsuarioBean();
         return privi;
     }
     
-    
+    public void mostrar_privi(){
+        ResultSet priv;
+        DefaultTableModel privi = (DefaultTableModel) jtableprivi.getModel();
+        privi.setRowCount(0);
+        priv = Conexiones.ConexionBD.Consulta("select * from session_privs");
+        try {
+            while (priv.next()) {                
+                Vector p = new Vector();
+                p.add(priv.getString(1));
+                privi.addRow(p);
+                jtableprivi.setModel(privi);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -516,13 +541,13 @@ UsuarioBean usubean = new UsuarioBean();
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> jcbprivi;
     private javax.swing.JComboBox<String> jcbtablespace;
     private javax.swing.JComboBox<String> jcbtemporary;
     private javax.swing.JComboBox<String> jcbtipo;
     private javax.swing.JComboBox<String> jcbuser;
     private javax.swing.JComboBox<String> jcbusers;
+    private javax.swing.JTable jtableprivi;
     private javax.swing.JTextField newpass;
     private javax.swing.JTextField newquota;
     // End of variables declaration//GEN-END:variables
