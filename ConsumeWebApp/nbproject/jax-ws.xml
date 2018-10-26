@@ -39,8 +39,8 @@
       </wsimport-options>
     </client>
     <client name="WebCliente">
-      <wsdl-url>http://localhost:8081/WebCliente/WebCliente?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_8081/WebCliente/WebCliente.wsdl</local-wsdl-file>
+      <wsdl-url>http://localhost:8083/WebCliente/WebCliente?wsdl</wsdl-url>
+      <local-wsdl-file>localhost_8083/WebCliente/WebCliente.wsdl</local-wsdl-file>
       <package-name forceReplace="true">ClienWebServices</package-name>
       <catalog-file>catalog.xml</catalog-file>
       <wsimport-options>

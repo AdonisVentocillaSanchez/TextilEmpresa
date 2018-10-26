@@ -6,4 +6,6 @@
     <system systemId="http://localhost:8081/WebServices/WebServices?xsd=1" uri="src/conf/xml-resources/web-service-references/WebServices/wsdl/localhost_8081/WebServices/WebServices.xsd_1.xsd"/>
     <system systemId="http://localhost:8081/WebCliente/WebCliente?wsdl" uri="src/conf/xml-resources/web-service-references/WebCliente/wsdl/localhost_8081/WebCliente/WebCliente.wsdl"/>
     <system systemId="http://localhost:8081/WebCliente/WebCliente?xsd=1" uri="src/conf/xml-resources/web-service-references/WebCliente/wsdl/localhost_8081/WebCliente/WebCliente.xsd_1.xsd"/>
+    <system systemId="http://localhost:8083/WebCliente/WebCliente?wsdl" uri="src/conf/xml-resources/web-service-references/WebCliente/wsdl/localhost_8083/WebCliente/WebCliente.wsdl"/>
+    <system systemId="http://localhost:8083/WebCliente/WebCliente?xsd=1" uri="src/conf/xml-resources/web-service-references/WebCliente/wsdl/localhost_8083/WebCliente/WebCliente.xsd_1.xsd"/>
 </catalog>

@@ -7,6 +7,7 @@ package Servlets;
 
 
 
+
 import ClienWebServices.WebCliente_Service;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,8 +24,10 @@ import javax.xml.ws.WebServiceRef;
  */
 public class LoginServlet extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/WebCliente/WebCliente.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8083/WebCliente/WebCliente.wsdl")
     private WebCliente_Service service;
+
+    
 
 
 
@@ -98,8 +101,5 @@ public class LoginServlet extends HttpServlet {
         return port.logear(user, pass);
     }
 
-    
-
-    
 
 }

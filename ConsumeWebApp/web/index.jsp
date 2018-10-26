@@ -37,8 +37,8 @@
           <span class="caret"></span></a>
           <ul class="dropdown-menu">
               <li><a href="Vista/Login.jsp">Iniciar Sesión</a></li>
-            <li><a href="#">Proximamente</a></li>
-            <li><a href="#">Proximamente</a></li> 
+              <li><a href="Vista/Mantenimientos/Signup.jsp" >Registrarse</a></li>
+            
           </ul>
         </li>
         <li><a href="#"><span class="glyphicon glyphicon-search"></span></a></li>

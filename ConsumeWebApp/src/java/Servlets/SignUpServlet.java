@@ -5,6 +5,7 @@
  */
 package Servlets;
 
+
 import ClienWebServices.WebCliente_Service;
 import Modelo.Bean.ClienteBean;
 import java.io.IOException;
@@ -21,8 +22,10 @@ import javax.xml.ws.WebServiceRef;
  */
 public class SignUpServlet extends HttpServlet {
 
-    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8081/WebCliente/WebCliente.wsdl")
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8083/WebCliente/WebCliente.wsdl")
     private WebCliente_Service service;
+
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

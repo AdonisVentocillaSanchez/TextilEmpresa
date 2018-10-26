@@ -66,16 +66,16 @@
       <input type="text" placeholder="Enter Nombre de Empresa" id="nameemp" name="nameemp">
       
       <label for="cel"><b>Celular</b></label>
-      <input type="tel" placeholder="Enter Celular" id="cel" name="cel" required>
+      <input type="tel" placeholder="Enter Celular" id="cel" name="cel" >
       
       <label for=""><b>Teléfono</b></label>
-      <input type="tel" placeholder="Enter Telefono" id="tel" name="tel" required>
+      <input type="tel" placeholder="Enter Telefono" id="tel" name="tel" >
       
       <label for="usu"><b>Usuario</b></label>
-      <input type="text" placeholder="Enter Tel" id="user" name="user" required>
+      <input type="text" placeholder="Enter usuario" id="user" name="user" required>
       
       <label for="email"><b>Email</b></label>
-      <input type="email" placeholder="Enter Tel" id="email" name="email" required>
+      <input type="email" placeholder="Enter email" id="email" name="email" required>
       
       <label for="cel"><b>Contraseña</b></label>
       <input type="password" placeholder="Enter Password" id="password" name="password" required>
