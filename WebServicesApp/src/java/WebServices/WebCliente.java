@@ -31,10 +31,10 @@ public class WebCliente {
         Cliente=new ClienteBean(id, name, dni, nameemp, cel, tel, user, pass, email);
         System.out.println("Llego al Web Service "+Cliente.getIdcliente()+" "+Cliente.getNombre());
         if(clientedao.registrar(Cliente)){
-            rs="Registro";
+            rs="Registrado";
             
         }else{
-            rs="No registro";
+            rs="No registrado";
         }
         return rs;
     }
