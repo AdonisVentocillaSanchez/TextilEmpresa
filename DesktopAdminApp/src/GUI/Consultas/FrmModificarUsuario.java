@@ -95,6 +95,11 @@ String pass=usubean.getPasssave();
                 btnmodificarMouseClicked(evt);
             }
         });
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
 
         jcbtablespace.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jcbtablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -318,6 +323,10 @@ String pass=usubean.getPasssave();
         int quota=Integer.parseInt(newquota.getText());
         p.modificar(usu, pass, tablespace, temptablespace, quota);
     }//GEN-LAST:event_btnmodificarMouseClicked
+
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnmodificarActionPerformed
 
     //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){

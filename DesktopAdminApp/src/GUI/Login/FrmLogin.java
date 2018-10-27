@@ -24,6 +24,8 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -97,11 +99,7 @@ public class FrmLogin extends javax.swing.JFrame {
         
         String contra = new String(txtpass.getPassword());
         boolean p =usuariodao.Login(usuario, contra);
-        //ConexionBD a= new ConexionBD();
         System.out.println("USER:"+usuario+"PASS:"+contra);
-        //boolean p=a.Logear(usuario, contra);
-        //
-        
         if (p) {
             bean=new UsuarioBean(usuario,contra);
             new FrmModificarUsuario().setVisible(true);

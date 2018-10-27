@@ -6,19 +6,13 @@ import javax.swing.JOptionPane;
 
 public class ConexionBD {
     
-    
-
     public static Connection getConexion(String user, String pass){
         Connection cx = null;
         
         String usu = user;
         String pas = pass;
         
-        if (usu.isEmpty() & pas.isEmpty()) {
-            usu = "";
-            pas = "";
-        }
-        
+               
         String conn = "jdbc:oracle:thin:@localhost:1521:XE";
         
         try {
