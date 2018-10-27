@@ -8,50 +8,33 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
-public class UsuarioBean {
+public class UsuarioBean extends ConexionBD{
     
-    String consultaSQL = null;
-    ResultSet respuesta = null;
-    ConexionBD conbd = new ConexionBD();
-    
-    static ResultSet cargausu;
-    static Statement sentencia;
-    
-    public boolean Login(String usu, String pass){
-        boolean op = false;
-        
-        String usuario = "";
-        conbd.getConexion(usu,pass);
-        consultaSQL = "SELECT USERNAME FROM dba_users WHERE USERNAME = '"+usu+"'";
-        respuesta = conbd.Consulta(consultaSQL);
-        
-        try {
-            while (respuesta.next()) {                
-                usuario = respuesta.getString("USERNAME");
-            }
-            if (!(usuario.isEmpty())) {
-                op = true;     
-            }   
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos", "Error en el inicio de sesión",JOptionPane.ERROR_MESSAGE);
-        }
-        
-        System.out.println(usuario);
-        System.out.println(op);
-        return op;
+    public static String ususave;
+    public static String passsave;
+
+    public UsuarioBean() {
     }
-    
-    public DefaultComboBoxModel Obt_date(String tabla){
-        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
-        ListaModelo.addElement("[SELECCIONAR]");
-        ResultSet res = Conexiones.ConexionBD.Consulta("SELECT DISTINCT " + tabla + " FROM DBA_USERS");
-        try {
-            while (res.next()) {                
-                ListaModelo.addElement(res.getString(tabla));
-            }
-        } catch (Exception e) {
-        }
-        return ListaModelo;
+
+    public UsuarioBean(String ususave, String passsave) {
+        this.ususave = ususave;
+        this.passsave = passsave;
+    }
+
+    public String getUsusave() {
+        return ususave;
+    }
+
+    public void setUsusave(String ususave) {
+        this.ususave = ususave;
+    }
+
+    public String getPasssave() {
+        return passsave;
+    }
+
+    public void setPasssave(String passsave) {
+        this.passsave = passsave;
     }
     
 }

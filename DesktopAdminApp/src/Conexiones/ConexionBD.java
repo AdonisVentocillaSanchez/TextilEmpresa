@@ -1,10 +1,13 @@
 package Conexiones;
 
+
 import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class ConexionBD {
     
+    
+
     public static Connection getConexion(String user, String pass){
         Connection cx = null;
         
@@ -12,11 +15,11 @@ public class ConexionBD {
         String pas = pass;
         
         if (usu.isEmpty() & pas.isEmpty()) {
-            usu = "APARCANA";
-            pas = "aparcana";
+            usu = "";
+            pas = "";
         }
         
-        String conn = "jdbc:oracle:thin:@197.168.1.8:1521:XE";
+        String conn = "jdbc:oracle:thin:@localhost:1521:XE";
         
         try {
             
@@ -26,19 +29,20 @@ public class ConexionBD {
             
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Falla durante el proceso: "+e.getMessage(), "Error durante la conexion", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Lo que estás ingresando es esto: "+usu+":"+pas);
         }
         
         return cx;
     }
     
-    public static ResultSet Consulta(String consulta){
+    public static ResultSet Consulta(String usesave,String passave,String consulta){
         ResultSet respuesta = null;
         
-        Connection con = getConexion("", "");
+        
         Statement declara = null;
         
         try {
-            
+            Connection con = getConexion(usesave,passave);
             declara = con.createStatement();
             respuesta = declara.executeQuery(consulta);
             
@@ -48,11 +52,24 @@ public class ConexionBD {
         
         return respuesta;
     }
+    public boolean Logear(String user,String password)
+    {
+        try{
+        getConexion(user, password);
+            System.out.println("Conecto correctamente");
+            return true;
+        
+        }catch(Exception e){
+            System.out.println("No conecto el logear por Aparcana");
+        }
+        
+        return false;
+    }
     
     public static void main(String[]args){
         
         ConexionBD bd = new ConexionBD();
-        bd.getConexion("APARCANA", "aparcana");
+        bd.getConexion("VALENCIA", "vale");
         
     }
     

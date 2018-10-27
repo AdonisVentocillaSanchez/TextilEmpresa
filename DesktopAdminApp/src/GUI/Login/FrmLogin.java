@@ -6,6 +6,8 @@
 package GUI.Login;
 
 import Bean.UsuarioBean;
+import Conexiones.ConexionBD;
+import DAO.UsuarioDAO;
 import GUI.Consultas.FrmModificarUsuario;
 import javax.swing.JOptionPane;
 
@@ -15,7 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class FrmLogin extends javax.swing.JFrame {
     
-    UsuarioBean bean = new UsuarioBean();
+    UsuarioDAO usuariodao = new UsuarioDAO();
+    UsuarioBean bean;
     /**
      * Creates new form FrmLogin
      */
@@ -91,10 +94,18 @@ public class FrmLogin extends javax.swing.JFrame {
     private void btnconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnconectarActionPerformed
         
         String usuario = txtuser.getText();
+        
         String contra = new String(txtpass.getPassword());
-        boolean p =bean.Login(usuario, contra);
+        boolean p =usuariodao.Login(usuario, contra);
+        //ConexionBD a= new ConexionBD();
+        System.out.println("USER:"+usuario+"PASS:"+contra);
+        //boolean p=a.Logear(usuario, contra);
+        //
+        
         if (p) {
+            bean=new UsuarioBean(usuario,contra);
             new FrmModificarUsuario().setVisible(true);
+            
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Error al conectar con oracle ", "Error de conexion", JOptionPane.ERROR_MESSAGE);

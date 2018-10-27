@@ -15,14 +15,17 @@ import javax.swing.table.DefaultTableModel;
 public class FrmModificarUsuario extends javax.swing.JFrame {
 
 UsuarioBean usubean = new UsuarioBean();
-    
+UsuarioDAO usuariodao= new UsuarioDAO();
+String usu=usubean.getUsusave();
+String pass=usubean.getPasssave();
     public FrmModificarUsuario() {
         initComponents();
         
-        this.jcbuser.setModel(usubean.Obt_date("USERNAME"));
-        this.jcbusers.setModel(usubean.Obt_date("USERNAME"));
-        this.jcbtablespace.setModel(usubean.Obt_date("DEFAULT_TABLESPACE"));
-        this.jcbtemporary.setModel(usubean.Obt_date("TEMPORARY_TABLESPACE"));
+        System.out.println("USU:"+usu+"PASS:"+pass);
+        this.jcbuser.setModel(usuariodao.Obt_date(usu,pass,"USERNAME"));
+        this.jcbusers.setModel(usuariodao.Obt_date(usu,pass,"USERNAME"));
+        this.jcbtablespace.setModel(usuariodao.Obt_date(usu,pass,"DEFAULT_TABLESPACE"));
+        this.jcbtemporary.setModel(usuariodao.Obt_date(usu,pass,"TEMPORARY_TABLESPACE"));
         
         
         mostrar_privi();
@@ -476,7 +479,7 @@ UsuarioBean usubean = new UsuarioBean();
         ResultSet priv;
         DefaultTableModel privi = (DefaultTableModel) jtableprivi.getModel();
         privi.setRowCount(0);
-        priv = Conexiones.ConexionBD.Consulta("select * from session_privs");
+        priv = Conexiones.ConexionBD.Consulta(usu,pass,"select * from session_privs");
         try {
             while (priv.next()) {                
                 Vector p = new Vector();
