@@ -26,7 +26,7 @@ String pass=usubean.getPasssave();
         this.jcbusers.setModel(usuariodao.Obt_date(usu,pass,"USERNAME"));
         this.jcbtablespace.setModel(usuariodao.Obt_date(usu,pass,"DEFAULT_TABLESPACE"));
         this.jcbtemporary.setModel(usuariodao.Obt_date(usu,pass,"TEMPORARY_TABLESPACE"));
-        
+        //this.jcbtipo.setModel();
         
         mostrar_privi();
     }
@@ -165,13 +165,13 @@ String pass=usubean.getPasssave();
         jtableprivi.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jtableprivi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null},
+                {null},
+                {null},
+                {null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "PRIVILEGIOS DEL SISTEMA"
             }
         ));
         jScrollPane1.setViewportView(jtableprivi);
@@ -198,9 +198,19 @@ String pass=usubean.getPasssave();
 
         jcbusers.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jcbusers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbusers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbusersActionPerformed(evt);
+            }
+        });
 
         jcbprivi.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
         jcbprivi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]" }));
+        jcbprivi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbpriviActionPerformed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel9.setText("A continuación se podrá agregar privilegios al usuario seleccionado");
@@ -295,7 +305,7 @@ String pass=usubean.getPasssave();
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(155, Short.MAX_VALUE)
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -327,6 +337,14 @@ String pass=usubean.getPasssave();
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnmodificarActionPerformed
+
+    private void jcbusersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbusersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbusersActionPerformed
+
+    private void jcbpriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbpriviActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbpriviActionPerformed
 
     //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){
@@ -500,6 +518,8 @@ String pass=usubean.getPasssave();
             JOptionPane.showMessageDialog(null, "Error al mostrar", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    
     /**
      * @param args the command line arguments
      */
