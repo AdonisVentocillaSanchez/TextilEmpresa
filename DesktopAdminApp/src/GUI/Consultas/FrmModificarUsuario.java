@@ -4,6 +4,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import Bean.UsuarioBean;
+import Conexiones.ConexionBD;
 import DAO.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,10 +15,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class FrmModificarUsuario extends javax.swing.JFrame {
 
-UsuarioBean usubean = new UsuarioBean();
-UsuarioDAO usuariodao= new UsuarioDAO();
-String usu=usubean.getUsusave();
-String pass=usubean.getPasssave();
+    UsuarioBean usubean = new UsuarioBean();
+    UsuarioDAO usuariodao= new UsuarioDAO();
+    String usu=usubean.getUsusave();
+    String pass=usubean.getPasssave();
+    String consultaSQL="";
+    ResultSet rs=null;
+    ConexionBD cn=new ConexionBD();
     public FrmModificarUsuario() {
         initComponents();
         
@@ -189,7 +193,7 @@ String pass=usubean.getPasssave();
         jLabel8.setText("Tipo :");
 
         jcbtipo.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
-        jcbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]", "CLUSTERS", "DATABASE", "DATABASE LINKS", "DIMENSIONS", "INDEXES", "PROCEDURES", "PROFILES", "ROLES", "ROLLBACK SEGMENTS", "SEQUENCES", "SESSIONS", "SYNONYMS", "TABLES", "TABLESPACES", "TRIGGERS", "USERS", "VIEWS" }));
+        jcbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]", "CLUSTER", "DATABASE", "DATABASE LINKS", "DIMENSION", "INDEX", "PROCEDURE", "PROFILE", "ROLE", "ROLLBACK SEGMENT", "SEQUENCE", "SESSION", "SYNONYM", "TABLE", "TABLESPACE", "TRIGGER", "USER", "VIEW" }));
         jcbtipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcbtipoItemStateChanged(evt);
@@ -348,157 +352,31 @@ String pass=usubean.getPasssave();
 
     //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){
-        
-        String[] privi = new String[11];
-        
-        //TIPO 0
-        if (tipo.equalsIgnoreCase("[SELECCIONAR]")){
-            privi[0] = "[SELECCIONAR]";
+        int i=0;
+        consultaSQL="SELECT * FROM SESSION_PRIVS " +
+                    "WHERE PRIVILEGE LIKE '%"+tipo+"%' ";
+        String[] privi =null;    
+         
+        try{
+        rs=cn.Consulta(usu, pass, consultaSQL);
+            System.out.println("Llega hasta aquí");
+            
+        int filas=0;
+            while(rs.next()){
+                filas++;
+            }
+         rs=null; 
+        privi = new String[filas];
+        System.out.println("estas son las filas "+filas);
+        rs=cn.Consulta(usu, pass, consultaSQL);
+
+            while(rs.next()){
+                privi[i]=rs.getString("PRIVILEGE");
+                i++;
+            }
+        }catch(SQLException ex){
+            System.out.println("Algo salió mal en getPrivilege : "+ex);
         }
-        
-        //TIPO 1
-        if (tipo.equalsIgnoreCase("CLUSTERS")) {
-            privi[0] = "CREATE CLUSTER";
-            privi[1] = "CREATE ANY CLUSTER";
-            privi[2] = "ALTER ANY CLUSTER";
-            privi[3] = "DROP ANY CLUSTER";
-        }
-        
-        //TIPO 2
-        if (tipo.equalsIgnoreCase("DATABASE")) {
-            privi[0] = "ALTER DATABASE";
-            privi[1] = "ALTER SYSTEM";
-            privi[2] = "AUDIT SYSTEM";
-        }
-        
-        //TIPO 3
-        if (tipo.equalsIgnoreCase("DATABASE LINKS")) {
-            privi[0] = "CREATE DATABASE LINK";
-            privi[1] = "CREATE PUBLIC DATABASE LINK";
-            privi[2] = "DROP PUBLIC DATABASE LINK";
-        }
-        
-        //TIPO 4
-        if (tipo.equalsIgnoreCase("DIMENSIONS")) {
-            privi[0] = "CREATE DIMENSION";
-            privi[1] = "CREATE ANY DIMENSION";
-            privi[2] = "ALTER ANY DIMENSION";
-            privi[3] = "DROP ANY DIMENSION";
-        }
-        
-        //TIPO 5
-        if (tipo.equalsIgnoreCase("INDEXES")) {
-            privi[0] = "CREATE ANY INDEX";
-            privi[1] = "ALTER ANY INDEX";
-            privi[2] = "DROP ANY INDEX";
-            privi[3] = "GLOBAL QUERY REWRITE";
-        }
-        
-        //TIPO 6
-        if (tipo.equalsIgnoreCase("PROCEDURES")) {
-            privi[0] = "CREATE PROCEDURE";
-            privi[1] = "CREATE ANY PROCEDURE";
-            privi[2] = "ALTER ANY PROCEDURE";
-            privi[3] = "DROP ANY PROCEDURE";
-            privi[4] = "EXECUTE ANY PROCEDURE";
-        }
-        
-        //TIPO 7
-        if (tipo.equalsIgnoreCase("PROFILES")) {
-            privi[0] = "CREATE PROFILE";
-            privi[1] = "ALTER PROFILE";
-            privi[2] = "DROP PROFILE";
-        }
-        
-        //TIPO 8
-        if (tipo.equalsIgnoreCase("ROLES")) {
-            privi[0] = "CREATE ROLE";
-            privi[1] = "ALTER ANY ROLE";
-            privi[2] = "DROP ANY ROLE";
-            privi[3] = "GRANT ANY ROLE";
-        }
-        
-        //TIPO 9
-        if (tipo.equalsIgnoreCase("ROLLBACK SEGMENTS")) {
-            privi[0] = "CREATE ROLLBACK SEGMENT";
-            privi[1] = "ALTER ROLLBACK SEGMENT";
-            privi[2] = "DROP ROLLBACK SEGMENT";
-        }
-        
-        //TIPO 10
-        if (tipo.equalsIgnoreCase("SEQUENCES")) {
-            privi[0] = "CREATE SEQUENCE";
-            privi[1] = "CREATE ANY SEQUENCE";
-            privi[2] = "ALTER ANY SEQUENCE";
-            privi[3] = "DROP ANY SEQUENCE";
-            privi[4] = "SELECT ANY SEQUENCE";
-        }
-        
-        //TIPO 11
-        if (tipo.equalsIgnoreCase("SESSIONS")) {
-            privi[0] = "CREATE SESSION";
-            privi[1] = "ALTER RESOURCE COST";
-            privi[2] = "ALTER SESSION";
-            privi[3] = "RESTRICTED SESSION";
-        }
-        
-        //TIPO 12
-        if (tipo.equalsIgnoreCase("SYNONYMS")) {
-            privi[0] = "CREATE SYNONYM";
-            privi[1] = "CREATE ANY SYNONYM";
-            privi[2] = "CREATE PUBLIC SYNONYM";
-            privi[3] = "DROP ANY SYNONYM";
-            privi[4] = "DROP PUBLIC SYNONYM";
-        }
-        
-        //TIPO 13
-        if (tipo.equalsIgnoreCase("TABLES")) {
-            privi[0] = "CREATE TABLE";
-            privi[1] = "CREATE ANY TABLE";
-            privi[2] = "ALTER ANY TABLE";
-            privi[3] = "BACKUP ANY TABLE";
-            privi[4] = "DELETE ANY TABLE";
-            privi[5] = "DROP ANY TABLE";
-            privi[6] = "INSERT ANY TABLE";
-            privi[7] = "LOCK ANY TABLE";
-            privi[8] = "SELECT ANY TABLE";
-            privi[9] = "FLASHBACK ANY TABLE";
-            privi[10] = "UPDATE ANY TABLE";
-        }
-        
-        //TIPO 14
-        if (tipo.equalsIgnoreCase("TABLESPACES")) {
-            privi[0] = "CREATE TABLESPACE";
-            privi[1] = "ALTER TABLESPACE";
-            privi[2] = "DROP TABLESPACE";
-            privi[3] = "MANAGE TABLESPACE";
-            privi[4] = "UNLIMITED TABLESPACE";
-        }
-        
-        //TIPO 15
-        if (tipo.equalsIgnoreCase("TRIGGERS")) {
-            privi[0] = "CREATE TRIGGER";
-            privi[1] = "CREATE ANY TRIGGER";
-            privi[2] = "ALTER ANY TRIGGER";
-            privi[3] = "DROP ANY TRIGGER";
-            privi[4] = "ADMINISTER DATABASE TRIGGER";
-        }
-        
-        //TIPO 16
-        if (tipo.equalsIgnoreCase("USERS")) {
-            privi[0] = "CREATE USER";
-            privi[1] = "ALTER USER";
-            privi[2] = "BECOME USER";
-            privi[3] = "DROP USER";
-        }
-        
-        //TIPO 17
-        if (tipo.equalsIgnoreCase("VIEWS")) {
-            privi[0] = "CREATE VIEW";
-            privi[1] = "CREATE ANY VIEW";
-            privi[2] = "DROP ANY VIEW";
-        }
-        
         return privi;
     }
     

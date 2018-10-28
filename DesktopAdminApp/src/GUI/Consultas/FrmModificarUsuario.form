@@ -395,23 +395,23 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="18">
                     <StringItem index="0" value="[SELECCIONAR]"/>
-                    <StringItem index="1" value="CLUSTERS"/>
+                    <StringItem index="1" value="CLUSTER"/>
                     <StringItem index="2" value="DATABASE"/>
                     <StringItem index="3" value="DATABASE LINKS"/>
-                    <StringItem index="4" value="DIMENSIONS"/>
-                    <StringItem index="5" value="INDEXES"/>
-                    <StringItem index="6" value="PROCEDURES"/>
-                    <StringItem index="7" value="PROFILES"/>
-                    <StringItem index="8" value="ROLES"/>
-                    <StringItem index="9" value="ROLLBACK SEGMENTS"/>
-                    <StringItem index="10" value="SEQUENCES"/>
-                    <StringItem index="11" value="SESSIONS"/>
-                    <StringItem index="12" value="SYNONYMS"/>
-                    <StringItem index="13" value="TABLES"/>
-                    <StringItem index="14" value="TABLESPACES"/>
-                    <StringItem index="15" value="TRIGGERS"/>
-                    <StringItem index="16" value="USERS"/>
-                    <StringItem index="17" value="VIEWS"/>
+                    <StringItem index="4" value="DIMENSION"/>
+                    <StringItem index="5" value="INDEX"/>
+                    <StringItem index="6" value="PROCEDURE"/>
+                    <StringItem index="7" value="PROFILE"/>
+                    <StringItem index="8" value="ROLE"/>
+                    <StringItem index="9" value="ROLLBACK SEGMENT"/>
+                    <StringItem index="10" value="SEQUENCE"/>
+                    <StringItem index="11" value="SESSION"/>
+                    <StringItem index="12" value="SYNONYM"/>
+                    <StringItem index="13" value="TABLE"/>
+                    <StringItem index="14" value="TABLESPACE"/>
+                    <StringItem index="15" value="TRIGGER"/>
+                    <StringItem index="16" value="USER"/>
+                    <StringItem index="17" value="VIEW"/>
                   </StringArray>
                 </Property>
               </Properties>
