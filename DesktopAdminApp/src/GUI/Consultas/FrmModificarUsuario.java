@@ -57,6 +57,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         jcbtablespace = new javax.swing.JComboBox<>();
         jcbtemporary = new javax.swing.JComboBox<>();
         jcbuser = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableprivi = new javax.swing.JTable();
@@ -114,18 +115,30 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         jcbuser.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jcbuser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jButton1.setText("Añadir");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(124, 124, 124)
+                        .addComponent(jButton1)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(newpass, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
@@ -160,8 +173,10 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
                     .addComponent(newquota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(45, 45, 45)
-                .addComponent(btnmodificar)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnmodificar)
+                    .addComponent(jButton1))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("USUARIO", jPanel1);
@@ -350,6 +365,12 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbpriviActionPerformed
 
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        new FrmAddUsuario().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1MouseClicked
+
     //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){
         int i=0;
@@ -437,6 +458,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnactualizarprivi;
     private javax.swing.JButton btnanadirprivi;
     private javax.swing.JButton btnmodificar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
