@@ -7,7 +7,10 @@ package GUI.Consultas;
 
 import Bean.UsuarioBean;
 import DAO.AddUserRoleDAO;
+import DAO.ShowQueriesDAO;
 import DAO.UsuarioDAO;
+import java.awt.event.ItemEvent;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -18,6 +21,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
     UsuarioBean bean = new UsuarioBean();
     AddUserRoleDAO dao = new AddUserRoleDAO();
     UsuarioDAO udao = new UsuarioDAO();
+    ShowQueriesDAO sdao = new ShowQueriesDAO();
     String usersave=bean.getUsusave();
     String passwordsave=bean.getPasssave();
     /**
@@ -58,14 +62,16 @@ public class FrmAddUsuario extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtrole = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtarearole = new javax.swing.JTextArea();
         btnaddprivileges = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cbxtipo = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbxprivi = new javax.swing.JComboBox<>();
         btnaddrole = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        txtshowroletoaddprivileges = new javax.swing.JTextField();
         tittle = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -172,11 +178,16 @@ public class FrmAddUsuario extends javax.swing.JFrame {
 
         jLabel6.setText("Rol :");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtarearole.setColumns(20);
+        txtarearole.setRows(5);
+        jScrollPane1.setViewportView(txtarearole);
 
         btnaddprivileges.setText("Agregar privilegio");
+        btnaddprivileges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddprivilegesActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Tipo :");
 
@@ -190,6 +201,13 @@ public class FrmAddUsuario extends javax.swing.JFrame {
         jLabel8.setText("Privilegios :");
 
         btnaddrole.setText("Agregar rol");
+        btnaddrole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddroleActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Usted está otorgando privilegios a :");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -209,20 +227,26 @@ public class FrmAddUsuario extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnaddrole))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addContainerGap()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtshowroletoaddprivileges))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8))
-                        .addGap(63, 63, 63)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbxtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(63, 63, 63)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbxtipo, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbxprivi, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(136, 136, 136)
+                                .addComponent(btnaddprivileges)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(btnaddprivileges)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,19 +258,23 @@ public class FrmAddUsuario extends javax.swing.JFrame {
                     .addComponent(btnaddrole))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtshowroletoaddprivileges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cbxtipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addComponent(cbxprivi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addComponent(btnaddprivileges)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGap(22, 22, 22))
         );
 
         jTabbedPane1.addTab("Rol", jPanel4);
@@ -293,8 +321,30 @@ public class FrmAddUsuario extends javax.swing.JFrame {
 
     private void cbxtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxtipoItemStateChanged
         // TODO add your handling code here:
-        
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.cbxtipo.getSelectedIndex()>=0) {
+                this.cbxprivi.setModel(new DefaultComboBoxModel(sdao.getPrivilegio(this.cbxtipo.getSelectedItem().toString())));
+            }
+        }
     }//GEN-LAST:event_cbxtipoItemStateChanged
+
+    private void btnaddroleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddroleActionPerformed
+        // TODO add your handling code here:
+        String role=txtrole.getText();
+        if(dao.AddRole(role)){
+            txtshowroletoaddprivileges.setText(role);
+            txtarearole.append(role+" created");
+        }
+        
+    }//GEN-LAST:event_btnaddroleActionPerformed
+
+    private void btnaddprivilegesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddprivilegesActionPerformed
+        // TODO add your handling code here:
+        String rolegranted=txtshowroletoaddprivileges.getText();
+        if(dao.AddPrivilegeToRole(rolegranted, (String)cbxprivi.getSelectedItem())){
+            txtarearole.append("\n"+(String)cbxprivi.getSelectedItem()+" granted");
+        }
+    }//GEN-LAST:event_btnaddprivilegesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -335,10 +385,10 @@ public class FrmAddUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnaddprivileges;
     private javax.swing.JButton btnaddrole;
+    private javax.swing.JComboBox<String> cbxprivi;
     private javax.swing.JComboBox<String> cbxtablespace;
     private javax.swing.JComboBox<String> cbxtemptablespace;
     private javax.swing.JComboBox<String> cbxtipo;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -347,19 +397,21 @@ public class FrmAddUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JScrollPane tbladduser;
     private javax.swing.JLabel tittle;
+    private javax.swing.JTextArea txtarearole;
     private javax.swing.JTextArea txtareauser;
     private javax.swing.JTextField txtpassword;
     private javax.swing.JTextField txtquota;
     private javax.swing.JTextField txtrole;
+    private javax.swing.JTextField txtshowroletoaddprivileges;
     private javax.swing.JTextField txtuser;
     // End of variables declaration//GEN-END:variables
 }

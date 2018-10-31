@@ -24,7 +24,7 @@ public class AddUserRoleDAO extends Conexiones.ConexionBD {
     CallableStatement clst=null;
     String usersave=bean.getUsusave();
     String passwordsave=bean.getPasssave();
-    
+    Connection cn= getConexion(usersave, passwordsave);
     public boolean AddUser(String user,String password, String table,String temp, String quota){
         try{
             consultaSQL="CREATE USER "+user+" IDENTIFIED BY "+password
@@ -32,7 +32,6 @@ public class AddUserRoleDAO extends Conexiones.ConexionBD {
                     + " TEMPORARY TABLESPACE "+temp
                     + " QUOTA "+quota+" ON "+table;
             System.out.println("Consulta : "+consultaSQL);
-            Connection cn= getConexion(usersave, passwordsave);
             clst=cn.prepareCall(consultaSQL);
             clst.execute(consultaSQL);
             clst.close();
@@ -46,6 +45,32 @@ public class AddUserRoleDAO extends Conexiones.ConexionBD {
         }
     }
     public boolean AddRole(String role){
-        return false;
+        try{
+            consultaSQL="CREATE ROLE "+role;
+            System.out.println("Consulta : "+consultaSQL);
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            getConexion(usersave, passwordsave);
+            return true;
+        }catch(SQLException ex){
+            System.out.println("Ocurrió un error en AddRole : "+ex);
+            return false;
+        }
+    }
+    public boolean AddPrivilegeToRole(String role, String privilege){
+        try{
+            consultaSQL="GRANT "+privilege+" TO "+role;
+            System.out.println("Consulta : "+consultaSQL);
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            getConexion(usersave, passwordsave).close();
+            return true;
+        }catch(SQLException ex){
+            System.out.println("Ocurrió un error en AddPrivilegeToRole : "+ex);
+            return false;    
+        }
+        
     }
 }
