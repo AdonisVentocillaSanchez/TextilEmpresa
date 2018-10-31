@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import Bean.UsuarioBean;
 import Conexiones.ConexionBD;
+import DAO.ShowQueriesDAO;
 import DAO.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,6 +18,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
 
     UsuarioBean usubean = new UsuarioBean();
     UsuarioDAO usuariodao= new UsuarioDAO();
+    ShowQueriesDAO sdao = new ShowQueriesDAO();
     String usu=usubean.getUsusave();
     String pass=usubean.getPasssave();
     String consultaSQL="";
@@ -335,7 +337,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
     private void jcbtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbtipoItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             if (this.jcbtipo.getSelectedIndex()>=0) {
-                this.jcbprivi.setModel(new DefaultComboBoxModel(this.getPrivilegio(this.jcbtipo.getSelectedItem().toString())));
+                this.jcbprivi.setModel(new DefaultComboBoxModel(sdao.getPrivilegio(this.jcbtipo.getSelectedItem().toString())));
             }
         }
     }//GEN-LAST:event_jcbtipoItemStateChanged
@@ -345,11 +347,9 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         UsuarioDAO p=new UsuarioDAO();
         String usu = (String)jcbuser.getSelectedItem();
         String pass= newpass.getText();
-       // String tablespace = (String)jcbtablespace.getSelectedItem();
-        String tablespace="USERS";
-        String temptablespace="TEMP";
-        //String temptablespace = (String)jcbtemporary.getSelectedItem();
-        int quota=Integer.parseInt(newquota.getText());
+        String tablespace = (String)jcbtablespace.getSelectedItem();
+        String temptablespace = (String)jcbtemporary.getSelectedItem();
+        String quota=(newquota.getText());
         p.modificar(usu, pass, tablespace, temptablespace, quota);
     }//GEN-LAST:event_btnmodificarMouseClicked
 
@@ -371,35 +371,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
-    //Creacion  de los combobox fluidos
-    public String[] getPrivilegio(String tipo){
-        int i=0;
-        consultaSQL="SELECT * FROM SESSION_PRIVS " +
-                    "WHERE PRIVILEGE LIKE '%"+tipo+"%' ";
-        String[] privi =null;    
-         
-        try{
-        rs=cn.Consulta(usu, pass, consultaSQL);
-            System.out.println("Llega hasta aquí");
-            
-        int filas=0;
-            while(rs.next()){
-                filas++;
-            }
-         rs=null; 
-        privi = new String[filas];
-        System.out.println("estas son las filas "+filas);
-        rs=cn.Consulta(usu, pass, consultaSQL);
-
-            while(rs.next()){
-                privi[i]=rs.getString("PRIVILEGE");
-                i++;
-            }
-        }catch(SQLException ex){
-            System.out.println("Algo salió mal en getPrivilege : "+ex);
-        }
-        return privi;
-    }
+    
     
     public void mostrar_privi(){
         ResultSet priv;

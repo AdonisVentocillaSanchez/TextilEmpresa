@@ -3,6 +3,7 @@ package DAO;
 
 import Bean.UsuarioBean;
 import static Conexiones.ConexionBD.getConexion;
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,8 +18,9 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     static ResultSet cargausu;
     static Statement sentencia;
     PreparedStatement pst=null;
+    CallableStatement clst=null;
     ResultSet rs=null;
-    String consulta="";
+    
     
     String usersave=bean.getUsusave();
     String passwordsave=bean.getPasssave();
@@ -74,7 +76,7 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
         return ListaModelo;
     }
 /////////////////////////Aquí empiezan metodos que no son del login ni del mostrar tablas//////////////////////    
-    public boolean modificar(String usu,String pass,String tablespace,String temptablespace,int quota)
+    public boolean modificar(String usu,String pass,String tablespace,String temptablespace,String quota)
     {
         try{
             System.out.println(""+usu+pass+tablespace+temptablespace+quota);
@@ -95,12 +97,10 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarUsuXPass(String usu,String pass)
     {
         try{
-            consulta="ALTER USER \"?\" IDENTIFIED BY ? ;commit;";
-            pst=getConexion(usersave,passwordsave).prepareStatement(consulta);
-            pst.setString(1, usu);
-            pst.setString(2, pass);
-            pst.executeUpdate();
-            pst.close();
+            consultaSQL="ALTER USER "+usu+" IDENTIFIED BY "+pass;
+            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
             getConexion(usersave,passwordsave).close();
             return true;
         }catch(SQLException ex)
@@ -114,12 +114,10 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarTableSpace(String usu,String tablespace)
     {
         try{
-            consulta="ALTER USER \"?\" DEFAULT TABLESPACE ? ;";
-            pst=getConexion(usersave,passwordsave).prepareStatement(consulta);
-            pst.setString(1, usu);
-            pst.setString(2, tablespace);
-            pst.executeUpdate();
-            pst.close();
+            consultaSQL="ALTER USER "+usu+" DEFAULT TABLESPACE "+tablespace;
+            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
             getConexion(usersave,passwordsave).close();
             return true;
         }catch(SQLException ex)
@@ -131,12 +129,10 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     public boolean modificarTempTableSpace(String usu,String temptablespace)
     {
         try{
-            consulta="ALTER USER \"?\" TEMPORARY TABLESPACE ? ;commit;";
-            pst=getConexion(usersave,passwordsave).prepareStatement(consulta);
-            pst.setString(1, usu);
-            pst.setString(2, temptablespace);
-            pst.executeUpdate();
-            pst.close();
+            consultaSQL="ALTER USER "+usu+" TEMPORARY TABLESPACE "+temptablespace;
+            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
             getConexion(usersave,passwordsave).close();
             return true;
         }catch(SQLException ex)
@@ -145,16 +141,14 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
         }
         return false;
     }
-    public boolean modificarQuota(String usu,int quota,String tablespace)
+    public boolean modificarQuota(String usu,String quota,String tablespace)
     {
+        
         try{
-            consulta="alter user \"?\" quota ? K on ? ;";
-            pst=getConexion(usersave,passwordsave).prepareStatement(consulta);
-            pst.setString(1, usu);
-            pst.setInt(2, quota);
-            pst.setString(3, tablespace);
-            pst.executeUpdate();
-            pst.close();
+            consultaSQL="ALTER USER "+usu+" QUOTA "+quota+" ON "+tablespace;
+            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
             getConexion(usersave, passwordsave).close();
             return true;
         }catch(SQLException ex)

@@ -25,6 +25,7 @@ public class ShowQueriesDAO extends ConexionBD{
     String usersave=bean.getUsusave();
     String passwordsave=bean.getPasssave();
     
+    //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){
         int i=0;
         consultaSQL="SELECT * FROM SESSION_PRIVS " +
@@ -53,4 +54,6 @@ public class ShowQueriesDAO extends ConexionBD{
         }
         return privi;
     }
+    
+    
 }
