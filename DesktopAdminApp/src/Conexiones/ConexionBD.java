@@ -63,7 +63,7 @@ public class ConexionBD {
     public static void main(String[]args){
         
         ConexionBD bd = new ConexionBD();
-        bd.getConexion("VALENCIA", "vale");
+        bd.getConexion("", "");
         
     }
     
