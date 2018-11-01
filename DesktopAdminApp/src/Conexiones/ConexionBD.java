@@ -28,38 +28,7 @@ public class ConexionBD {
         
         return cx;
     }
-    
-    public static ResultSet Consulta(String usesave,String passave,String consulta){
-        ResultSet respuesta = null;
-        
-        
-        Statement declara = null;
-        
-        try {
-            Connection con = getConexion(usesave,passave);
-            declara = con.createStatement();
-            respuesta = declara.executeQuery(consulta);
-            
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Hubo un error al ejecutar la sentencia: \n" + consulta + "\n Error: \n" + e.getMessage(), "Error en la ejecución",  JOptionPane.ERROR_MESSAGE);
-        }
-        
-        return respuesta;
-    }
-    public boolean Logear(String user,String password)
-    {
-        try{
-        getConexion(user, password);
-            System.out.println("Conecto correctamente");
-            return true;
-        
-        }catch(Exception e){
-            System.out.println("No conecto el logear por Aparcana");
-        }
-        
-        return false;
-    }
-    
+
     public static void main(String[]args){
         
         ConexionBD bd = new ConexionBD();

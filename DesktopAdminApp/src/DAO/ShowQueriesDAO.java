@@ -7,10 +7,14 @@ package DAO;
 
 import Bean.UsuarioBean;
 import Conexiones.ConexionBD;
+import static Conexiones.ConexionBD.getConexion;
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +29,23 @@ public class ShowQueriesDAO extends ConexionBD{
     String usersave=bean.getUsusave();
     String passwordsave=bean.getPasssave();
     
+    public static ResultSet Consulta(String usesave,String passave,String consulta){
+        ResultSet respuesta = null;
+        
+        
+        Statement declara = null;
+        
+        try {
+            Connection con = getConexion(usesave,passave);
+            declara = con.createStatement();
+            respuesta = declara.executeQuery(consulta);
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Hubo un error al ejecutar la sentencia: \n" + consulta + "\n Error: \n" + e.getMessage(), "Error en la ejecución",  JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return respuesta;
+    }
     //Creacion  de los combobox fluidos
     public String[] getPrivilegio(String tipo){
         int i=0;

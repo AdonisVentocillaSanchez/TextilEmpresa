@@ -3,7 +3,6 @@ package DAO;
 
 import Bean.UsuarioBean;
 import static Conexiones.ConexionBD.getConexion;
-import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +17,6 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
     static ResultSet cargausu;
     static Statement sentencia;
     PreparedStatement pst=null;
-    CallableStatement clst=null;
     ResultSet rs=null;
     
     
@@ -29,8 +27,6 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
         boolean op = false;
         String usuario = "";
         consultaSQL = "SELECT USERNAME FROM dba_users WHERE USERNAME = '"+usu+"'";
-        
-        //respuesta = conbd.Consulta(consultaSQL);
         
         try {
             pst=getConexion(usu,pass).prepareStatement(consultaSQL);
@@ -74,89 +70,6 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
         }
         
         return ListaModelo;
-    }
-/////////////////////////Aquí empiezan metodos que no son del login ni del mostrar tablas//////////////////////    
-    public boolean modificar(String usu,String pass,String tablespace,String temptablespace,String quota)
-    {
-        try{
-            System.out.println(""+usu+pass+tablespace+temptablespace+quota);
-            if(pass.isEmpty()){
-            }else{
-                modificarUsuXPass(usu,pass);
-            }
-            modificarTableSpace(usu, tablespace);
-            modificarTempTableSpace(usu, temptablespace);
-            modificarQuota(usu, quota, tablespace);
-            return true;
-        }catch(Exception ex)
-        {
-            System.out.println(""+ex);
-        }
-        return false;
-    }
-    public boolean modificarUsuXPass(String usu,String pass)
-    {
-        try{
-            consultaSQL="ALTER USER "+usu+" IDENTIFIED BY "+pass;
-            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
-            clst.execute();
-            clst.close();
-            getConexion(usersave,passwordsave).close();
-            return true;
-        }catch(SQLException ex)
-        {
-            System.out.println("Ocurrió un error modificar USUXPASS"+ex);
-        }
-        
-        return false;
-    }
-    
-    public boolean modificarTableSpace(String usu,String tablespace)
-    {
-        try{
-            consultaSQL="ALTER USER "+usu+" DEFAULT TABLESPACE "+tablespace;
-            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
-            clst.execute();
-            clst.close();
-            getConexion(usersave,passwordsave).close();
-            return true;
-        }catch(SQLException ex)
-        {
-            System.out.println("Ocurrió un error modificar TABLESPACE"+ex);
-        }
-        return false;
-    }
-    public boolean modificarTempTableSpace(String usu,String temptablespace)
-    {
-        try{
-            consultaSQL="ALTER USER "+usu+" TEMPORARY TABLESPACE "+temptablespace;
-            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
-            clst.execute();
-            clst.close();
-            getConexion(usersave,passwordsave).close();
-            return true;
-        }catch(SQLException ex)
-        {
-            System.out.println("Ocurrió un error modificar TEMP : "+ex);
-        }
-        return false;
-    }
-    public boolean modificarQuota(String usu,String quota,String tablespace)
-    {
-        
-        try{
-            consultaSQL="ALTER USER "+usu+" QUOTA "+quota+" ON "+tablespace;
-            clst=getConexion(usersave,passwordsave).prepareCall(consultaSQL);
-            clst.execute();
-            clst.close();
-            getConexion(usersave, passwordsave).close();
-            return true;
-        }catch(SQLException ex)
-        {
-            System.out.println("Ocurrió un error modificar QUOTA : "+ex);
-        }
-        return false;
-    }
-     
+    }   
     
 }

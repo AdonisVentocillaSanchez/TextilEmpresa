@@ -6,8 +6,9 @@
 package GUI.Consultas;
 
 import Bean.UsuarioBean;
-import DAO.AddUserRoleDAO;
+import DAO.RoleDAO;
 import DAO.ShowQueriesDAO;
+import DAO.UserDAO;
 import DAO.UsuarioDAO;
 import java.awt.event.ItemEvent;
 import javax.swing.DefaultComboBoxModel;
@@ -19,7 +20,8 @@ import javax.swing.DefaultComboBoxModel;
 public class FrmAddUsuario extends javax.swing.JFrame {
 
     UsuarioBean bean = new UsuarioBean();
-    AddUserRoleDAO dao = new AddUserRoleDAO();
+    UserDAO userdao = new UserDAO();
+    RoleDAO roledao = new RoleDAO();
     UsuarioDAO udao = new UsuarioDAO();
     ShowQueriesDAO sdao = new ShowQueriesDAO();
     String usersave=bean.getUsusave();
@@ -191,7 +193,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
 
         jLabel7.setText("Tipo :");
 
-        cbxtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]", "CLUSTER", "DATABASE", "DATABASE LINKS", "DIMENSION", "INDEX", "PROCEDURE", "PROFILE", "ROLE", "ROLLBACK SEGMENT", "SEQUENCE", "SESSION", "SYNONYM", "TABLE", "TABLESPACE", "TRIGGER", "USER", "VIEW" }));
+        cbxtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]", "CLUSTER", "DATABASE", "DATABASE LINK", "DIMENSION", "INDEX", "PROCEDURE", "PROFILE", "ROLE", "ROLLBACK SEGMENT", "SEQUENCE", "SESSION", "SYNONYM", "TABLE", "TABLESPACE", "TRIGGER", "USER", "VIEW" }));
         cbxtipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbxtipoItemStateChanged(evt);
@@ -316,7 +318,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
         String table = (String) cbxtablespace.getSelectedItem();
         String temp= (String) cbxtemptablespace.getSelectedItem();
         String qouta= txtquota.getText();
-        dao.AddUser(user, pass, table, temp, qouta);
+        userdao.AddUser(user, pass, table, temp, qouta);
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void cbxtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxtipoItemStateChanged
@@ -331,7 +333,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
     private void btnaddroleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddroleActionPerformed
         // TODO add your handling code here:
         String role=txtrole.getText();
-        if(dao.AddRole(role)){
+        if(roledao.AddRole(role)){
             txtshowroletoaddprivileges.setText(role);
             txtarearole.append(role+" created");
         }
@@ -341,7 +343,7 @@ public class FrmAddUsuario extends javax.swing.JFrame {
     private void btnaddprivilegesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddprivilegesActionPerformed
         // TODO add your handling code here:
         String rolegranted=txtshowroletoaddprivileges.getText();
-        if(dao.AddPrivilegeToRole(rolegranted, (String)cbxprivi.getSelectedItem())){
+        if(roledao.AddPrivilegeToRole(rolegranted, (String)cbxprivi.getSelectedItem())){
             txtarearole.append("\n"+(String)cbxprivi.getSelectedItem()+" granted");
         }
     }//GEN-LAST:event_btnaddprivilegesActionPerformed

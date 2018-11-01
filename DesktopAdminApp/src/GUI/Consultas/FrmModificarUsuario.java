@@ -1,11 +1,11 @@
 package GUI.Consultas;
 
 import java.awt.event.ItemEvent;
-import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import Bean.UsuarioBean;
-import Conexiones.ConexionBD;
+import DAO.RoleDAO;
 import DAO.ShowQueriesDAO;
+import DAO.UserDAO;
 import DAO.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,22 +18,20 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
 
     UsuarioBean usubean = new UsuarioBean();
     UsuarioDAO usuariodao= new UsuarioDAO();
+    UserDAO userdao = new UserDAO();
+    RoleDAO roledao = new RoleDAO();
     ShowQueriesDAO sdao = new ShowQueriesDAO();
-    String usu=usubean.getUsusave();
-    String pass=usubean.getPasssave();
-    String consultaSQL="";
+    String usersave=usubean.getUsusave();
+    String passwordsave=usubean.getPasssave();
     ResultSet rs=null;
-    ConexionBD cn=new ConexionBD();
+    
     public FrmModificarUsuario() {
         initComponents();
-        
-        System.out.println("USU:"+usu+"PASS:"+pass);
-        this.jcbuser.setModel(usuariodao.Obt_date(usu,pass,"USERNAME"));
-        this.jcbusers.setModel(usuariodao.Obt_date(usu,pass,"USERNAME"));
-        this.jcbtablespace.setModel(usuariodao.Obt_date(usu,pass,"DEFAULT_TABLESPACE"));
-        this.jcbtemporary.setModel(usuariodao.Obt_date(usu,pass,"TEMPORARY_TABLESPACE"));
-        //this.jcbtipo.setModel();
-        
+        System.out.println("USU:"+usersave+"PASS:"+passwordsave);
+        this.jcbuser.setModel(usuariodao.Obt_date(usersave,passwordsave,"USERNAME"));
+        this.jcbusers.setModel(usuariodao.Obt_date(usersave,passwordsave,"USERNAME"));
+        this.jcbtablespace.setModel(usuariodao.Obt_date(usersave,passwordsave,"DEFAULT_TABLESPACE"));
+        this.jcbtemporary.setModel(usuariodao.Obt_date(usersave,passwordsave,"TEMPORARY_TABLESPACE"));
         mostrar_privi();
     }
 
@@ -72,6 +70,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         jcbprivi = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         btnanadirprivi = new javax.swing.JButton();
+        btneliminarprivi = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -210,7 +209,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         jLabel8.setText("Tipo :");
 
         jcbtipo.setFont(new java.awt.Font("sansserif", 0, 13)); // NOI18N
-        jcbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]", "CLUSTER", "DATABASE", "DATABASE LINKS", "DIMENSION", "INDEX", "PROCEDURE", "PROFILE", "ROLE", "ROLLBACK SEGMENT", "SEQUENCE", "SESSION", "SYNONYM", "TABLE", "TABLESPACE", "TRIGGER", "USER", "VIEW" }));
+        jcbtipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "[SELECCIONAR]", "CLUSTER", "DATABASE", "DATABASE LINK", "DIMENSION", "INDEX", "PROCEDURE", "PROFILE", "ROLE", "ROLLBACK SEGMENT", "SEQUENCE", "SESSION", "SYNONYM", "TABLE", "TABLESPACE", "TRIGGER", "USER", "VIEW" }));
         jcbtipo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jcbtipoItemStateChanged(evt);
@@ -238,31 +237,43 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
 
         btnanadirprivi.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         btnanadirprivi.setText("AÑADIR PRIVILEGIO");
+        btnanadirprivi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnanadirpriviActionPerformed(evt);
+            }
+        });
+
+        btneliminarprivi.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
+        btneliminarprivi.setText("ELIMINAR PRIVILEGIO");
+        btneliminarprivi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarpriviActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(btnactualizarprivi)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(btnanadirprivi))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8)
-                            .addComponent(jLabel7))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jcbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jcbprivi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jLabel7)
+                            .addComponent(btnanadirprivi))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcbtipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jcbprivi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(33, 33, 33)
+                                .addComponent(btneliminarprivi))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addComponent(jLabel6)
@@ -271,6 +282,10 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(btnactualizarprivi)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,9 +307,11 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
                             .addComponent(jcbprivi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addGap(35, 35, 35)
-                        .addComponent(btnanadirprivi))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnanadirprivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btneliminarprivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnactualizarprivi)
                 .addGap(39, 39, 39))
         );
@@ -326,7 +343,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -344,13 +361,12 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
 
     private void btnmodificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnmodificarMouseClicked
         // TODO add your handling code here:
-        UsuarioDAO p=new UsuarioDAO();
         String usu = (String)jcbuser.getSelectedItem();
         String pass= newpass.getText();
         String tablespace = (String)jcbtablespace.getSelectedItem();
         String temptablespace = (String)jcbtemporary.getSelectedItem();
         String quota=(newquota.getText());
-        p.modificar(usu, pass, tablespace, temptablespace, quota);
+        userdao.modificar(usu, pass, tablespace, temptablespace, quota);
     }//GEN-LAST:event_btnmodificarMouseClicked
 
     private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
@@ -371,13 +387,31 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void btnanadirpriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnanadirpriviActionPerformed
+        // TODO add your handling code here:
+        String usergrant=(String)jcbusers.getSelectedItem();
+        if(userdao.AddPrivilegeToUser(usergrant, (String)jcbprivi.getSelectedItem())){
+            JOptionPane.showMessageDialog(null,"Rol "+(String)jcbprivi.getSelectedItem()+
+                    " ha sido otorgado a "+usergrant);
+        }
+    }//GEN-LAST:event_btnanadirpriviActionPerformed
+
+    private void btneliminarpriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarpriviActionPerformed
+        // TODO add your handling code here:
+        String usergrant=(String)jcbusers.getSelectedItem();
+        if(userdao.RevokeProvolegeTo(usergrant, (String)jcbprivi.getSelectedItem())){
+            JOptionPane.showMessageDialog(null,"Rol "+(String)jcbprivi.getSelectedItem()+
+                    " ha sido revocado a "+usergrant);
+        }
+    }//GEN-LAST:event_btneliminarpriviActionPerformed
+
     
     
     public void mostrar_privi(){
         ResultSet priv;
         DefaultTableModel privi = (DefaultTableModel) jtableprivi.getModel();
         privi.setRowCount(0);
-        priv = Conexiones.ConexionBD.Consulta(usu,pass,"select * from session_privs");
+        priv = sdao.Consulta(usersave,passwordsave,"select * from session_privs");
         try {
             while (priv.next()) {                
                 Vector p = new Vector();
@@ -429,6 +463,7 @@ public class FrmModificarUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnactualizarprivi;
     private javax.swing.JButton btnanadirprivi;
+    private javax.swing.JButton btneliminarprivi;
     private javax.swing.JButton btnmodificar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
