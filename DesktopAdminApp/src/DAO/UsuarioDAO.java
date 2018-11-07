@@ -65,7 +65,7 @@ public class UsuarioDAO extends Conexiones.ConexionBD {
             }
             pst.close();
             rs.close();
-            getConexion(usu, pass);
+            getConexion(usu, pass).close();
         } catch (SQLException e) {
         }
         

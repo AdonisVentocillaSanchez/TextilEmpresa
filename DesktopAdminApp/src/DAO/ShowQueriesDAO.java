@@ -28,7 +28,7 @@ public class ShowQueriesDAO extends ConexionBD{
     CallableStatement clst=null;
     String usersave=bean.getUsusave();
     String passwordsave=bean.getPasssave();
-    
+    Connection cn = getConexion(usersave,passwordsave);
     public static ResultSet Consulta(String usesave,String passave,String consulta){
         ResultSet respuesta = null;
         
@@ -54,7 +54,8 @@ public class ShowQueriesDAO extends ConexionBD{
         String[] privi =null;    
          
         try{
-        rs=Consulta(usersave, passwordsave, consultaSQL);
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
             System.out.println("Llega hasta aquí");
             
         int filas=0;
@@ -64,15 +65,19 @@ public class ShowQueriesDAO extends ConexionBD{
          rs=null; 
         privi = new String[filas];
         System.out.println("estas son las filas "+filas);
-        rs=Consulta(usersave, passwordsave, consultaSQL);
+        rs=pst.executeQuery();
 
             while(rs.next()){
                 privi[i]=rs.getString("PRIVILEGE");
                 i++;
             }
+        pst.close();
+        rs.close();
+        //cn.close();
         }catch(SQLException ex){
             System.out.println("Algo salió mal en getPrivilege : "+ex);
         }
+        
         return privi;
     }
     

@@ -13,13 +13,14 @@ public class ConexionBD {
         String pas = pass;
         
                
-        String conn = "jdbc:oracle:thin:@localhost:1521:XE";
+        String conn = "jdbc:oracle:thin:@197.168.9.27:1521:XE";
         
         try {
             
             Class.forName("oracle.jdbc.OracleDriver");
             cx = DriverManager.getConnection(conn,usu,pas);
             System.out.println("Se conecto a Oracle");
+            
             
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Falla durante el proceso: "+e.getMessage(), "Error durante la conexion", JOptionPane.ERROR_MESSAGE);
@@ -28,6 +29,8 @@ public class ConexionBD {
         
         return cx;
     }
+    
+    
 
     public static void main(String[]args){
         

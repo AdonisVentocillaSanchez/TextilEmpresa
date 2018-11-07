@@ -34,7 +34,7 @@ public class RoleDAO {
             clst=cn.prepareCall(consultaSQL);
             clst.execute();
             clst.close();
-            getConexion(usersave, passwordsave);
+            getConexion(usersave, passwordsave).close();
             return true;
         }catch(SQLException ex){
             System.out.println("Ocurrió un error en AddRole : "+ex);
