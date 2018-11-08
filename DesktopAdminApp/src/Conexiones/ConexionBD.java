@@ -13,7 +13,7 @@ public class ConexionBD {
         String pas = pass;
         
                
-        String conn = "jdbc:oracle:thin:@197.168.9.27:1521:XE";
+        String conn = "jdbc:oracle:thin:@localhost:1521:XE";
         
         try {
             
