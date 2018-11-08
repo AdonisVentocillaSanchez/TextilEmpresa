@@ -15,12 +15,6 @@ maxsize 600K
 extent management local uniform size 100K; 
 commit;
 
-create role PROGRAMADOR; 
-grant DBA to PROGRAMADOR; 
-commit;
-grant PROGRAMADOR to Ventocilla,Aparcana,Valencia; 
-commit;
-
 create user Ventocilla identified by ella 
 default tablespace EmpresaTextil 
 temporary tablespace Temp_EmpresaTextil 
@@ -38,3 +32,9 @@ default tablespace EmpresaTextil
 temporary tablespace Temp_EmpresaTextil 
 quota unlimited on EmpresaTextil; 
 commit; 
+
+create role PROGRAMADOR; 
+grant DBA to PROGRAMADOR; 
+commit;
+grant PROGRAMADOR to Ventocilla,Aparcana,Valencia; 
+commit;
