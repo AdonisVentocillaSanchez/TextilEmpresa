@@ -150,7 +150,7 @@ public class FrmLogin extends javax.swing.JFrame {
         adminDAO.setSid(sid);
         adminDAO.setUser(username);
         adminDAO.setPassword(password);
-                
+        
         ConexionBD.getConexion(adminDAO);
         Cleantxt();
     }//GEN-LAST:event_btnConnectActionPerformed
