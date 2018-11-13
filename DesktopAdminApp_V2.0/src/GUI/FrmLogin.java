@@ -3,10 +3,13 @@ package GUI;
 
 import Bean.UsuarioBean;
 import Connection.ConexionBD;
+import DAO.UsuarioDAO;
+import javax.swing.JOptionPane;
 
 public class FrmLogin extends javax.swing.JFrame {
 
     UsuarioBean adminDAO = new UsuarioBean();
+    UsuarioDAO usuariodao = new UsuarioDAO();
         
     public FrmLogin() {
         initComponents();
@@ -151,8 +154,17 @@ public class FrmLogin extends javax.swing.JFrame {
         adminDAO.setUser(username);
         adminDAO.setPassword(password);
         
-        ConexionBD.getConexion(adminDAO);
-        Cleantxt();
+        boolean p =usuariodao.Login(adminDAO);
+        System.out.println("USER:"+username+"PASS:"+password);
+        if (p) {
+            new FrmPrincipal().setVisible(true);
+            
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al conectar con oracle ", "Error de conexion", JOptionPane.ERROR_MESSAGE);
+            Cleantxt();
+        }
+        
     }//GEN-LAST:event_btnConnectActionPerformed
 
     public void Cleantxt() {
