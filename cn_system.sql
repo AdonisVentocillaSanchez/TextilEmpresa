@@ -1,18 +1,18 @@
 create tablespace EmpresaTextil 
 datafile '/EmpresaTextil.dbf' 
-size 3M 
-autoextend on next 1M 
-maxsize 3400K 
+size 30M 
+autoextend on next 3M 
+maxsize 34000K 
 default storage(Initial 16K next 16K 
 minextents 1 maxextents 3); 
 commit; 
   
 create temporary tablespace Temp_EmpresaTextil 
 tempfile '/Temp_EmpresaTextil.dbf' 
-size 500K 
-autoextend on next 50K 
-maxsize 600K 
-extent management local uniform size 100K; 
+size 1M 
+autoextend on next 100K 
+maxsize 1600K 
+extent management local uniform size 300K; 
 commit;
 
 create user Ventocilla identified by ella 
