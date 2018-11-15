@@ -1,5 +1,5 @@
 -- Generado por Oracle SQL Developer Data Modeler 4.1.3.901
---   en:        2018-11-14 22:13:42 COT
+--   en:        2018-11-14 22:47:23 COT
 --   sitio:      Oracle Database 11g
 --   tipo:      Oracle Database 11g
 
@@ -13,10 +13,10 @@ CREATE TABLE Producto
     desc_prod CLOB ,
     preccomp_prod    NUMBER (8,2) ,
     preven_prod      NUMBER (8,2) ,
-    categoria_id_cat INTEGER NOT NULL ,
+    categoria_id_cat INTEGER ,
     cant_prod        INTEGER ,
     imagen_prod BLOB ,
-    id_alm INTEGER NOT NULL
+    id_alm INTEGER
   ) ;
 COMMENT ON COLUMN Producto.imagen_prod
 IS
@@ -117,7 +117,7 @@ CREATE TABLE persona
     usu_per               VARCHAR2 (50 BYTE) ,
     contra_per            VARCHAR2 (50 BYTE) ,
     email_per             VARCHAR2 (40 BYTE) ,
-    nacionalidad_id_nadad INTEGER NOT NULL
+    nacionalidad_id_nadad INTEGER
   ) ;
 ALTER TABLE persona ADD CONSTRAINT persona_PK PRIMARY KEY ( id_per ) ;
 
@@ -166,10 +166,10 @@ IS
   'id de la venta realizada' ;
   COMMENT ON COLUMN vender.prec_venta
 IS
-  'precio de la venta en un momento específico' ;
+  'precio de la venta en un momento especÃ­fico' ;
   COMMENT ON COLUMN vender.cant_venta
 IS
-  'kg que se venden del producto específico' ;
+  'kg que se venden del producto especÃ­fico' ;
   COMMENT ON COLUMN vender.fecha_venta
 IS
   'fecha y hora de la compra' ;
