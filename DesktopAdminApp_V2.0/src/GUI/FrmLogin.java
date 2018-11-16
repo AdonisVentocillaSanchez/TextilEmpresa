@@ -155,7 +155,6 @@ public class FrmLogin extends javax.swing.JFrame {
         adminDAO.setPassword(password);
         
         boolean p =usuariodao.Login(adminDAO);
-        System.out.println("USER:"+username+"PASS:"+password);
         if (p) {
             new FrmPrincipal().setVisible(true);
             

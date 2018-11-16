@@ -5,17 +5,23 @@
  */
 package GUI;
 
+import GUI.Panel.*;
+import java.awt.BorderLayout;
+import javax.swing.JPanel;
 /**
  *
  * @author adoni
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmPrincipal
-     */
+    PanelUser pUser = new PanelUser();
+    PanelTablespace pTablespace = new PanelTablespace();
+    PanelRole pRole = new PanelRole();
+    PanelTable pTable = new PanelTable();
+    PanelData pData = new PanelData();
+            
     public FrmPrincipal() {
-        initComponents();
+        initComponents();      
     }
 
     /**
@@ -27,51 +33,105 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Desktop = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jmMaintenance = new javax.swing.JMenu();
+        jmiUser = new javax.swing.JMenuItem();
+        jmiTablespace = new javax.swing.JMenuItem();
+        jmiRole = new javax.swing.JMenuItem();
+        jmiTable = new javax.swing.JMenuItem();
+        jmiData = new javax.swing.JMenuItem();
+        jmSettings = new javax.swing.JMenu();
+        jmiSecurity = new javax.swing.JMenuItem();
+        jmiAbout = new javax.swing.JMenuItem();
+        jmiLogOut = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Consult");
+        javax.swing.GroupLayout DesktopLayout = new javax.swing.GroupLayout(Desktop);
+        Desktop.setLayout(DesktopLayout);
+        DesktopLayout.setHorizontalGroup(
+            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 900, Short.MAX_VALUE)
+        );
+        DesktopLayout.setVerticalGroup(
+            DesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 531, Short.MAX_VALUE)
+        );
 
-        jMenuItem1.setText("Users");
-        jMenu1.add(jMenuItem1);
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMenuBar1.add(jMenu1);
+        jmMaintenance.setText("Mantenimiento");
+        jmMaintenance.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMenu2.setText("Add");
-        jMenuBar1.add(jMenu2);
+        jmiUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiUser.setText("Usuarios");
+        jmiUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiUserActionPerformed(evt);
+            }
+        });
+        jmMaintenance.add(jmiUser);
 
-        jMenu3.setText("List");
-        jMenuBar1.add(jMenu3);
+        jmiTablespace.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiTablespace.setText("Tablespace");
+        jmiTablespace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTablespaceActionPerformed(evt);
+            }
+        });
+        jmMaintenance.add(jmiTablespace);
 
-        jMenu4.setText("Modify");
-        jMenuBar1.add(jMenu4);
+        jmiRole.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiRole.setText("Roles");
+        jmiRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiRoleActionPerformed(evt);
+            }
+        });
+        jmMaintenance.add(jmiRole);
 
-        jMenu5.setText("Settings");
+        jmiTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiTable.setText("Tablas");
+        jmiTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiTableActionPerformed(evt);
+            }
+        });
+        jmMaintenance.add(jmiTable);
 
-        jMenuItem2.setText("About");
-        jMenuItem2.setToolTipText("");
-        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        jMenu5.add(jMenuItem2);
+        jmiData.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiData.setText("Datos");
+        jmiData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiDataActionPerformed(evt);
+            }
+        });
+        jmMaintenance.add(jmiData);
 
-        jMenuItem3.setText("Help");
-        jMenu5.add(jMenuItem3);
-        jMenu5.add(jSeparator1);
+        jMenuBar1.add(jmMaintenance);
 
-        jMenuItem4.setText("Log out");
-        jMenu5.add(jMenuItem4);
+        jmSettings.setText("Ajustes");
+        jmSettings.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        jMenuBar1.add(jMenu5);
+        jmiSecurity.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiSecurity.setText("Seguridad");
+        jmSettings.add(jmiSecurity);
+
+        jmiAbout.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiAbout.setText("Acerca de");
+        jmSettings.add(jmiAbout);
+
+        jmiLogOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jmiLogOut.setText("Cerrar sesión");
+        jmiLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiLogOutActionPerformed(evt);
+            }
+        });
+        jmSettings.add(jmiLogOut);
+
+        jMenuBar1.add(jmSettings);
 
         setJMenuBar(jMenuBar1);
 
@@ -79,16 +139,49 @@ public class FrmPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 524, Short.MAX_VALUE)
+            .addComponent(Desktop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jmiUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiUserActionPerformed
+        OpenPanel(pUser);
+    }//GEN-LAST:event_jmiUserActionPerformed
+
+    private void jmiLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiLogOutActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jmiLogOutActionPerformed
+
+    private void jmiTablespaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTablespaceActionPerformed
+        OpenPanel(pTablespace);
+    }//GEN-LAST:event_jmiTablespaceActionPerformed
+
+    private void jmiRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiRoleActionPerformed
+        OpenPanel(pRole);
+    }//GEN-LAST:event_jmiRoleActionPerformed
+
+    private void jmiTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiTableActionPerformed
+        OpenPanel(pTable);
+    }//GEN-LAST:event_jmiTableActionPerformed
+
+    private void jmiDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDataActionPerformed
+        OpenPanel(pData);
+    }//GEN-LAST:event_jmiDataActionPerformed
+
+    public void OpenPanel(JPanel Panel) {
+        Panel.setSize(Desktop.getWidth(), Desktop.getHeight());
+        Panel.setLocation(0, 0);
+        
+        Desktop.removeAll();
+        Desktop.add(Panel,BorderLayout.CENTER);
+        Desktop.revalidate();
+        Desktop.repaint();
+    }
     /**
      * @param args the command line arguments
      */
@@ -125,16 +218,18 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
+    public static javax.swing.JPanel Desktop;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JMenu jmMaintenance;
+    private javax.swing.JMenu jmSettings;
+    private javax.swing.JMenuItem jmiAbout;
+    private javax.swing.JMenuItem jmiData;
+    private javax.swing.JMenuItem jmiLogOut;
+    private javax.swing.JMenuItem jmiRole;
+    private javax.swing.JMenuItem jmiSecurity;
+    private javax.swing.JMenuItem jmiTable;
+    private javax.swing.JMenuItem jmiTablespace;
+    private javax.swing.JMenuItem jmiUser;
     // End of variables declaration//GEN-END:variables
+  
 }
