@@ -8,7 +8,6 @@ package GUI;
 import GUI.Panel.*;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
-import Bean.ConexionBean;
 /**
  *
  * @author adoni

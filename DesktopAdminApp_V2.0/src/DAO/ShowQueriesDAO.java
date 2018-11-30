@@ -69,7 +69,7 @@ public class ShowQueriesDAO extends ConexionBD{
             }
         pst.close();
         rs.close();
-        //cn.close();
+        getConex().close();
         }catch(SQLException ex){
             System.out.println("Algo salió mal en getPrivilege : "+ex);
         }

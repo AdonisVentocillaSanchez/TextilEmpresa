@@ -5,6 +5,8 @@
  */
 package GUI.Panel;
 
+import Bean.UsuarioBean;
+
 /**
  *
  * @author adoni
@@ -14,6 +16,8 @@ public class PanelRole extends javax.swing.JPanel {
     /**
      * Creates new form PanelRole
      */
+    
+    
     public PanelRole() {
         initComponents();
     }
