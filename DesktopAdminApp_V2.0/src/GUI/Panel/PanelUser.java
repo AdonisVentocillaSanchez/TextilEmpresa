@@ -8,6 +8,9 @@ package GUI.Panel;
 import java.awt.event.ItemEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import Bean.ConexionBean;
+import DAO.ShowQueriesDAO;
+import DAO.UsuarioDAO;
 
 /**
  *
@@ -15,11 +18,20 @@ import javax.swing.JOptionPane;
  */
 public class PanelUser extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelUser
-     */
+    ConexionBean conex = new ConexionBean();
+    UsuarioDAO usuDAO = new UsuarioDAO();
+    ShowQueriesDAO showDAO = new ShowQueriesDAO();
+    
     public PanelUser() {
         initComponents();
+        
+        this.jcbuser.setModel(usuDAO.Obt_date("USERNAME"));
+        this.jcbuser2.setModel(usuDAO.Obt_date("USERNAME"));
+        this.jcbuser3.setModel(usuDAO.Obt_date("USERNAME"));
+        this.jcbtablespace.setModel(usuDAO.Obt_date("DEFAULT_TABLESPACE"));
+        this.jcbtablespace2.setModel(usuDAO.Obt_date("DEFAULT_TABLESPACE"));
+        this.jcbtemporary.setModel(usuDAO.Obt_date("TEMPORARY_TABLESPACE"));        
+        this.jcbtemporary2.setModel(usuDAO.Obt_date("TEMPORARY_TABLESPACE"));        
     }
 
     /**
@@ -46,18 +58,18 @@ public class PanelUser extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jcbuser1 = new javax.swing.JComboBox<>();
+        jcbuser2 = new javax.swing.JComboBox<>();
         newpass1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jcbtablespace1 = new javax.swing.JComboBox<>();
-        jcbtemporary1 = new javax.swing.JComboBox<>();
+        jcbtablespace2 = new javax.swing.JComboBox<>();
+        jcbtemporary2 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         newquota1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jcbusers = new javax.swing.JComboBox<>();
+        jcbuser3 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jcbtipo = new javax.swing.JComboBox<>();
@@ -164,8 +176,8 @@ public class PanelUser extends javax.swing.JPanel {
         jLabel7.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel7.setText("Usuario :");
 
-        jcbuser1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jcbuser1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbuser2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jcbuser2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         newpass1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
@@ -175,11 +187,11 @@ public class PanelUser extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel9.setText("Tablespace :");
 
-        jcbtablespace1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jcbtablespace1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbtablespace2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jcbtablespace2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jcbtemporary1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        jcbtemporary1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbtemporary2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        jcbtemporary2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel10.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel10.setText("Temporary Tablespace :");
@@ -204,7 +216,7 @@ public class PanelUser extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addGap(18, 18, 18)
-                                .addComponent(jcbuser1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jcbuser2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
                             .addComponent(jLabel9)
@@ -213,8 +225,8 @@ public class PanelUser extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(newpass1)
                             .addComponent(newquota1)
-                            .addComponent(jcbtablespace1, 0, 200, Short.MAX_VALUE)
-                            .addComponent(jcbtemporary1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jcbtablespace2, 0, 200, Short.MAX_VALUE)
+                            .addComponent(jcbtemporary2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel16)))
@@ -228,7 +240,7 @@ public class PanelUser extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jcbuser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbuser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(84, 84, 84)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -236,11 +248,11 @@ public class PanelUser extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jcbtablespace1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbtablespace2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jcbtemporary1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbtemporary2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newquota1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,11 +262,11 @@ public class PanelUser extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("MODIFICAR", jPanel2);
 
-        jcbusers.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jcbusers.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbusers.addActionListener(new java.awt.event.ActionListener() {
+        jcbuser3.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        jcbuser3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbuser3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbusersActionPerformed(evt);
+                jcbuser3ActionPerformed(evt);
             }
         });
 
@@ -346,7 +358,7 @@ public class PanelUser extends javax.swing.JPanel {
                         .addGap(15, 15, 15)
                         .addComponent(jLabel12)
                         .addGap(18, 18, 18)
-                        .addComponent(jcbusers, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcbuser3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -363,7 +375,7 @@ public class PanelUser extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
-                            .addComponent(jcbusers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jcbuser3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -459,16 +471,16 @@ public class PanelUser extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbusersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbusersActionPerformed
+    private void jcbuser3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbuser3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbusersActionPerformed
+    }//GEN-LAST:event_jcbuser3ActionPerformed
 
     private void jcbtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbtipoItemStateChanged
-//        if (evt.getStateChange() == ItemEvent.SELECTED) {
-//            if (this.jcbtipo.getSelectedIndex()>=0) {
-//                this.jcbprivi.setModel(new DefaultComboBoxModel(sdao.getPrivilegio(this.jcbtipo.getSelectedItem().toString())));
-//            }
-//        }
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.jcbtipo.getSelectedIndex()>=0) {
+                this.jcbprivi.setModel(new DefaultComboBoxModel(showDAO.getPrivilegio(this.jcbtipo.getSelectedItem().toString())));
+            }
+        }
     }//GEN-LAST:event_jcbtipoItemStateChanged
 
     private void jcbpriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbpriviActionPerformed
@@ -527,13 +539,13 @@ public class PanelUser extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> jcbprivi;
     private javax.swing.JComboBox<String> jcbtablespace;
-    private javax.swing.JComboBox<String> jcbtablespace1;
+    private javax.swing.JComboBox<String> jcbtablespace2;
     private javax.swing.JComboBox<String> jcbtemporary;
-    private javax.swing.JComboBox<String> jcbtemporary1;
+    private javax.swing.JComboBox<String> jcbtemporary2;
     private javax.swing.JComboBox<String> jcbtipo;
     private javax.swing.JComboBox<String> jcbuser;
-    private javax.swing.JComboBox<String> jcbuser1;
-    private javax.swing.JComboBox<String> jcbusers;
+    private javax.swing.JComboBox<String> jcbuser2;
+    private javax.swing.JComboBox<String> jcbuser3;
     private javax.swing.JTable jtableprivi;
     private javax.swing.JTextField newpass;
     private javax.swing.JTextField newpass1;

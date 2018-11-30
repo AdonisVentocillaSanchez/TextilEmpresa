@@ -255,7 +255,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jcbuser1" min="-2" pref="200" max="-2" attributes="0"/>
+                                      <Component id="jcbuser2" min="-2" pref="200" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jLabel11" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -266,8 +266,8 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="newpass1" alignment="0" max="32767" attributes="0"/>
                                   <Component id="newquota1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jcbtablespace1" alignment="0" pref="200" max="32767" attributes="0"/>
-                                  <Component id="jcbtemporary1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jcbtablespace2" alignment="0" pref="200" max="32767" attributes="0"/>
+                                  <Component id="jcbtemporary2" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -287,7 +287,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbuser1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbuser2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -297,12 +297,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbtablespace1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbtablespace2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jcbtemporary1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcbtemporary2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -323,7 +323,7 @@
                 <Property name="text" type="java.lang.String" value="Usuario :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jcbuser1">
+            <Component class="javax.swing.JComboBox" name="jcbuser2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="18" style="0"/>
@@ -364,7 +364,7 @@
                 <Property name="text" type="java.lang.String" value="Tablespace :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jcbtablespace1">
+            <Component class="javax.swing.JComboBox" name="jcbtablespace2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="18" style="0"/>
@@ -382,7 +382,7 @@
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jcbtemporary1">
+            <Component class="javax.swing.JComboBox" name="jcbtemporary2">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="18" style="0"/>
@@ -474,7 +474,7 @@
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jcbusers" min="-2" pref="140" max="-2" attributes="0"/>
+                              <Component id="jcbuser3" min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="47" max="32767" attributes="0"/>
@@ -496,7 +496,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jcbusers" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jcbuser3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
@@ -526,7 +526,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JComboBox" name="jcbusers">
+            <Component class="javax.swing.JComboBox" name="jcbuser3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="sansserif" size="16" style="0"/>
@@ -541,7 +541,7 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbusersActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbuser3ActionPerformed"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

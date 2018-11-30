@@ -1,6 +1,6 @@
 package DAO;
 
-import Bean.*;
+import Bean.UsuarioBean;
 import Connection.ConexionBD;
 import java.sql.*;
 import javax.swing.DefaultComboBoxModel;

@@ -133,7 +133,7 @@ public class FrmLogin extends javax.swing.JFrame {
 
         char []p={'1','2','3','4','5','6','7','8','9','0'};
         int b=0;
-        for(int i=0;i<=10;i++){
+        for(int i=0;i<=9;i++){
         if (p[i]==evt.getKeyChar()){b=1;}
  
         }
