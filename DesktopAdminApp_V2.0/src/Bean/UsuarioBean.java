@@ -2,21 +2,21 @@ package Bean;
 
 public class UsuarioBean {
     
-    private String server;
-    private int port;
-    private String sid;
-    private String user;
-    private String password;
+    public static String server;
+    public static int port;
+    public static String sid;
+    public static String user;
+    public static String password;
 
     public UsuarioBean() {
     }
 
     public UsuarioBean(String server, int port, String sid, String user, String password) {
-        this.server = server;
-        this.port = port;
-        this.sid = sid;
-        this.user = user;
-        this.password = password;
+        UsuarioBean.server = server;
+        UsuarioBean.port = port;
+        UsuarioBean.sid = sid;
+        UsuarioBean.user = user;
+        UsuarioBean.password = password;
     }
 
     public String getServer() {
@@ -24,7 +24,7 @@ public class UsuarioBean {
     }
 
     public void setServer(String server) {
-        this.server = server;
+        UsuarioBean.server = server;
     }
 
     public int getPort() {
@@ -32,7 +32,7 @@ public class UsuarioBean {
     }
 
     public void setPort(int port) {
-        this.port = port;
+        UsuarioBean.port = port;
     }
 
     public String getSid() {
@@ -40,7 +40,7 @@ public class UsuarioBean {
     }
 
     public void setSid(String sid) {
-        this.sid = sid;
+        UsuarioBean.sid = sid;
     }
 
     public String getUser() {
@@ -48,7 +48,7 @@ public class UsuarioBean {
     }
 
     public void setUser(String user) {
-        this.user = user;
+        UsuarioBean.user = user;
     }
 
     public String getPassword() {
@@ -56,7 +56,7 @@ public class UsuarioBean {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        UsuarioBean.password = password;
     }
     
         

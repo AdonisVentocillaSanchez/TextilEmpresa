@@ -8,6 +8,7 @@ package GUI;
 import GUI.Panel.*;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import Bean.ConexionBean;
 /**
  *
  * @author adoni
@@ -19,9 +20,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     PanelRole pRole = new PanelRole();
     PanelTable pTable = new PanelTable();
     PanelData pData = new PanelData();
-            
+                
     public FrmPrincipal() {
-        initComponents();      
+        initComponents(); 
+        
     }
 
     /**

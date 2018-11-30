@@ -2,7 +2,6 @@
 package GUI;
 
 import Bean.UsuarioBean;
-import Connection.ConexionBD;
 import DAO.UsuarioDAO;
 import javax.swing.JOptionPane;
 
@@ -131,12 +130,14 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPortKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPortKeyTyped
-        
-        char type = evt.getKeyChar();
-        if (Character.isLetter(type) || txtPort.getText().length() == 5) {
-            getToolkit().beep();
-            evt.consume();
+
+        char []p={'1','2','3','4','5','6','7','8','9','0'};
+        int b=0;
+        for(int i=0;i<=10;i++){
+        if (p[i]==evt.getKeyChar()){b=1;}
+ 
         }
+        if(b==0 || txtPort.getText().length() == 5 ){evt.consume();  getToolkit().beep(); }
         
     }//GEN-LAST:event_txtPortKeyTyped
 
