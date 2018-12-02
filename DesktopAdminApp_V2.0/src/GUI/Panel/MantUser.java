@@ -45,6 +45,22 @@ public class MantUser extends javax.swing.JPanel {
 
         QuotaValueSelected = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanelCrear = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        txtuser = new javax.swing.JTextField();
+        txtpassword = new javax.swing.JTextField();
+        txtquota = new javax.swing.JTextField();
+        cbxtemptablespace = new javax.swing.JComboBox<>();
+        cbxtablespace = new javax.swing.JComboBox<>();
+        tbladduser = new javax.swing.JScrollPane();
+        txtareauser = new javax.swing.JTextArea();
+        btnadd = new javax.swing.JButton();
+        rdbK = new javax.swing.JRadioButton();
+        rdbM = new javax.swing.JRadioButton();
         jPanelModificar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jcbuser2 = new javax.swing.JComboBox<>();
@@ -70,23 +86,128 @@ public class MantUser extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableprivi = new javax.swing.JTable();
         btnactualizarprivi = new javax.swing.JButton();
-        jPanelCrear = new javax.swing.JPanel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtuser = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
-        txtquota = new javax.swing.JTextField();
-        cbxtemptablespace = new javax.swing.JComboBox<>();
-        cbxtablespace = new javax.swing.JComboBox<>();
-        tbladduser = new javax.swing.JScrollPane();
-        txtareauser = new javax.swing.JTextArea();
-        btnadd = new javax.swing.JButton();
-        rdbK = new javax.swing.JRadioButton();
-        rdbM = new javax.swing.JRadioButton();
         title = new javax.swing.JLabel();
+
+        jLabel17.setText("Usuario :");
+
+        jLabel2.setText("Contraseña :");
+
+        jLabel3.setText("Tablespace :");
+
+        jLabel4.setText("Temporary Tablespace :");
+
+        jLabel5.setText("Quota :");
+
+        txtquota.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtquotaActionPerformed(evt);
+            }
+        });
+
+        cbxtemptablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cbxtablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtareauser.setColumns(20);
+        txtareauser.setRows(5);
+        tbladduser.setViewportView(txtareauser);
+
+        btnadd.setText("Agregar Usuario");
+        btnadd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddActionPerformed(evt);
+            }
+        });
+
+        QuotaValueSelected.add(rdbK);
+        rdbK.setText("K");
+
+        rdbM.setText("M");
+        rdbM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbMActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelCrearLayout = new javax.swing.GroupLayout(jPanelCrear);
+        jPanelCrear.setLayout(jPanelCrearLayout);
+        jPanelCrearLayout.setHorizontalGroup(
+            jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCrearLayout.createSequentialGroup()
+                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelCrearLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(tbladduser))
+                    .addGroup(jPanelCrearLayout.createSequentialGroup()
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCrearLayout.createSequentialGroup()
+                                .addGap(133, 133, 133)
+                                .addComponent(btnadd))
+                            .addGroup(jPanelCrearLayout.createSequentialGroup()
+                                .addGap(39, 39, 39)
+                                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(100, 100, 100)
+                                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(txtuser)
+                                                .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                            .addComponent(cbxtablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(cbxtemptablespace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelCrearLayout.createSequentialGroup()
+                                        .addComponent(txtquota, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rdbM)
+                                            .addComponent(rdbK))))))
+                        .addGap(0, 441, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanelCrearLayout.setVerticalGroup(
+            jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCrearLayout.createSequentialGroup()
+                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelCrearLayout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtquota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrearLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(cbxtablespace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(cbxtemptablespace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rdbK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdbM)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addComponent(tbladduser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnadd)
+                .addContainerGap(128, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("CREAR", jPanelCrear);
 
         jLabel7.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel7.setText("Usuario :");
@@ -312,127 +433,6 @@ public class MantUser extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("PRIVILEGIOS", jPanelPrivilegios);
-
-        jLabel17.setText("Usuario :");
-
-        jLabel2.setText("Contraseña :");
-
-        jLabel3.setText("Tablespace :");
-
-        jLabel4.setText("Temporary Tablespace :");
-
-        jLabel5.setText("Quota :");
-
-        txtquota.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtquotaActionPerformed(evt);
-            }
-        });
-
-        cbxtemptablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cbxtablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        txtareauser.setColumns(20);
-        txtareauser.setRows(5);
-        tbladduser.setViewportView(txtareauser);
-
-        btnadd.setText("Agregar Usuario");
-        btnadd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaddActionPerformed(evt);
-            }
-        });
-
-        QuotaValueSelected.add(rdbK);
-        rdbK.setText("K");
-
-        rdbM.setText("M");
-        rdbM.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdbMActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelCrearLayout = new javax.swing.GroupLayout(jPanelCrear);
-        jPanelCrear.setLayout(jPanelCrearLayout);
-        jPanelCrearLayout.setHorizontalGroup(
-            jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCrearLayout.createSequentialGroup()
-                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelCrearLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tbladduser))
-                    .addGroup(jPanelCrearLayout.createSequentialGroup()
-                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelCrearLayout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(btnadd))
-                            .addGroup(jPanelCrearLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(100, 100, 100)
-                                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtuser)
-                                                .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                                            .addComponent(cbxtablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(cbxtemptablespace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelCrearLayout.createSequentialGroup()
-                                        .addComponent(txtquota, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rdbM)
-                                            .addComponent(rdbK))))))
-                        .addGap(0, 441, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanelCrearLayout.setVerticalGroup(
-            jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCrearLayout.createSequentialGroup()
-                .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanelCrearLayout.createSequentialGroup()
-                        .addGap(172, 172, 172)
-                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtquota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCrearLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(cbxtablespace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cbxtemptablespace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rdbK)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rdbM)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
-                .addComponent(tbladduser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnadd)
-                .addContainerGap(128, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("CREAR", jPanelCrear);
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setText("USUARIOS");

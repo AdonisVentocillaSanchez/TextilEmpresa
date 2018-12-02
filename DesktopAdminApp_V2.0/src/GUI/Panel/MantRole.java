@@ -5,18 +5,15 @@
  */
 package GUI.Panel;
 
-import Bean.UsuarioBean;
+import DAO.RoleDAO;
 
 /**
  *
  * @author adoni
  */
 public class MantRole extends javax.swing.JPanel {
-
-    /**
-     * Creates new form PanelRole
-     */
     
+    RoleDAO roledao = new RoleDAO();
     
     public MantRole() {
         initComponents();
@@ -179,11 +176,11 @@ public class MantRole extends javax.swing.JPanel {
 
     private void btnaddroleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddroleActionPerformed
         // TODO add your handling code here:
-//        String role=txtrole.getText();
-//        if(roledao.AddRole(role)){
-//            txtshowroletoaddprivileges.setText(role);
-//            txtarearole.append(role+" created");
-//        }
+        String role=txtrole.getText();
+        if(roledao.AddRole(role)){
+            txtshowroletoaddprivileges.setText(role);
+            txtarearole.append(role+" created");
+        }
     }//GEN-LAST:event_btnaddroleActionPerformed
 
     private void cbxtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxtipoItemStateChanged
@@ -198,9 +195,9 @@ public class MantRole extends javax.swing.JPanel {
     private void btnaddprivilegesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddprivilegesActionPerformed
         // TODO add your handling code here:
         String rolegranted=txtshowroletoaddprivileges.getText();
-//        if(roledao.AddPrivilegeToRole(rolegranted, (String)cbxprivi.getSelectedItem())){
-//            txtarearole.append("\n"+(String)cbxprivi.getSelectedItem()+" granted");
-//        }
+        if(roledao.AddPrivilegeToRole(rolegranted, (String)cbxprivi.getSelectedItem())){
+            txtarearole.append("\n"+(String)cbxprivi.getSelectedItem()+" granted");
+        }
     }//GEN-LAST:event_btnaddprivilegesActionPerformed
 
 
