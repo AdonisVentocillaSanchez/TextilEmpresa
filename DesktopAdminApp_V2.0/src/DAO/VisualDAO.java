@@ -6,12 +6,14 @@
 package DAO;
 
 import Connection.ConexionBD;
+import static Connection.ConexionBD.getConex;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -77,5 +79,25 @@ public class VisualDAO extends ConexionBD{
         return privi;
     }
     
+    //Setea a combobox los usuarios
+    public DefaultComboBoxModel Obt_date(String tabla){
+        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.addElement("[SELECCIONAR]");
+        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
+        
+        try {
+            pst=getConex().prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            while (rs.next()) {                
+                ListaModelo.addElement(rs.getString(tabla));
+            }
+            pst.close();
+            rs.close();
+            getConex().close();
+        } catch (SQLException e) {
+        }
+        
+        return ListaModelo;
+    }
     
 }
