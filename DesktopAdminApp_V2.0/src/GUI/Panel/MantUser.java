@@ -9,29 +9,28 @@ import java.awt.event.ItemEvent;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import Bean.ConexionBean;
-import DAO.ShowQueriesDAO;
+import DAO.VisualDAO;
 import DAO.UsuarioDAO;
 
 /**
  *
- * @author adoni
+ * @author 
  */
 public class MantUser extends javax.swing.JPanel {
 
-//    ConexionBean conex = new ConexionBean();
-//    UsuarioDAO usuDAO = new UsuarioDAO();
-//    ShowQueriesDAO showDAO = new ShowQueriesDAO();
+    ConexionBean conex = new ConexionBean();
+    UsuarioDAO usuDAO = new UsuarioDAO();
+    VisualDAO vDAO = new VisualDAO();
     
     public MantUser() {
         initComponents();
-//        
-//        this.jcbuser.setModel(usuDAO.Obt_date("USERNAME"));
-//        this.jcbuser2.setModel(usuDAO.Obt_date("USERNAME"));
-//        this.jcbuser3.setModel(usuDAO.Obt_date("USERNAME"));
-//        this.jcbtablespace.setModel(usuDAO.Obt_date("DEFAULT_TABLESPACE"));
-//        this.jcbtablespace2.setModel(usuDAO.Obt_date("DEFAULT_TABLESPACE"));
-//        this.jcbtemporary.setModel(usuDAO.Obt_date("TEMPORARY_TABLESPACE"));        
-//        this.jcbtemporary2.setModel(usuDAO.Obt_date("TEMPORARY_TABLESPACE"));        
+
+        this.jcbuser2.setModel(vDAO.Obt_date("USERNAME"));
+        this.jcbuser3.setModel(vDAO.Obt_date("USERNAME"));
+        this.cbxtablespace.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
+        this.jcbtablespace2.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
+        this.cbxtemptablespace.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
+        this.jcbtemporary2.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
     }
 
     /**
@@ -122,6 +121,7 @@ public class MantUser extends javax.swing.JPanel {
         QuotaValueSelected.add(rdbK);
         rdbK.setText("K");
 
+        QuotaValueSelected.add(rdbM);
         rdbM.setText("M");
         rdbM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,35 +139,34 @@ public class MantUser extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(tbladduser))
                     .addGroup(jPanelCrearLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
                         .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelCrearLayout.createSequentialGroup()
-                                .addGap(133, 133, 133)
-                                .addComponent(btnadd))
-                            .addGroup(jPanelCrearLayout.createSequentialGroup()
-                                .addGap(39, 39, 39)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(100, 100, 100)
+                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(100, 100, 100)
+                                    .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtuser)
+                                        .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                                    .addComponent(cbxtablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbxtemptablespace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelCrearLayout.createSequentialGroup()
+                                .addComponent(txtquota, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(txtuser)
-                                                .addComponent(txtpassword, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
-                                            .addComponent(cbxtablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(cbxtemptablespace, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanelCrearLayout.createSequentialGroup()
-                                        .addComponent(txtquota, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rdbM)
-                                            .addComponent(rdbK))))))
+                                    .addComponent(rdbM)
+                                    .addComponent(rdbK))))
                         .addGap(0, 441, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanelCrearLayout.createSequentialGroup()
+                .addGap(158, 158, 158)
+                .addComponent(btnadd)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelCrearLayout.setVerticalGroup(
             jPanelCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,9 +201,9 @@ public class MantUser extends javax.swing.JPanel {
                         .addComponent(rdbM)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(tbladduser, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(btnadd)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("CREAR", jPanelCrear);
@@ -463,11 +462,11 @@ public class MantUser extends javax.swing.JPanel {
 
     private void btneliminarpriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarpriviActionPerformed
         // TODO add your handling code here:
-        //        String usergrant=(String)jcbusers.getSelectedItem();
-        //        if(userdao.RevokeProvolegeTo(usergrant, (String)jcbprivi.getSelectedItem())){
-            //            JOptionPane.showMessageDialog(null,"Rol "+(String)jcbprivi.getSelectedItem()+
-                //                " ha sido revocado a "+usergrant);
-            //        }
+//                String usergrant=(String)jcbusers.getSelectedItem();
+//                if(userdao.RevokeProvolegeTo(usergrant, (String)jcbprivi.getSelectedItem())){
+//                        JOptionPane.showMessageDialog(null,"Rol "+(String)jcbprivi.getSelectedItem()+
+//                                " ha sido revocado a "+usergrant);
+//                    }
     }//GEN-LAST:event_btneliminarpriviActionPerformed
 
     private void btnanadirpriviActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnanadirpriviActionPerformed
@@ -502,7 +501,13 @@ public class MantUser extends javax.swing.JPanel {
 //        String table = (String) cbxtablespace.getSelectedItem();
 //        String temp= (String) cbxtemptablespace.getSelectedItem();
 //        String qouta= txtquota.getText();
-//        userdao.AddUser(user, pass, table, temp, qouta);
+//        String value = null;
+//        if(rdbK.isSelected()){
+//            value = "K";
+//        }else if (rdbM.isSelected()){
+//            value = "M";
+//        }
+//        usuDAO.AddUser(user, pass, table, temp, qouta, value);
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void txtquotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquotaActionPerformed
