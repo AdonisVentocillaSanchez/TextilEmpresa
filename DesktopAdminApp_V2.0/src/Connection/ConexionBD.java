@@ -4,12 +4,16 @@ import Bean.UsuarioBean;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import Bean.ConexionBean;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ConexionBD {
     
+    public static Connection cx = null;
+    public static ConexionBean conex = new ConexionBean();
+    
     public static Connection getConexion(UsuarioBean admin){
-        Connection cx = null;
-        
+                
         int port = admin.getPort();
         String server = admin.getServer();
         String sid = admin.getSid();
@@ -22,8 +26,10 @@ public class ConexionBD {
             
             Class.forName("oracle.jdbc.OracleDriver");
             cx = DriverManager.getConnection(conn,usu,pas);
+            System.out.println("coneccion");
             JOptionPane.showMessageDialog(null, "Bienvenido a DatabaseManagment to Alpaca SAC", "Conexión exitosa", JOptionPane.INFORMATION_MESSAGE);
-            ConexionBean.Conexion(admin);            
+            ConexionBean.Conexion(admin);
+            
             
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null, "Falla durante el proceso: "+e.getMessage(), "Error durante la conexion", JOptionPane.ERROR_MESSAGE);
@@ -34,10 +40,7 @@ public class ConexionBD {
     }
 
     public static Connection getConex() {
-        Connection cxn = null;
-        
-        ConexionBean conex = new ConexionBean();
-        
+                
         int port = conex.getPort();
         String server = conex.getServer();
         String sid = conex.getSid();
@@ -49,13 +52,24 @@ public class ConexionBD {
         try {
             
             Class.forName("oracle.jdbc.OracleDriver");
-            cxn = DriverManager.getConnection(conn,usu,pas);       
+            cx = DriverManager.getConnection(conn,usu,pas);       
             
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null, "Falla durante el proceso: "+e.getMessage(), "Error durante la conexion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Falla durante el proceso: \n"+e.getMessage(), "Error durante la conexion", JOptionPane.ERROR_MESSAGE);
         }
         
-        return cxn;
+        return cx;
+    }
+    
+    public static void CloseConexion(Connection conexion, Statement sentencia, ResultSet resultado, PreparedStatement ps){
+        try {
+            conexion.close();
+            sentencia.close();
+            resultado.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Falla durante el proceso: \n"+ex.getMessage(), "Error al cerrar las conexiones", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
 }

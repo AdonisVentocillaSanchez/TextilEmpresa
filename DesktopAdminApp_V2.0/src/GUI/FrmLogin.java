@@ -137,7 +137,8 @@ public class FrmLogin extends javax.swing.JFrame {
         if (p[i]==evt.getKeyChar()){b=1;}
  
         }
-        if(b==0 || txtPort.getText().length() == 5 ){evt.consume();  getToolkit().beep(); }
+        if(b==0 || txtPort.getText().length() == 5 ){evt.consume();  getToolkit().beep(); 
+        }
         
     }//GEN-LAST:event_txtPortKeyTyped
 

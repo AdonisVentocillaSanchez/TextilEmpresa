@@ -9,12 +9,12 @@ package GUI.Panel;
  *
  * @author adoni
  */
-public class PanelData extends javax.swing.JPanel {
+public class MantData extends javax.swing.JPanel {
 
     /**
      * Creates new form PanelData
      */
-    public PanelData() {
+    public MantData() {
         initComponents();
     }
 

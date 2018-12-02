@@ -16,13 +16,13 @@ import DAO.UsuarioDAO;
  *
  * @author adoni
  */
-public class PanelUser extends javax.swing.JPanel {
+public class MantUser extends javax.swing.JPanel {
 
     ConexionBean conex = new ConexionBean();
     UsuarioDAO usuDAO = new UsuarioDAO();
     ShowQueriesDAO showDAO = new ShowQueriesDAO();
     
-    public PanelUser() {
+    public MantUser() {
         initComponents();
         
         this.jcbuser.setModel(usuDAO.Obt_date("USERNAME"));

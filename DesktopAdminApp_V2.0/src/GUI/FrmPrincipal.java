@@ -14,11 +14,14 @@ import javax.swing.JPanel;
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
-    PanelUser pUser = new PanelUser();
-    PanelTablespace pTablespace = new PanelTablespace();
-    PanelRole pRole = new PanelRole();
-    PanelTable pTable = new PanelTable();
-    PanelData pData = new PanelData();
+    MantUser pUser = new MantUser();
+    MantTablespace pTablespace = new MantTablespace();
+    MantRole pRole = new MantRole();
+    MantTable pTable = new MantTable();
+    MantData pData = new MantData();
+    
+    AjustAbout aAbout = new AjustAbout();
+    AjustSecurity aSecurity = new AjustSecurity();
                 
     public FrmPrincipal() {
         initComponents(); 
@@ -117,10 +120,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jmiSecurity.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jmiSecurity.setText("Seguridad");
+        jmiSecurity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiSecurityActionPerformed(evt);
+            }
+        });
         jmSettings.add(jmiSecurity);
 
         jmiAbout.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jmiAbout.setText("Acerca de");
+        jmiAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiAboutActionPerformed(evt);
+            }
+        });
         jmSettings.add(jmiAbout);
 
         jmiLogOut.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -173,6 +186,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void jmiDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiDataActionPerformed
         OpenPanel(pData);
     }//GEN-LAST:event_jmiDataActionPerformed
+
+    private void jmiSecurityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiSecurityActionPerformed
+        OpenPanel(aSecurity);
+    }//GEN-LAST:event_jmiSecurityActionPerformed
+
+    private void jmiAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiAboutActionPerformed
+       OpenPanel(aAbout);
+    }//GEN-LAST:event_jmiAboutActionPerformed
 
     public void OpenPanel(JPanel Panel) {
         Panel.setSize(Desktop.getWidth(), Desktop.getHeight());

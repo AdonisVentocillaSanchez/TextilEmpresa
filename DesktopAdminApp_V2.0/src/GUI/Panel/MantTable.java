@@ -5,20 +5,16 @@
  */
 package GUI.Panel;
 
-import Bean.UsuarioBean;
-
 /**
  *
  * @author adoni
  */
-public class PanelRole extends javax.swing.JPanel {
+public class MantTable extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelRole
+     * Creates new form PanelTable
      */
-    
-    
-    public PanelRole() {
+    public MantTable() {
         initComponents();
     }
 
@@ -41,24 +37,24 @@ public class PanelRole extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 867, Short.MAX_VALUE)
+            .addGap(0, 861, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("CREAR", jPanel1);
+        jTabbedPane1.addTab("VISUALIZAR", jPanel1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 867, Short.MAX_VALUE)
+            .addGap(0, 861, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("MODIFICAR", jPanel2);
@@ -67,17 +63,17 @@ public class PanelRole extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 867, Short.MAX_VALUE)
+            .addGap(0, 861, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 478, Short.MAX_VALUE)
+            .addGap(0, 483, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("VISUALIZAR", jPanel3);
+        jTabbedPane1.addTab("CREAR", jPanel3);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("ROLES");
+        jLabel1.setText("TABLAS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
