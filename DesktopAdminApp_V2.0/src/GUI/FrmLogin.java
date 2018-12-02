@@ -2,13 +2,13 @@
 package GUI;
 
 import Bean.UsuarioBean;
-import DAO.UsuarioDAO;
+import DAO.AuthenticationDAO;
 import javax.swing.JOptionPane;
 
 public class FrmLogin extends javax.swing.JFrame {
 
     UsuarioBean adminDAO = new UsuarioBean();
-    UsuarioDAO usuariodao = new UsuarioDAO();
+    AuthenticationDAO authdao = new AuthenticationDAO();
         
     public FrmLogin() {
         initComponents();
@@ -159,7 +159,7 @@ public class FrmLogin extends javax.swing.JFrame {
         adminDAO.setUser(username);
         adminDAO.setPassword(password);
         
-        boolean p =usuariodao.Login(adminDAO);
+        boolean p =authdao.Login(adminDAO);
         if (p) {
             new FrmPrincipal().setVisible(true);
             

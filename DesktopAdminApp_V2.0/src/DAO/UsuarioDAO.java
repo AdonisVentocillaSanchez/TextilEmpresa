@@ -9,38 +9,11 @@ public class UsuarioDAO extends ConexionBD {
     
     
     String consultaSQL = null;
-    static ResultSet cargausu;
     static Statement sentencia;
     PreparedStatement pst=null;
     CallableStatement clst =null;
     ResultSet rs=null;      
     Connection cn = getConex();
-    public boolean Login(UsuarioBean admin){
-        
-        String usu = admin.getUser();
-        boolean op = true;
-        String usuario = "";
-        consultaSQL = "SELECT USERNAME FROM dba_users WHERE USERNAME = '"+usu+"'";
-        
-        try {
-            pst=ConexionBD.getConexion(admin).prepareStatement(consultaSQL);
-            rs=pst.executeQuery();
-            while (rs.next()) {                
-                usuario = rs.getString("USERNAME");
-            }
-            if (!(usuario.isEmpty())) {
-                pst.close();
-                rs.close();
-                cn.close();
-                op = true;
-            }   
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos: " +e.toString(),
-                    "Error en el inicio de sesión",JOptionPane.ERROR_MESSAGE);
-            op= false;
-        }
-        return op;
-    }
     
     ///////////////////Añadir un nuevo usuario///////////////////77
     public boolean AddUser(String user,String password, String table,String temp, String quota, String value){

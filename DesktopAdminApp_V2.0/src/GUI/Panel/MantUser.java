@@ -496,18 +496,18 @@ public class MantUser extends javax.swing.JPanel {
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
         // TODO add your handling code here:
-//        String user = txtuser.getText();
-//        String pass = txtpassword.getText();
-//        String table = (String) cbxtablespace.getSelectedItem();
-//        String temp= (String) cbxtemptablespace.getSelectedItem();
-//        String qouta= txtquota.getText();
-//        String value = null;
-//        if(rdbK.isSelected()){
-//            value = "K";
-//        }else if (rdbM.isSelected()){
-//            value = "M";
-//        }
-//        usuDAO.AddUser(user, pass, table, temp, qouta, value);
+        String user = txtuser.getText();
+        String pass = txtpassword.getText();
+        String table = (String) cbxtablespace.getSelectedItem();
+        String temp= (String) cbxtemptablespace.getSelectedItem();
+        String qouta= txtquota.getText();
+        String value = null;
+        if(rdbK.isSelected()){
+            value = "K";
+        }else if (rdbM.isSelected()){
+            value = "M";
+        }
+        usuDAO.AddUser(user, pass, table, temp, qouta, value);
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void txtquotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquotaActionPerformed
