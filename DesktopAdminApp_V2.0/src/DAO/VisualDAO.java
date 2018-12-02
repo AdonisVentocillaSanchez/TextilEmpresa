@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author adoni
  */
-public class ShowQueriesDAO extends ConexionBD{
+public class VisualDAO extends ConexionBD{
     
     
     String consultaSQL = null;
