@@ -31,7 +31,7 @@ public class UsuarioDAO extends ConexionBD {
             if (!(usuario.isEmpty())) {
                 pst.close();
                 rs.close();
-                ConexionBD.getConexion(admin).close();
+                getConex().close();
                 op = true;
             }   
         } catch (SQLException e) {
@@ -45,7 +45,7 @@ public class UsuarioDAO extends ConexionBD {
     public DefaultComboBoxModel Obt_date(String tabla){
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.addElement("[SELECCIONAR]");
-        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS";
+        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
         
         //rs = Conexiones.ConexionBD.Consulta();
         try {
