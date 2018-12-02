@@ -7,11 +7,7 @@ package GUI;
 
 import GUI.Panel.*;
 import java.awt.BorderLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
  * @author adoni
@@ -237,13 +233,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-                    Logger.getLogger(FrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
+            
+            public void run() {                
                 new FrmPrincipal().setVisible(true);
             }
         });

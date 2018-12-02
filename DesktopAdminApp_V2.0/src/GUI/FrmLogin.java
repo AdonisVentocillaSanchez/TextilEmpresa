@@ -12,6 +12,9 @@ public class FrmLogin extends javax.swing.JFrame {
         
     public FrmLogin() {
         initComponents();
+        txtServer.setText("localhost");
+        txtPort.setText("1521");
+        txtSid.setText("xe");
     }
 
     @SuppressWarnings("unchecked")
@@ -169,13 +172,10 @@ public class FrmLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConnectActionPerformed
 
     public void Cleantxt() {
-        txtServer.setText("");
-        txtPort.setText("");
-        txtSid.setText("");
         txtUsername.setText("");
         txtPassword.setText("");
         
-        txtServer.requestFocus();
+        txtUsername.requestFocus();
     }
     
     /**
