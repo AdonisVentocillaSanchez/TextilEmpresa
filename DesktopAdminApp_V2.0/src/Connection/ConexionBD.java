@@ -4,8 +4,6 @@ import Bean.UsuarioBean;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import Bean.ConexionBean;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class ConexionBD {
     
