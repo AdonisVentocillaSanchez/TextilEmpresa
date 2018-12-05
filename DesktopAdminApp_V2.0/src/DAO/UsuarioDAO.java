@@ -13,11 +13,12 @@ public class UsuarioDAO extends ConexionBD {
     PreparedStatement pst=null;
     CallableStatement clst =null;
     ResultSet rs=null;      
-    Connection cn = getConex();
+    Connection cn = null;
     
     ///////////////////Añadir un nuevo usuario///////////////////77
     public boolean AddUser(String user,String password, String table,String temp, String quota, String value){
         try{
+            cn=getConex();
             consultaSQL="CREATE USER "+user+" IDENTIFIED BY "+password
                     + " DEFAULT TABLESPACE "+table
                     + " TEMPORARY TABLESPACE "+temp
@@ -31,14 +32,13 @@ public class UsuarioDAO extends ConexionBD {
         }catch(SQLException ex){
             System.out.println("Ocurrió un error en AddUser : "+ex);
             return false;
-        }finally{
-            
         }
     }
     
     /////////////////////////Añadir priviliegios a usuarios ////////////////////////
     public boolean AddPrivilegeToUser(String user, String privilege){
         try{
+            cn=getConex();
             consultaSQL="GRANT "+privilege+" TO "+user;
             System.out.println("Consulta : "+consultaSQL);
             clst=cn.prepareCall(consultaSQL);
@@ -74,6 +74,7 @@ public class UsuarioDAO extends ConexionBD {
     public boolean modificarUsuXPass(String usu,String pass)
     {
         try{
+            cn=getConex();
             consultaSQL="ALTER USER "+usu+" IDENTIFIED BY "+pass;
             clst=cn.prepareCall(consultaSQL);
             clst.execute();
@@ -91,6 +92,7 @@ public class UsuarioDAO extends ConexionBD {
     public boolean modificarTableSpace(String usu,String tablespace)
     {
         try{
+            cn=getConex();
             consultaSQL="ALTER USER "+usu+" DEFAULT TABLESPACE "+tablespace;
             clst=cn.prepareCall(consultaSQL);
             clst.execute();
@@ -106,6 +108,7 @@ public class UsuarioDAO extends ConexionBD {
     public boolean modificarTempTableSpace(String usu,String temptablespace)
     {
         try{
+            cn=getConex();
             consultaSQL="ALTER USER "+usu+" TEMPORARY TABLESPACE "+temptablespace;
             clst=cn.prepareCall(consultaSQL);
             clst.execute();
@@ -122,6 +125,7 @@ public class UsuarioDAO extends ConexionBD {
     {
         
         try{
+            cn=getConex();
             consultaSQL="ALTER USER "+usu+" QUOTA "+quota+" ON "+tablespace;
             clst=cn.prepareCall(consultaSQL);
             clst.execute();
@@ -137,6 +141,7 @@ public class UsuarioDAO extends ConexionBD {
 ////////////////////////////REVOKE PRIVILEGES/////////////////////////////////////////////////////
     public boolean RevokeProvolegeTo(String user,String privi){
         try{
+            cn=getConex();
             consultaSQL="REVOKE "+privi+" FROM "+user;
             clst=cn.prepareCall(consultaSQL);
             clst.execute();

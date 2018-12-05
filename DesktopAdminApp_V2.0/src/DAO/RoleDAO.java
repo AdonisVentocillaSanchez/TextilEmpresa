@@ -21,10 +21,12 @@ public class RoleDAO {
     String consultaSQL = null;
     ResultSet rs=null;
     CallableStatement clst=null;
-    Connection cn= getConex();
+    Connection cn= null;
     
     public boolean AddRole(String role){
+        
         try{
+            cn=getConex();
             consultaSQL="CREATE ROLE "+role;
             System.out.println("Consulta : "+consultaSQL);
             clst=cn.prepareCall(consultaSQL);
@@ -39,6 +41,7 @@ public class RoleDAO {
     }
     public boolean AddPrivilegeToRole(String role, String privilege){
         try{
+            cn=getConex();
             consultaSQL="GRANT "+privilege+" TO "+role;
             System.out.println("Consulta : "+consultaSQL);
             clst=cn.prepareCall(consultaSQL);

@@ -40,7 +40,7 @@ public class AuthenticationDAO {
             if (!(usuario.isEmpty())) {
                 pst.close();
                 rs.close();
-                getConex().close();
+                ConexionBD.getConexion(admin).close();
                 op = true;
             }   
         } catch (SQLException e) {

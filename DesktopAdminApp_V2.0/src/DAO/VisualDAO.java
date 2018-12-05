@@ -27,7 +27,8 @@ public class VisualDAO extends ConexionBD{
     PreparedStatement pst=null;
     ResultSet rs=null;
     CallableStatement clst=null;
-    
+    Connection cn =null;
+    DefaultComboBoxModel ListaModelo = null;
     public static ResultSet Consulta(String usesave,String passave,String consulta){
         ResultSet respuesta = null;        
         
@@ -37,6 +38,7 @@ public class VisualDAO extends ConexionBD{
             Connection con = getConex();
             declara = con.createStatement();
             respuesta = declara.executeQuery(consulta);
+            con.close();
             
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Hubo un error al ejecutar la sentencia: \n" + consulta + "\n Error: \n" + e.getMessage(), "Error en la ejecución",  JOptionPane.ERROR_MESSAGE);
@@ -51,12 +53,9 @@ public class VisualDAO extends ConexionBD{
                     "WHERE PRIVILEGE LIKE '%"+tipo+"%' ";
         String[] privi =null;    
          
-        
         try{
-            pst.close();
-            rs.close();
-            getConex().close();
-            pst=ConexionBD.getConex().prepareStatement(consultaSQL);
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
             rs=pst.executeQuery();
             System.out.println("Llega hasta aquí");
             
@@ -75,31 +74,30 @@ public class VisualDAO extends ConexionBD{
             }
         pst.close();
         rs.close();
-        getConex().close();
-        
+        cn.close();
         }catch(SQLException ex){
             System.out.println("Algo salió mal en getPrivilege : "+ex);
         }
         
-     return privi;   
+        return privi;
     }
     
     //Setea a combobox los usuarios
     public DefaultComboBoxModel Obt_date(String tabla){
-        DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
+        ListaModelo= new DefaultComboBoxModel();
         ListaModelo.addElement("[SELECCIONAR]");
-        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS";
-        //consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
+        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
         
         try {
-            pst=getConex().prepareStatement(consultaSQL);
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
             rs=pst.executeQuery();
             while (rs.next()) {                
                 ListaModelo.addElement(rs.getString(tabla));
             }
             pst.close();
             rs.close();
-            getConex().close();
+            cn.close();
         } catch (SQLException e) {
         }
         
