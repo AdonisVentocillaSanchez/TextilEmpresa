@@ -15,6 +15,7 @@ public class FrmLogin extends javax.swing.JFrame {
         txtServer.setText("localhost");
         txtPort.setText("1521");
         txtSid.setText("xe");
+        txtUsername.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -161,11 +162,9 @@ public class FrmLogin extends javax.swing.JFrame {
         
         boolean p =authdao.Login(adminDAO);
         if (p) {
-            new FrmPrincipal().setVisible(true);
-            
+            new FrmPrincipal().setVisible(true);            
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "Error al conectar con oracle ", "Error de conexion", JOptionPane.ERROR_MESSAGE);
             Cleantxt();
         }
         

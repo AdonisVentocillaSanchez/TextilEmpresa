@@ -51,7 +51,11 @@ public class VisualDAO extends ConexionBD{
                     "WHERE PRIVILEGE LIKE '%"+tipo+"%' ";
         String[] privi =null;    
          
+        
         try{
+            pst.close();
+            rs.close();
+            getConex().close();
             pst=ConexionBD.getConex().prepareStatement(consultaSQL);
             rs=pst.executeQuery();
             System.out.println("Llega hasta aquí");
@@ -72,18 +76,20 @@ public class VisualDAO extends ConexionBD{
         pst.close();
         rs.close();
         getConex().close();
+        
         }catch(SQLException ex){
             System.out.println("Algo salió mal en getPrivilege : "+ex);
         }
         
-        return privi;
+     return privi;   
     }
     
     //Setea a combobox los usuarios
     public DefaultComboBoxModel Obt_date(String tabla){
         DefaultComboBoxModel ListaModelo = new DefaultComboBoxModel();
         ListaModelo.addElement("[SELECCIONAR]");
-        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
+        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS";
+        //consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
         
         try {
             pst=getConex().prepareStatement(consultaSQL);
