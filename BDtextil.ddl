@@ -119,42 +119,8 @@ CREATE TABLE provincia (
 
 ALTER TABLE provincia ADD CONSTRAINT xpkprovincia PRIMARY KEY ( cod_provi );
 
-ALTER TABLE cargo
-    ADD CONSTRAINT "R/1" FOREIGN KEY ( dni_jef )
-        REFERENCES jefearea ( dni_jef );
 
-ALTER TABLE producto
-    ADD CONSTRAINT "R/10" FOREIGN KEY ( dni_emp )
-        REFERENCES empleado ( dni_emp );
-
-ALTER TABLE producto
-    ADD CONSTRAINT "R/11" FOREIGN KEY ( nif_prove )
-        REFERENCES proveedor ( nif_prove );
-
-ALTER TABLE producto
-    ADD CONSTRAINT "R/12" FOREIGN KEY ( dni_cam )
-        REFERENCES camionero ( dni_cam );
-
-ALTER TABLE cargo
-    ADD CONSTRAINT "R/2" FOREIGN KEY ( dni_emp )
-        REFERENCES empleado ( dni_emp );
-
-ALTER TABLE compra
-    ADD CONSTRAINT "R/3" FOREIGN KEY ( dni_clie )
-        REFERENCES cliente ( dni_clie );
-
-ALTER TABLE compra
-    ADD CONSTRAINT "R/5" FOREIGN KEY ( cod_prod )
-        REFERENCES producto ( cod_prod );
-
-ALTER TABLE conduce
-    ADD CONSTRAINT "R/6" FOREIGN KEY ( mat_car )
-        REFERENCES camion ( mat_car );
-
-ALTER TABLE conduce
-    ADD CONSTRAINT "R/8" FOREIGN KEY ( dni_cam )
-        REFERENCES camionero ( dni_cam );
-
+     
 ALTER TABLE producto
     ADD CONSTRAINT "R/9" FOREIGN KEY ( cod_provi )
         REFERENCES provincia ( cod_provi );
@@ -183,9 +149,6 @@ ALTER TABLE conduce
     ADD CONSTRAINT "R/8" FOREIGN KEY ( dni_cam )
         REFERENCES camionero ( dni_cam );
 
-ALTER TABLE producto
-    ADD CONSTRAINT "R/9" FOREIGN KEY ( cod_provi )
-        REFERENCES provincia ( cod_provi );
 
 ALTER TABLE producto
     ADD CONSTRAINT "R/10" FOREIGN KEY ( dni_emp )
