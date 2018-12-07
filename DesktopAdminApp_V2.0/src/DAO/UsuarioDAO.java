@@ -19,10 +19,19 @@ public class UsuarioDAO extends ConexionBD {
     public boolean AddUser(String user,String password, String table,String temp, String quota, String value){
         try{
             cn=getConex();
-            consultaSQL="CREATE USER "+user+" IDENTIFIED BY "+password
-                    + " DEFAULT TABLESPACE "+table
-                    + " TEMPORARY TABLESPACE "+temp
-                    + " QUOTA "+quota+value+" ON "+table;
+            consultaSQL="CREATE USER "+user+" IDENTIFIED BY "+password;
+            if(!"[SELECCIONAR]".equals(table)){
+                    consultaSQL=consultaSQL+ " DEFAULT TABLESPACE "+table;
+            }
+            if(!"[SELECCIONAR]".equals(temp)){
+                    consultaSQL=consultaSQL+ " TEMPORARY TABLESPACE "+temp;
+            }
+            if(quota.isEmpty() || value != "null"){
+                
+            }else{
+                consultaSQL=consultaSQL+ " QUOTA "+quota+value+" ON "+table;
+            }
+            
             System.out.println("Consulta : "+consultaSQL);
             clst=cn.prepareCall(consultaSQL);
             clst.execute(consultaSQL);
@@ -38,7 +47,7 @@ public class UsuarioDAO extends ConexionBD {
     /////////////////////////Añadir priviliegios a usuarios ////////////////////////
     public boolean AddPrivilegeToUser(String user, String privilege){
         try{
-            cn=getConex();
+            cn=getConex();         
             consultaSQL="GRANT "+privilege+" TO "+user;
             System.out.println("Consulta : "+consultaSQL);
             clst=cn.prepareCall(consultaSQL);
@@ -52,18 +61,24 @@ public class UsuarioDAO extends ConexionBD {
         }
         
     }
-/////////////////////////Aquí empiezan metodos que no son del login ni del mostrar tablas//////////////////////    
+/////////////////////////Modificar usuario//////////////////////    
     public boolean modificar(String usu,String pass,String tablespace,String temptablespace,String quota)
     {
         try{
+            
             System.out.println(""+usu+pass+tablespace+temptablespace+quota);
-            if(pass.isEmpty()){
-            }else{
+            if(!pass.isEmpty()){
                 modificarUsuXPass(usu,pass);
             }
-            modificarTableSpace(usu, tablespace);
-            modificarTempTableSpace(usu, temptablespace);
-            modificarQuota(usu, quota, tablespace);
+            if(!"[SELECCIONAR".equals(tablespace)){
+                modificarTableSpace(usu, tablespace);
+            }
+            if(!"[SELECCIONAR".equals(temptablespace)){
+                modificarTempTableSpace(usu, temptablespace);
+            }
+            if(!quota.isEmpty() || !"0".equals(quota)){
+                modificarQuota(usu, quota, tablespace);
+            }
             return true;
         }catch(Exception ex)
         {

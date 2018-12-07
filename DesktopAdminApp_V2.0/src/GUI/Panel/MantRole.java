@@ -6,6 +6,9 @@
 package GUI.Panel;
 
 import DAO.RoleDAO;
+import DAO.VisualDAO;
+import java.awt.event.ItemEvent;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -14,6 +17,7 @@ import DAO.RoleDAO;
 public class MantRole extends javax.swing.JPanel {
     
     RoleDAO roledao = new RoleDAO();
+    VisualDAO vdao = new VisualDAO();
     
     public MantRole() {
         initComponents();
@@ -185,12 +189,12 @@ public class MantRole extends javax.swing.JPanel {
     }//GEN-LAST:event_btnaddroleActionPerformed
 
     private void cbxtipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxtipoItemStateChanged
-        // TODO add your handling code here:
-//        if (evt.getStateChange() == ItemEvent.SELECTED) {
-//            if (this.cbxtipo.getSelectedIndex()>=0) {
-//                this.cbxprivi.setModel(new DefaultComboBoxModel(sdao.getPrivilegio(this.cbxtipo.getSelectedItem().toString())));
-//            }
-//        }
+         //TODO add your handling code here:
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (this.cbxtipo.getSelectedIndex()>=0) {
+                this.cbxprivi.setModel(new DefaultComboBoxModel(vdao.getPrivilegio(this.cbxtipo.getSelectedItem().toString())));
+            }
+        }
     }//GEN-LAST:event_cbxtipoItemStateChanged
 
     private void btnaddprivilegesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddprivilegesActionPerformed

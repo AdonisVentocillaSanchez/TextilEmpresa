@@ -86,7 +86,7 @@ public class VisualDAO extends ConexionBD{
     public DefaultComboBoxModel Obt_date(String tabla){
         ListaModelo= new DefaultComboBoxModel();
         ListaModelo.addElement("[SELECCIONAR]");
-        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS WHERE DEFAULT_TABLESPACE = 'EMPRESATEXTIL'";
+        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS";
         
         try {
             cn=getConex();

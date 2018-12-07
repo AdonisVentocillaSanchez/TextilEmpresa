@@ -44,6 +44,7 @@ public class MantUser extends javax.swing.JPanel {
     private void initComponents() {
 
         QuotaValueSelected = new javax.swing.ButtonGroup();
+        QuotaValueSelected1 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanelCrear = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -65,15 +66,19 @@ public class MantUser extends javax.swing.JPanel {
         jPanelModificar = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jcbuser2 = new javax.swing.JComboBox<>();
-        newpass1 = new javax.swing.JTextField();
+        txtNewPass = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jcbtablespace2 = new javax.swing.JComboBox<>();
         jcbtemporary2 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        newquota1 = new javax.swing.JTextField();
+        txtNewQuota = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
+        rdbK1 = new javax.swing.JRadioButton();
+        rdbM1 = new javax.swing.JRadioButton();
+        rdbU1 = new javax.swing.JRadioButton();
         jPanelPrivilegios = new javax.swing.JPanel();
         jcbuser3 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
@@ -102,6 +107,11 @@ public class MantUser extends javax.swing.JPanel {
         txtquota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtquotaActionPerformed(evt);
+            }
+        });
+        txtquota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtquotaKeyTyped(evt);
             }
         });
 
@@ -223,7 +233,7 @@ public class MantUser extends javax.swing.JPanel {
         jcbuser2.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jcbuser2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        newpass1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtNewPass.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel8.setText("Contraseña :");
@@ -243,10 +253,46 @@ public class MantUser extends javax.swing.JPanel {
         jLabel11.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel11.setText("Quota Temporary Tablespace :");
 
-        newquota1.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtNewQuota.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        txtNewQuota.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNewQuotaKeyTyped(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         jLabel16.setText("A continuación seleccione el usuario a modificar");
+
+        btnUpdate.setText("Actualizar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
+
+        QuotaValueSelected1.add(rdbK1);
+        rdbK1.setText("K");
+        rdbK1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbK1ActionPerformed(evt);
+            }
+        });
+
+        QuotaValueSelected1.add(rdbM1);
+        rdbM1.setText("M");
+        rdbM1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbM1ActionPerformed(evt);
+            }
+        });
+
+        QuotaValueSelected1.add(rdbU1);
+        rdbU1.setText("Ilimitado");
+        rdbU1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdbU1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelModificarLayout = new javax.swing.GroupLayout(jPanelModificar);
         jPanelModificar.setLayout(jPanelModificarLayout);
@@ -267,14 +313,23 @@ public class MantUser extends javax.swing.JPanel {
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(newpass1)
-                            .addComponent(newquota1)
+                            .addComponent(txtNewPass)
+                            .addComponent(txtNewQuota)
                             .addComponent(jcbtablespace2, 0, 200, Short.MAX_VALUE)
-                            .addComponent(jcbtemporary2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jcbtemporary2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(rdbK1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdbM1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rdbU1))
                     .addGroup(jPanelModificarLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel16)))
-                .addContainerGap(211, Short.MAX_VALUE))
+                        .addComponent(jLabel16))
+                    .addGroup(jPanelModificarLayout.createSequentialGroup()
+                        .addGap(301, 301, 301)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         jPanelModificarLayout.setVerticalGroup(
             jPanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +343,7 @@ public class MantUser extends javax.swing.JPanel {
                 .addGap(84, 84, 84)
                 .addGroup(jPanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(newpass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNewPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
@@ -299,9 +354,15 @@ public class MantUser extends javax.swing.JPanel {
                     .addComponent(jcbtemporary2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newquota1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addContainerGap(156, Short.MAX_VALUE))
+                    .addComponent(txtNewQuota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addGroup(jPanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdbK1)
+                        .addComponent(rdbM1)
+                        .addComponent(rdbU1)))
+                .addGap(56, 56, 56)
+                .addComponent(btnUpdate)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MODIFICAR", jPanelModificar);
@@ -379,7 +440,7 @@ public class MantUser extends javax.swing.JPanel {
         jPanelPrivilegios.setLayout(jPanelPrivilegiosLayout);
         jPanelPrivilegiosLayout.setHorizontalGroup(
             jPanelPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelPrivilegiosLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPrivilegiosLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanelPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13)
@@ -404,12 +465,10 @@ public class MantUser extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(jcbuser3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnactualizarprivi)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52))
-            .addGroup(jPanelPrivilegiosLayout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(btnactualizarprivi)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelPrivilegiosLayout.setVerticalGroup(
             jPanelPrivilegiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,9 +494,9 @@ public class MantUser extends javax.swing.JPanel {
                             .addComponent(btnanadirprivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btneliminarprivi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnactualizarprivi)
-                .addGap(39, 39, 39))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("PRIVILEGIOS", jPanelPrivilegios);
@@ -509,7 +568,7 @@ public class MantUser extends javax.swing.JPanel {
         String pass = txtpassword.getText();
         String table = (String) cbxtablespace.getSelectedItem();
         String temp= (String) cbxtemptablespace.getSelectedItem();
-        String qouta= txtquota.getText();
+        String quota= txtquota.getText();
         String value = null;
         if(rdbK.isSelected()){
             value = "K";
@@ -518,7 +577,14 @@ public class MantUser extends javax.swing.JPanel {
         }else if (rdbU.isSelected()){
             value = "UNLIMITED";
         }
-        usuDAO.AddUser(user, pass, table, temp, qouta, value);
+        
+        if(usuDAO.AddUser(user, pass, table, temp, quota, value))
+        {
+            this.jcbuser2.setModel(vDAO.Obt_date("USERNAME"));
+            this.jcbuser3.setModel(vDAO.Obt_date("USERNAME"));
+        }else{
+            System.out.println("Ocurrió un error");
+        }
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void txtquotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtquotaActionPerformed
@@ -541,9 +607,71 @@ public class MantUser extends javax.swing.JPanel {
         txtquota.setEditable(true);
     }//GEN-LAST:event_rdbKActionPerformed
 
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        String usu = (String) jcbuser2.getSelectedItem();
+        String pass = txtNewPass.getText();
+        String tablespace = (String)jcbtablespace2.getSelectedItem();
+        String temptablespace = (String) jcbtemporary2.getSelectedItem();
+        String quota= txtNewQuota.getText();
+        String value = null;
+        if(rdbK1.isSelected()){
+            value = "K";
+        }else if (rdbM1.isSelected()){
+            value = "M";
+        }else if (rdbU1.isSelected()){
+            value = "UNLIMITED";
+            quota=null;
+        }
+        quota=quota+value;
+        usuDAO.modificar(usu,pass,tablespace,temptablespace,quota);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void rdbK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbK1ActionPerformed
+        // TODO add your handling code here:
+        txtNewQuota.setEditable(true);
+    }//GEN-LAST:event_rdbK1ActionPerformed
+
+    private void rdbM1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbM1ActionPerformed
+        // TODO add your handling code here:
+        txtNewQuota.setEditable(true);
+    }//GEN-LAST:event_rdbM1ActionPerformed
+
+    private void rdbU1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbU1ActionPerformed
+        // TODO add your handling code here:
+        txtNewQuota.setText("");
+        txtNewQuota.setEditable(false);
+    }//GEN-LAST:event_rdbU1ActionPerformed
+
+    private void txtquotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtquotaKeyTyped
+        // TODO add your handling code here:
+        char []p={'1','2','3','4','5','6','7','8','9','0'};
+        int b=0;
+        for(int i=0;i<=9;i++){
+        if (p[i]==evt.getKeyChar()){b=1;}
+ 
+        }
+        if(b==0 || txtquota.getText().length() == 5 ){evt.consume();  getToolkit().beep(); 
+        }
+    }//GEN-LAST:event_txtquotaKeyTyped
+
+    private void txtNewQuotaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNewQuotaKeyTyped
+        // TODO add your handling code here:
+        char []p={'1','2','3','4','5','6','7','8','9','0'};
+        int b=0;
+        for(int i=0;i<=9;i++){
+        if (p[i]==evt.getKeyChar()){b=1;}
+ 
+        }
+        if(b==0 || txtNewQuota.getText().length() == 5 ){evt.consume();  getToolkit().beep(); 
+        }
+    }//GEN-LAST:event_txtNewQuotaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup QuotaValueSelected;
+    private javax.swing.ButtonGroup QuotaValueSelected1;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnactualizarprivi;
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnanadirprivi;
@@ -577,13 +705,16 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcbuser2;
     private javax.swing.JComboBox<String> jcbuser3;
     private javax.swing.JTable jtableprivi;
-    private javax.swing.JTextField newpass1;
-    private javax.swing.JTextField newquota1;
     private javax.swing.JRadioButton rdbK;
+    private javax.swing.JRadioButton rdbK1;
     private javax.swing.JRadioButton rdbM;
+    private javax.swing.JRadioButton rdbM1;
     private javax.swing.JRadioButton rdbU;
+    private javax.swing.JRadioButton rdbU1;
     private javax.swing.JScrollPane tbladduser;
     private javax.swing.JLabel title;
+    private javax.swing.JTextField txtNewPass;
+    private javax.swing.JTextField txtNewQuota;
     private javax.swing.JTextArea txtareauser;
     private javax.swing.JTextField txtpassword;
     private javax.swing.JTextField txtquota;
