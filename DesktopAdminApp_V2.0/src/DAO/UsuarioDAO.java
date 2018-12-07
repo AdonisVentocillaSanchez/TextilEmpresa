@@ -170,4 +170,39 @@ public class UsuarioDAO extends ConexionBD {
             
     }
     
+//////////////////////////////ELIMINAR USUARIO ////////////////////////////////////////////////////
+    public boolean LockUser(String user)
+    {
+        consultaSQL="ALTER USER "+user+" ACCOUNT LOCK";
+        try{
+            cn=getConex();
+            
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException ex){
+            
+            return false;
+        }
+        
+    }
+    
+    public boolean DropUser(String user)
+    {
+        consultaSQL="DROP USER "+user;
+        try{
+            cn=getConex();
+            
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException ex){
+            
+            return false;
+        }
+    }
 }

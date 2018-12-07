@@ -11,10 +11,12 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +31,9 @@ public class VisualDAO extends ConexionBD{
     CallableStatement clst=null;
     Connection cn =null;
     DefaultComboBoxModel ListaModelo = null;
+    DefaultTableModel View = null;
+    ResultSetMetaData rsMd = null;
+    
     public static ResultSet Consulta(String usesave,String passave,String consulta){
         ResultSet respuesta = null;        
         
@@ -58,15 +63,16 @@ public class VisualDAO extends ConexionBD{
             pst=cn.prepareStatement(consultaSQL);
             rs=pst.executeQuery();
             System.out.println("Llega hasta aquí");
-            
-        int filas=0;
+            rsMd =rs.getMetaData();
+            int filas= 0;
             while(rs.next()){
                 filas++;
             }
-         rs=null; 
-        privi = new String[filas];
-        System.out.println("estas son las filas "+filas);
-        rs=pst.executeQuery();
+            rs=null; 
+        
+            privi = new String[filas];
+            System.out.println("estas son las filas "+filas);
+            rs=pst.executeQuery();
 
             while(rs.next()){
                 privi[i]=rs.getString("PRIVILEGE");
@@ -92,6 +98,7 @@ public class VisualDAO extends ConexionBD{
             cn=getConex();
             pst=cn.prepareStatement(consultaSQL);
             rs=pst.executeQuery();
+            
             while (rs.next()) {                
                 ListaModelo.addElement(rs.getString(tabla));
             }
@@ -104,4 +111,31 @@ public class VisualDAO extends ConexionBD{
         return ListaModelo;
     }
     
+    public DefaultTableModel Obt_date1(String vista){
+        View = new DefaultTableModel();
+        consultaSQL="SELECT * FROM "+vista;
+        try{
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            for (int i = 1; i <= cantidadColumnas; i++) {
+                View.addColumn(rsMd.getColumnLabel(i));
+            }
+            while(rs.next()){
+                Object[] fila = new Object[cantidadColumnas];
+                for (int i = 0; i < cantidadColumnas; i++) {
+                    fila[i]=rs.getObject(i+1);
+                }
+                View.addRow(fila);
+            }
+            pst.close();
+            rs.close();
+            cn.close();
+        }catch(SQLException ex){
+        }
+        return View;
+    }
 }
