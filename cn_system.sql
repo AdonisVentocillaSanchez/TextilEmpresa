@@ -9,9 +9,9 @@ commit;
   
 create temporary tablespace Temp_EmpresaTextil 
 tempfile '/Temp_EmpresaTextil.dbf' 
-size 1M 
+size 6M 
 autoextend on next 100K 
-maxsize 1600K 
+maxsize 7600K 
 extent management local uniform size 300K; 
 commit;
 
@@ -33,8 +33,20 @@ temporary tablespace Temp_EmpresaTextil
 quota unlimited on EmpresaTextil; 
 commit; 
 
-create role PROGRAMADOR; 
-grant DBA to PROGRAMADOR; 
-commit;
-grant PROGRAMADOR to Ventocilla,Aparcana,Valencia; 
-commit;
+CREATE ROLE DBD;
+GRANT CREATE SESSION,
+CREATE TABLE, CREATE PROCEDURE,
+CREATE TRIGGER,CREATE SEQUENCE,
+SELECT ANY TABLE to DBD;
+COMMIT;
+
+GRANT DBD TO APARCANA;
+COMMIT;
+
+CREATE ROLE PROGRAMADOR; 
+GRANT DBA TO PROGRAMADOR; 
+COMMIT;
+
+GRANT PROGRAMADOR to Ventocilla,Valencia; 
+GRANT SELECT ANY DICTIONARY TO VENTOCILLA;
+COMMIT;
