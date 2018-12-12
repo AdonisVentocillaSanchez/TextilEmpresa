@@ -24,8 +24,9 @@ public class ConexionBD {
             
             Class.forName("oracle.jdbc.OracleDriver");
             cx = DriverManager.getConnection(conn,usu,pas);
-            System.out.println("coneccion");
-            JOptionPane.showMessageDialog(null, "Bienvenido a DatabaseManagment to Alpaca SAC", "Conexión exitosa", JOptionPane.INFORMATION_MESSAGE);
+            System.out.println("conexion");
+            JOptionPane.showMessageDialog(null, "Bienvenido a DatabaseManagment to Alpaca SAC",
+                    "Conexión exitosa", JOptionPane.INFORMATION_MESSAGE);
             ConexionBean.Conexion(admin);
             
             

@@ -7,8 +7,7 @@ package DAO;
 
 import Bean.UsuarioBean;
 import Connection.ConexionBD;
-import static Connection.ConexionBD.getConex;
-import java.beans.Statement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,26 +22,32 @@ public class AuthenticationDAO {
     String consultaSQL = null;
     PreparedStatement pst=null;
     ResultSet rs=null;    
+    ConexionBD cBD = new ConexionBD();
+    Connection cn = null;
     
     public boolean Login(UsuarioBean admin){
         
         String usu = admin.getUser();
-        boolean op = true;
+        boolean op = false;
         String usuario = "";
-        consultaSQL = "SELECT USERNAME FROM dba_users WHERE USERNAME = '"+usu+"'";
+        consultaSQL = "SELECT USERNAME FROM USERSDBA WHERE USERNAME = '"+usu+"'";
         
         try {
-            pst=ConexionBD.getConexion(admin).prepareStatement(consultaSQL);
+            cn=cBD.getConexion(admin);
+            pst=cn.prepareStatement(consultaSQL);
             rs=pst.executeQuery();
             while (rs.next()) {                
                 usuario = rs.getString("USERNAME");
             }
             if (!(usuario.isEmpty())) {
-                pst.close();
-                rs.close();
-                ConexionBD.getConexion(admin).close();
+                System.out.println("Llega");
                 op = true;
-            }   
+            }else{
+                op=false;
+            }
+            pst.close();
+            rs.close();
+            cn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Los datos ingresados son incorrectos: " +e.toString(),
                     "Error en el inicio de sesión",JOptionPane.ERROR_MESSAGE);

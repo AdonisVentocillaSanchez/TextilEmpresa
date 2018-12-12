@@ -24,16 +24,7 @@ public class MantUser extends javax.swing.JPanel {
     
     public MantUser() {
         initComponents();
-
-        this.jcbuser2.setModel(vDAO.Obt_date("USERNAME"));
-        this.jcbuser3.setModel(vDAO.Obt_date("USERNAME"));
-        this.jcbprivi.setModel(vDAO.Obt_date("USERNAME"));
-        this.cbxtablespace.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
-        this.jcbtablespace2.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
-        this.cbxtemptablespace.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
-        this.jcbtemporary2.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
-        this.tblUserConnected.setModel(vDAO.Obt_date1("VW_STATUSUSER"));
-        
+        this.actualizar();
         
     }
 
@@ -479,6 +470,12 @@ public class MantUser extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("PRIVILEGIOS", jPanelPrivilegios);
 
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+
         tblReadUser.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         tblReadUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -644,8 +641,10 @@ public class MantUser extends javax.swing.JPanel {
         // TODO add your handling code here:
                 String usergrant=(String)jcbuser3.getSelectedItem();
                 if(usuDAO.RevokeProvolegeTo(usergrant, (String)jcbprivi.getSelectedItem())){
-                        JOptionPane.showMessageDialog(null,"Rol "+(String)jcbprivi.getSelectedItem()+
+                    actualizar();
+                    JOptionPane.showMessageDialog(null,"Privilegio "+(String)jcbprivi.getSelectedItem()+
                                 " ha sido revocado a "+usergrant);
+                        
                     }
     }//GEN-LAST:event_btneliminarpriviActionPerformed
 
@@ -653,7 +652,8 @@ public class MantUser extends javax.swing.JPanel {
         // TODO add your handling code here:
                 String usergrant=(String)jcbuser3.getSelectedItem();
                 if(usuDAO.AddPrivilegeToUser(usergrant, (String)jcbprivi.getSelectedItem())){
-                        JOptionPane.showMessageDialog(null,"Rol "+(String)jcbprivi.getSelectedItem()+
+                    actualizar();
+                        JOptionPane.showMessageDialog(null,"Privilegio "+(String)jcbprivi.getSelectedItem()+
                                 " ha sido otorgado a "+usergrant);
                     }
     }//GEN-LAST:event_btnanadirpriviActionPerformed
@@ -692,8 +692,7 @@ public class MantUser extends javax.swing.JPanel {
         
         if(usuDAO.AddUser(user, pass, table, temp, quota, value))
         {
-            this.jcbuser2.setModel(vDAO.Obt_date("USERNAME"));
-            this.jcbuser3.setModel(vDAO.Obt_date("USERNAME"));
+            actualizar();
         }else{
             System.out.println("Ocurrió un error");
         }
@@ -736,7 +735,9 @@ public class MantUser extends javax.swing.JPanel {
             quota=null;
         }
         quota=quota+value;
-        usuDAO.modificar(usu,pass,tablespace,temptablespace,quota);
+        if(usuDAO.modificar(usu,pass,tablespace,temptablespace,quota)){
+            actualizar();
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void rdbK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdbK1ActionPerformed
@@ -781,7 +782,7 @@ public class MantUser extends javax.swing.JPanel {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-        this.tblReadUser.setModel(vDAO.Obt_date1("VW_DBAUSERS"));
+        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void jcbuser4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbuser4ActionPerformed
@@ -791,16 +792,39 @@ public class MantUser extends javax.swing.JPanel {
     private void btnLockUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLockUserActionPerformed
         // TODO add your handling code here:
         String user = (String) jcbuser4.getSelectedItem();
-        usuDAO.LockUser(user);
+        if(usuDAO.LockUser(user)){
+            actualizar();
+            System.out.println("Satifactorio");
+    }
         
     }//GEN-LAST:event_btnLockUserActionPerformed
 
     private void btnDropUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDropUserActionPerformed
         // TODO add your handling code here:
         String user = (String) jcbuser4.getSelectedItem();
-        usuDAO.DropUser(user);
+        if(usuDAO.DropUser(user)){
+            actualizar();
+            System.out.println("Satisfacotorio");
+        }
     }//GEN-LAST:event_btnDropUserActionPerformed
 
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void actualizar(){
+        this.jcbuser2.setModel(vDAO.Obt_date("USERNAME"));
+        this.jcbuser3.setModel(vDAO.Obt_date("USERNAME"));
+        this.jcbuser4.setModel(vDAO.Obt_date("USERNAME"));
+        this.jcbprivi.setModel(vDAO.Obt_date("USERNAME"));
+        this.cbxtablespace.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
+        this.jcbtablespace2.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
+        this.cbxtemptablespace.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
+        this.jcbtemporary2.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
+        this.tblUserConnected.setModel(vDAO.Obt_date1("VW_STATUSUSER"));
+        this.tblReadUser.setModel(vDAO.Obt_date1("VW_DBA_USERS"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup QuotaValueSelected;

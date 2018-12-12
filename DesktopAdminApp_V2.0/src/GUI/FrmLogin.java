@@ -1,6 +1,7 @@
 
 package GUI;
 
+import Bean.ConexionBean;
 import Bean.UsuarioBean;
 import DAO.AuthenticationDAO;
 import javax.swing.*;
@@ -161,7 +162,9 @@ public class FrmLogin extends javax.swing.JFrame {
         adminDAO.setPassword(password);
         
         boolean p =authdao.Login(adminDAO);
+        
         if (p) {
+            
             new FrmPrincipal().setVisible(true);            
             dispose();
         } else {
