@@ -1,3 +1,13 @@
+--insertar todo en la conexion aparcana
+CREATE TABLE USUARIO
+( 
+	id_user              int PRIMARY KEY,
+	dni_user             char(8)  NOT NULL,
+	us_user              varchar2(50)  NOT NULL ,
+	pass_user            varchar2(50)  NOT NULL ,
+	tipo_user            char(15)  NOT NULL
+);
+
 CREATE OR REPLACE PROCEDURE SP_LOGIN
 (
   v_user IN VARCHAR2,
