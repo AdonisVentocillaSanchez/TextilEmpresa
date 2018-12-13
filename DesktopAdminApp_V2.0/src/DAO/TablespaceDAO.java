@@ -29,7 +29,7 @@ public class TablespaceDAO {
     public boolean createTablespace(String tablespace,String datafile,
             String size, String autoextend,String maxsize){
         consultaSQL="CREATE TABLESPACE "+tablespace+
-                " DATAFILE "+datafile+tablespace+".dbf"+
+                " DATAFILE '"+datafile+tablespace+".dbf'"+
                 " SIZE "+size+
                 " AUTOEXTEND ON NEXT "+autoextend+
                 " MAXSIZE "+maxsize+
@@ -68,6 +68,25 @@ public class TablespaceDAO {
         }catch(SQLException ex){
             System.out.println("af"+ex);
             return false;
+        }
+    }
+    
+    public boolean alterTablespace (String tablespace, String newtable,
+            String datafilenew, String sizenew){
+        consultaSQL="ALTER TABLESPACE "+tablespace+
+                " ADD DATAFILE "+datafilenew+"/"+newtable+".dbf"+
+                " SIZE "+sizenew;
+        try{
+            cn=getConex();
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException e){
+            
+         return false;   
         }
     }
 }

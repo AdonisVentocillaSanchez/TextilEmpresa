@@ -872,7 +872,7 @@ public class MantUser extends javax.swing.JPanel {
         String user = (String) jcbuser4.getSelectedItem();
         if(usuDAO.DropUser(user)){
             actualizar();
-            System.out.println("Satisfacotorio");
+            System.out.println("Satisfactorio");
         }
     }//GEN-LAST:event_btnDropUserActionPerformed
 
@@ -885,7 +885,7 @@ public class MantUser extends javax.swing.JPanel {
         // TODO add your handling code here:
         String user = (String) jcbuser5.getSelectedItem();
         String role = (String) jcbRoles.getSelectedItem();
-        if(usuDAO.AddRoleToUser(role, user)){
+        if(usuDAO.AddRoleToUser(user, role)){
             actualizar();
             System.out.println("Satisfactorio");
         }

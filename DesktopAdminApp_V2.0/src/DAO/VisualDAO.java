@@ -15,6 +15,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +33,7 @@ public class VisualDAO extends ConexionBD{
     Connection cn =null;
     DefaultComboBoxModel ListaModelo = null;
     DefaultTableModel View = null;
+    DefaultListModel list = null;
     ResultSetMetaData rsMd = null;
     
     public static ResultSet Consulta(String usesave,String passave,String consulta){
@@ -89,10 +91,10 @@ public class VisualDAO extends ConexionBD{
     }
     
     //Setea a combobox los usuarios
-    public DefaultComboBoxModel Obt_date(String tabla){
+    public DefaultComboBoxModel Obt_date(String column){
         ListaModelo= new DefaultComboBoxModel();
         ListaModelo.addElement("[SELECCIONAR]");
-        consultaSQL="SELECT DISTINCT " + tabla + " FROM DBA_USERS";
+        consultaSQL="SELECT DISTINCT " + column + " FROM DBA_USERS";
         
         try {
             cn=getConex();
@@ -100,7 +102,7 @@ public class VisualDAO extends ConexionBD{
             rs=pst.executeQuery();
             
             while (rs.next()) {                
-                ListaModelo.addElement(rs.getString(tabla));
+                ListaModelo.addElement(rs.getString(column));
             }
             pst.close();
             rs.close();
@@ -189,4 +191,71 @@ public class VisualDAO extends ConexionBD{
         
         return ListaModelo;
     }
+    
+    public DefaultListModel Obt_List (String column, String table){
+        list = new DefaultListModel();
+        consultaSQL="SELECT \""+column+"\" FROM "+table;
+        
+        
+        try{
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                list.addElement(rs.getString(column));
+            }
+            rs.close();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+        
+        }
+        
+        return list;
+    }
+    
+    public DefaultComboBoxModel Obt_Schema (String column, String table){
+        ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.addElement("[SELECCIONAR]");
+        consultaSQL="SELECT \""+column+"\" FROM "+ table +" GROUP BY "+column;
+        
+        
+        try{
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                ListaModelo.addElement(rs.getString(column));
+            }
+            rs.close();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+        
+        }
+        
+        return ListaModelo;
+    }
+    
+    public DefaultComboBoxModel Obt_SchemaTables (String column, String table, String schema){
+        ListaModelo = new DefaultComboBoxModel();
+        ListaModelo.addElement("[SELECCIONAR]");
+        consultaSQL="SELECT "+column+" FROM "+table+" WHERE OWNER ='"+schema+"' ORDER BY "+column;
+        try{
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                ListaModelo.addElement(rs.getString(column));
+            }
+            rs.close();
+            pst.close();
+            cn.close();
+        }catch(SQLException e){
+        
+        }
+        
+        return ListaModelo;
+    }
+    
 }
