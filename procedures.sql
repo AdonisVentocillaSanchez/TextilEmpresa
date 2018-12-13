@@ -8,6 +8,96 @@ CREATE TABLE USUARIO
 	tipo_user            char(15)  NOT NULL
 );
 
+--triggers
+--Trigger para almacenar los datos de la tabla JEFEAREA en USUARIO
+
+CREATE OR REPLACE TRIGGER TR_INSERTARENUSUARIO_JEFE
+   BEFORE INSERT
+   ON JEFEAREA
+   FOR EACH ROW
+DECLARE
+   v_user VARCHAR2(50);
+   v_pass VARCHAR2(50);
+   v_dni CHAR(8);
+
+BEGIN
+   SELECT :NEW.user_jef 
+
+     INTO v_user
+     FROM DUAL ;
+   SELECT :NEW.pass_jef 
+
+     INTO v_pass
+     FROM DUAL ;
+   SELECT :NEW.dni_jef 
+
+     INTO v_dni
+     FROM DUAL ;
+   INSERT INTO USUARIO
+     ( dni_user, us_user, pass_user, tipo_user )
+     VALUES ( v_dni, v_user, v_pass, 'ADMINISTRADOR' );
+
+END;
+
+--Trigger para eliminar los datos de la tabla USUARIO si se elimina en JEFEAREA
+CREATE OR REPLACE TRIGGER TR_ELIMINARJEFE
+   BEFORE DELETE
+   ON JEFEAREA
+   FOR EACH ROW
+
+BEGIN
+   DELETE us
+    WHERE ROWID IN 
+   ( SELECT us.ROWID
+     FROM USUARIO us,
+          us );
+
+END;
+
+--Trigger para almacenar los datos de la tabla EMPLEADO en USUARIO
+CREATE OR REPLACE TRIGGER TR_INSERTARENUSUARIO_EMPLE
+   BEFORE INSERT
+   ON EMPLEADO
+   FOR EACH ROW
+DECLARE
+   v_user VARCHAR2(50);
+   v_pass VARCHAR2(50);
+   v_dni CHAR(8);
+
+BEGIN
+   SELECT :NEW.user_emp 
+
+     INTO v_user
+     FROM DUAL ;
+   SELECT :NEW.pass_emp 
+
+     INTO v_pass
+     FROM DUAL ;
+   SELECT :NEW.dni_emp 
+
+     INTO v_dni
+     FROM DUAL ;
+   INSERT INTO USUARIO
+     ( dni_user, us_user, pass_user, tipo_user )
+     VALUES ( v_dni, v_user, v_pass, 'EMPLEADO' );
+
+END;
+
+--Trigger para eliminar los datos de la tabla USUARIO si se elimina en EMPLEADO
+CREATE OR REPLACE TRIGGER TR_ELIMINAREMPLE
+   BEFORE DELETE
+   ON JEFEAREA
+   FOR EACH ROW
+
+BEGIN
+   DELETE us
+    WHERE ROWID IN 
+   ( SELECT us.id_user
+     FROM USUARIO us,
+          us );
+
+END;
+
 CREATE OR REPLACE PROCEDURE SP_LOGIN
 (
   v_user IN VARCHAR2,
