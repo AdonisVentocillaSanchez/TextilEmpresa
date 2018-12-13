@@ -61,6 +61,11 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel4.setText("Username");
 
         txtUsername.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtUsername.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsernameKeyTyped(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel5.setText("Password");
@@ -172,6 +177,14 @@ public class FrmLogin extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnConnectActionPerformed
+
+    private void txtUsernameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameKeyTyped
+        // TODO add your handling code here:
+        Character c = evt.getKeyChar();
+        if(Character.isLetter(c)) {
+            evt.setKeyChar(Character.toUpperCase(c));
+        }
+    }//GEN-LAST:event_txtUsernameKeyTyped
 
     public void Cleantxt() {
         txtUsername.setText("");

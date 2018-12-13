@@ -111,6 +111,8 @@ public class VisualDAO extends ConexionBD{
         return ListaModelo;
     }
     
+    
+    
     public DefaultTableModel Obt_date1(String vista){
         View = new DefaultTableModel();
         consultaSQL="SELECT * FROM "+vista;
@@ -137,5 +139,54 @@ public class VisualDAO extends ConexionBD{
         }catch(SQLException ex){
         }
         return View;
+    }
+    public DefaultTableModel Obt_dateRole(String column, String vista, String where){
+        View = new DefaultTableModel();
+        consultaSQL="SELECT DISTINCT "+column+" FROM "+vista+" WHERE "+where;
+        try{
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            rsMd = rs.getMetaData();
+            int cantidadColumnas = rsMd.getColumnCount();
+            
+            for (int i = 1; i <= cantidadColumnas; i++) {
+                View.addColumn(rsMd.getColumnLabel(i));
+            }
+            while(rs.next()){
+                Object[] fila = new Object[cantidadColumnas];
+                for (int i = 0; i < cantidadColumnas; i++) {
+                    fila[i]=rs.getObject(i+1);
+                }
+                View.addRow(fila);
+            }
+            pst.close();
+            rs.close();
+            cn.close();
+        }catch(SQLException ex){
+        }
+        return View;
+    }
+    
+    public DefaultComboBoxModel Obt_date2(String column,String tabla){
+        ListaModelo= new DefaultComboBoxModel();
+        ListaModelo.addElement("[SELECCIONAR]");
+        consultaSQL="SELECT DISTINCT "+ column +" FROM " + tabla ;
+        
+        try {
+            cn=getConex();
+            pst=cn.prepareStatement(consultaSQL);
+            rs=pst.executeQuery();
+            
+            while (rs.next()) {                
+                ListaModelo.addElement(rs.getString(column));
+            }
+            pst.close();
+            rs.close();
+            cn.close();
+        } catch (SQLException e) {
+        }
+        
+        return ListaModelo;
     }
 }

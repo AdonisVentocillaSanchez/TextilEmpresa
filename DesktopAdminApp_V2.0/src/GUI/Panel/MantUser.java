@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import Bean.ConexionBean;
 import DAO.VisualDAO;
 import DAO.UsuarioDAO;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +22,7 @@ public class MantUser extends javax.swing.JPanel {
     ConexionBean conex = new ConexionBean();
     UsuarioDAO usuDAO = new UsuarioDAO();
     VisualDAO vDAO = new VisualDAO();
+    DefaultTableModel model = null;
     
     public MantUser() {
         initComponents();
@@ -71,6 +73,10 @@ public class MantUser extends javax.swing.JPanel {
         rdbK1 = new javax.swing.JRadioButton();
         rdbM1 = new javax.swing.JRadioButton();
         rdbU1 = new javax.swing.JRadioButton();
+        jPanelRol = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jcbRoles = new javax.swing.JComboBox<>();
+        jcbuser5 = new javax.swing.JComboBox<>();
         jPanelPrivilegios = new javax.swing.JPanel();
         jcbuser3 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
@@ -81,14 +87,15 @@ public class MantUser extends javax.swing.JPanel {
         jcbprivi = new javax.swing.JComboBox<>();
         btnanadirprivi = new javax.swing.JButton();
         btneliminarprivi = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelRead = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblReadUser = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelControl = new javax.swing.JPanel();
         jcbuser4 = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         btnLockUser = new javax.swing.JButton();
         btnDropUser = new javax.swing.JButton();
+        btnUnlockUser = new javax.swing.JButton();
         title = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUserConnected = new javax.swing.JTable();
@@ -362,6 +369,46 @@ public class MantUser extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("MODIFICAR", jPanelModificar);
 
+        jButton1.setText("OTORGAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jcbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jcbuser5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanelRolLayout = new javax.swing.GroupLayout(jPanelRol);
+        jPanelRol.setLayout(jPanelRolLayout);
+        jPanelRolLayout.setHorizontalGroup(
+            jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRolLayout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelRolLayout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jcbRoles, 0, 188, Short.MAX_VALUE)
+                            .addComponent(jcbuser5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(231, Short.MAX_VALUE))
+        );
+        jPanelRolLayout.setVerticalGroup(
+            jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRolLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jcbuser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(jcbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("ROLES", jPanelRol);
+
         jcbuser3.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jcbuser3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbuser3.addActionListener(new java.awt.event.ActionListener() {
@@ -470,9 +517,9 @@ public class MantUser extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("PRIVILEGIOS", jPanelPrivilegios);
 
-        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jPanelRead.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jPanel1MouseClicked(evt);
+                jPanelReadMouseClicked(evt);
             }
         });
 
@@ -487,27 +534,36 @@ public class MantUser extends javax.swing.JPanel {
             new String [] {
                 "PRIVILEGIOS DEL SISTEMA"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblReadUser.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane3.setViewportView(tblReadUser);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelReadLayout = new javax.swing.GroupLayout(jPanelRead);
+        jPanelRead.setLayout(jPanelReadLayout);
+        jPanelReadLayout.setHorizontalGroup(
+            jPanelReadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelReadLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelReadLayout.setVerticalGroup(
+            jPanelReadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelReadLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("LISTAR", jPanel1);
+        jTabbedPane1.addTab("LISTAR", jPanelRead);
 
         jcbuser4.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
         jcbuser4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -534,41 +590,53 @@ public class MantUser extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 114, Short.MAX_VALUE)
-                .addComponent(jLabel18)
+        btnUnlockUser.setText("HABILITAR");
+        btnUnlockUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUnlockUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
+        jPanelControl.setLayout(jPanelControlLayout);
+        jPanelControlLayout.setHorizontalGroup(
+            jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControlLayout.createSequentialGroup()
+                .addGap(247, 247, 247)
+                .addComponent(btnDropUser)
+                .addContainerGap(314, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel18)
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(btnLockUser)))
                 .addGap(18, 18, 18)
-                .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelControlLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnUnlockUser)))
                 .addGap(202, 202, 202))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(239, 239, 239)
-                        .addComponent(btnLockUser))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(btnDropUser)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanelControlLayout.setVerticalGroup(
+            jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelControlLayout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(47, 47, 47)
-                .addComponent(btnLockUser)
+                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLockUser)
+                    .addComponent(btnUnlockUser))
                 .addGap(18, 18, 18)
                 .addComponent(btnDropUser)
                 .addContainerGap(111, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("CONTROLAR", jPanel2);
+        jTabbedPane1.addTab("CONTROLAR", jPanelControl);
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setText("USUARIOS");
@@ -628,12 +696,12 @@ public class MantUser extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)))
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(182, 182, 182)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -808,22 +876,43 @@ public class MantUser extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDropUserActionPerformed
 
-    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+    private void jPanelReadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelReadMouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jPanel1MouseClicked
+    }//GEN-LAST:event_jPanelReadMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String user = (String) jcbuser5.getSelectedItem();
+        String role = (String) jcbRoles.getSelectedItem();
+        if(usuDAO.AddRoleToUser(role, user)){
+            actualizar();
+            System.out.println("Satisfactorio");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnUnlockUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUnlockUserActionPerformed
+        // TODO add your handling code here:
+        String user= (String) jcbuser4.getSelectedItem();
+        if(usuDAO.UnlockUser(user)){
+            actualizar();
+            System.out.println("Satisfactorio");
+        }
+    }//GEN-LAST:event_btnUnlockUserActionPerformed
 
     private void actualizar(){
         this.jcbuser2.setModel(vDAO.Obt_date("USERNAME"));
         this.jcbuser3.setModel(vDAO.Obt_date("USERNAME"));
         this.jcbuser4.setModel(vDAO.Obt_date("USERNAME"));
         this.jcbprivi.setModel(vDAO.Obt_date("USERNAME"));
+        this.jcbuser5.setModel(vDAO.Obt_date("USERNAME"));
         this.cbxtablespace.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
         this.jcbtablespace2.setModel(vDAO.Obt_date("DEFAULT_TABLESPACE"));
         this.cbxtemptablespace.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
         this.jcbtemporary2.setModel(vDAO.Obt_date("TEMPORARY_TABLESPACE"));        
         this.tblUserConnected.setModel(vDAO.Obt_date1("VW_STATUSUSER"));
         this.tblReadUser.setModel(vDAO.Obt_date1("VW_DBA_USERS"));
+        this.jcbRoles.setModel(vDAO.Obt_date2("ROLE","DBA_ROLES"));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -831,12 +920,14 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.ButtonGroup QuotaValueSelected1;
     private javax.swing.JButton btnDropUser;
     private javax.swing.JButton btnLockUser;
+    private javax.swing.JButton btnUnlockUser;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnadd;
     private javax.swing.JButton btnanadirprivi;
     private javax.swing.JButton btneliminarprivi;
     private javax.swing.JComboBox<String> cbxtablespace;
     private javax.swing.JComboBox<String> cbxtemptablespace;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -853,15 +944,17 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelCrear;
     private javax.swing.JPanel jPanelModificar;
     private javax.swing.JPanel jPanelPrivilegios;
+    private javax.swing.JPanel jPanelRead;
+    private javax.swing.JPanel jPanelRol;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> jcbRoles;
     private javax.swing.JComboBox<String> jcbprivi;
     private javax.swing.JComboBox<String> jcbtablespace2;
     private javax.swing.JComboBox<String> jcbtemporary2;
@@ -869,6 +962,7 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcbuser2;
     private javax.swing.JComboBox<String> jcbuser3;
     private javax.swing.JComboBox<String> jcbuser4;
+    private javax.swing.JComboBox<String> jcbuser5;
     private javax.swing.JTable jtableprivi;
     private javax.swing.JRadioButton rdbK;
     private javax.swing.JRadioButton rdbK1;

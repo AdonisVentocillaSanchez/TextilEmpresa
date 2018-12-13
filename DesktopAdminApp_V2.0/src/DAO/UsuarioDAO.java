@@ -61,6 +61,23 @@ public class UsuarioDAO extends ConexionBD {
         }
         
     }
+    /////////////////////////Añadir rol a usuarios//////////////////////////////////////////
+    public boolean AddRoleToUser(String user, String role){
+        try{
+            cn=getConex();         
+            consultaSQL="GRANT "+role+" TO "+user;
+            System.out.println("Consulta : "+consultaSQL);
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException ex){
+            System.out.println("Ocurrió un error en AddPrivilegeToUSER : "+ex);
+            return false;    
+        }
+        
+    }
 /////////////////////////Modificar usuario//////////////////////    
     public boolean modificar(String usu,String pass,String tablespace,String temptablespace,String quota)
     {
@@ -188,10 +205,27 @@ public class UsuarioDAO extends ConexionBD {
         }
         
     }
+    public boolean UnlockUser(String user)
+    {
+        consultaSQL="ALTER USER "+user+" ACCOUNT UNLOCK";
+        try{
+            cn=getConex();
+            
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException ex){
+            
+            return false;
+        }
+        
+    }
     
     public boolean DropUser(String user)
     {
-        consultaSQL="DROP USER "+user;
+        consultaSQL="DROP USER " + user + " INCLUDING CONTENTS";
         try{
             cn=getConex();
             

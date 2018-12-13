@@ -5,6 +5,9 @@
  */
 package GUI.Panel;
 
+import DAO.TablespaceDAO;
+import DAO.VisualDAO;
+
 /**
  *
  * @author adoni
@@ -14,8 +17,12 @@ public class MantTablespace extends javax.swing.JPanel {
     /**
      * Creates new form PanelTablespace
      */
+    TablespaceDAO tDAO = new TablespaceDAO();
+    VisualDAO vDAO = new VisualDAO();
+    
     public MantTablespace() {
         initComponents();
+        actualizar();
     }
 
     /**
@@ -32,8 +39,23 @@ public class MantTablespace extends javax.swing.JPanel {
         jMenu2 = new javax.swing.JMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
+        btnCreateTablespace = new javax.swing.JButton();
+        txttablespace = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtdatafile = new javax.swing.JTextField();
+        txtsize = new javax.swing.JTextField();
+        txtautoextend = new javax.swing.JTextField();
+        txtmaxsize = new javax.swing.JTextField();
+        btnCreateTemporarytablespace = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblTablespace = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         jMenu1.setText("File");
@@ -42,15 +64,88 @@ public class MantTablespace extends javax.swing.JPanel {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        btnCreateTablespace.setText("CREAR TABLESPACE");
+        btnCreateTablespace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateTablespaceActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre de la tablespace :");
+
+        jLabel3.setText("Ruta de archivos de dato :");
+
+        jLabel4.setText("Tamaño :");
+
+        jLabel5.setText("Autoextender hasta :");
+
+        jLabel6.setText("Tamaño máximo :");
+
+        btnCreateTemporarytablespace.setText("CREAR TEMPORARY TABLESPACE");
+        btnCreateTemporarytablespace.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateTemporarytablespaceActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(112, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCreateTablespace)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtmaxsize, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtsize, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtautoextend, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(btnCreateTemporarytablespace)))
+                .addGap(119, 119, 119))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txttablespace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtdatafile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtautoextend, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtmaxsize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateTablespace)
+                    .addComponent(btnCreateTemporarytablespace))
+                .addGap(44, 44, 44))
         );
 
         jTabbedPane1.addTab("CREAR", jPanel1);
@@ -63,20 +158,38 @@ public class MantTablespace extends javax.swing.JPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGap(0, 378, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("MODIFICAR", jPanel2);
+
+        tblTablespace.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblTablespace);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 669, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 649, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 326, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("VISUALIZAR", jPanel3);
@@ -108,15 +221,57 @@ public class MantTablespace extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateTablespaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateTablespaceActionPerformed
+        // TODO add your handling code here:
+        String tablespace = txttablespace.getText();
+        String datafile = txtdatafile.getText();
+        String size = txtsize.getText();
+        String autoextend = txtautoextend.getText();
+        String maxsize = txtmaxsize.getText();
+        if(tDAO.createTablespace(tablespace, datafile, size, autoextend, maxsize)){
+            System.out.println("Satisfactorio");
+        }
+    }//GEN-LAST:event_btnCreateTablespaceActionPerformed
+
+    private void btnCreateTemporarytablespaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateTemporarytablespaceActionPerformed
+        // TODO add your handling code here:
+        String tablespace = txttablespace.getText();
+        String datafile = txtdatafile.getText();
+        String size = txtsize.getText();
+        String autoextend = txtautoextend.getText();
+        String maxsize = txtmaxsize.getText();
+        if(tDAO.createTemporarytablespace(tablespace, datafile, size, autoextend, maxsize)){
+            System.out.println("Satisfactorio");
+        }
+    }//GEN-LAST:event_btnCreateTemporarytablespaceActionPerformed
+
+    public void actualizar(){
+        this.tblTablespace.setModel(vDAO.Obt_date1("VW_TABLESPACE"));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateTablespace;
+    private javax.swing.JButton btnCreateTemporarytablespace;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tblTablespace;
+    private javax.swing.JTextField txtautoextend;
+    private javax.swing.JTextField txtdatafile;
+    private javax.swing.JTextField txtmaxsize;
+    private javax.swing.JTextField txtsize;
+    private javax.swing.JTextField txttablespace;
     // End of variables declaration//GEN-END:variables
 }
