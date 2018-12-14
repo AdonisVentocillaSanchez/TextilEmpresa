@@ -35,26 +35,26 @@ public class frmusuariologin extends javax.swing.JFrame {
 
         txtusuario.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         txtusuario.setBorder(null);
-        getContentPane().add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, 199, 30));
+        getContentPane().add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 260, 210, 30));
 
         txtpassword.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         txtpassword.setBorder(null);
-        getContentPane().add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, 199, 30));
+        getContentPane().add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 210, 30));
 
         btningresar.setBackground(new java.awt.Color(255, 255, 255));
         btningresar.setFont(new java.awt.Font("Bauhaus 93", 0, 36)); // NOI18N
-        btningresar.setForeground(new java.awt.Color(0, 153, 51));
+        btningresar.setForeground(new java.awt.Color(198, 75, 75));
         btningresar.setText("INGRESAR");
         btningresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btningresarActionPerformed(evt);
             }
         });
-        getContentPane().add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 640, -1, -1));
+        getContentPane().add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 480, -1, -1));
 
         btnsalir.setBackground(new java.awt.Color(255, 255, 255));
         btnsalir.setForeground(new java.awt.Color(255, 255, 255));
-        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/close.png"))); // NOI18N
+        btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/close.png"))); // NOI18N
         btnsalir.setBorder(null);
         btnsalir.setContentAreaFilled(false);
         btnsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -62,10 +62,10 @@ public class frmusuariologin extends javax.swing.JFrame {
                 btnsalirActionPerformed(evt);
             }
         });
-        getContentPane().add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 20, 30, -1));
+        getContentPane().add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, 30, 30));
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/minimizar.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/minimize.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
@@ -74,9 +74,9 @@ public class frmusuariologin extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 20, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 30, 30));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Login.jpg"))); // NOI18N
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Login.png"))); // NOI18N
         fondo.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 fondoMouseDragged(evt);
@@ -90,7 +90,7 @@ public class frmusuariologin extends javax.swing.JFrame {
                 fondoMouseReleased(evt);
             }
         });
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
