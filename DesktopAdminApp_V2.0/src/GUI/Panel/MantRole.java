@@ -48,7 +48,7 @@ public class MantRole extends javax.swing.JPanel {
         cbxprivi = new javax.swing.JComboBox<>();
         btnaddrole = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnRevokeprivileges = new javax.swing.JButton();
         jcbrole = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblPrivilegeRole = new javax.swing.JTable();
@@ -101,7 +101,12 @@ public class MantRole extends javax.swing.JPanel {
 
         jLabel10.setText("Usted está otorgando privilegios a :");
 
-        jButton1.setText("Revocar privilegio");
+        btnRevokeprivileges.setText("Revocar privilegio");
+        btnRevokeprivileges.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRevokeprivilegesActionPerformed(evt);
+            }
+        });
 
         jcbrole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbrole.addItemListener(new java.awt.event.ItemListener() {
@@ -136,7 +141,7 @@ public class MantRole extends javax.swing.JPanel {
                                 .addGap(133, 133, 133)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnaddprivileges)
-                                    .addComponent(jButton1)))
+                                    .addComponent(btnRevokeprivileges)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(71, 71, 71)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +182,7 @@ public class MantRole extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(btnaddprivileges)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(btnRevokeprivileges)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -273,16 +278,25 @@ public class MantRole extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_txtroleKeyTyped
 
+    private void btnRevokeprivilegesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevokeprivilegesActionPerformed
+        // TODO add your handling code here:
+        String rolegranted= (String) jcbrole.getSelectedItem();
+        if(roledao.RevokePrivilegeToRole(rolegranted, (String)cbxprivi.getSelectedItem())){
+            this.tblPrivilegeRole.setModel(vdao.Obt_dateRole("PRIVILEGE", "ROLE_SYS_PRIVS", "ROLE='"+rolegranted+"'"));
+            txtarearole.append((String)cbxprivi.getSelectedItem()+" revoked \n");
+        }
+    }//GEN-LAST:event_btnRevokeprivilegesActionPerformed
+
 
     private void actualizar(){
         this.jcbrole.setModel(vdao.Obt_date2("ROLE", "DBA_ROLES"));
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRevokeprivileges;
     private javax.swing.JButton btnaddprivileges;
     private javax.swing.JButton btnaddrole;
     private javax.swing.JComboBox<String> cbxprivi;
     private javax.swing.JComboBox<String> cbxtipo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;

@@ -77,6 +77,8 @@ public class MantUser extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jcbRoles = new javax.swing.JComboBox<>();
         jcbuser5 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanelPrivilegios = new javax.swing.JPanel();
         jcbuser3 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
@@ -88,6 +90,7 @@ public class MantUser extends javax.swing.JPanel {
         btnanadirprivi = new javax.swing.JButton();
         btneliminarprivi = new javax.swing.JButton();
         jPanelRead = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblReadUser = new javax.swing.JTable();
         jPanelControl = new javax.swing.JPanel();
@@ -96,11 +99,15 @@ public class MantUser extends javax.swing.JPanel {
         btnLockUser = new javax.swing.JButton();
         btnDropUser = new javax.swing.JButton();
         btnUnlockUser = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblUsersAccount = new javax.swing.JTable();
         title = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUserConnected = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtableprivi = new javax.swing.JTable();
+        tblSessionXProgram = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblCursoresAbiertos = new javax.swing.JTable();
 
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -380,31 +387,48 @@ public class MantUser extends javax.swing.JPanel {
 
         jcbuser5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel1.setText("SELECCIONA UN USUARIO :");
+
+        jLabel6.setText("OTORGAR EL SIGUIENTE ROL :");
+
         javax.swing.GroupLayout jPanelRolLayout = new javax.swing.GroupLayout(jPanelRol);
         jPanelRol.setLayout(jPanelRolLayout);
         jPanelRolLayout.setHorizontalGroup(
             jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelRolLayout.createSequentialGroup()
-                .addGap(199, 199, 199)
+                .addGap(35, 35, 35)
                 .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel6))
+                .addGap(20, 20, 20)
+                .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelRolLayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelRolLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jcbRoles, 0, 188, Short.MAX_VALUE)
-                            .addComponent(jcbuser5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(231, Short.MAX_VALUE))
+                            .addComponent(jcbRoles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbuser5, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
         jPanelRolLayout.setVerticalGroup(
             jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRolLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jcbuser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(jcbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addGroup(jPanelRolLayout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelRolLayout.createSequentialGroup()
+                        .addComponent(jcbuser5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addGroup(jPanelRolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcbRoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(24, 24, 24))
+                    .addGroup(jPanelRolLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(212, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("ROLES", jPanelRol);
@@ -543,8 +567,27 @@ public class MantUser extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        tblReadUser.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        tblReadUser.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tblReadUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblReadUser.setEnabled(false);
         jScrollPane3.setViewportView(tblReadUser);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanelReadLayout = new javax.swing.GroupLayout(jPanelRead);
         jPanelRead.setLayout(jPanelReadLayout);
@@ -552,14 +595,14 @@ public class MantUser extends javax.swing.JPanel {
             jPanelReadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelReadLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelReadLayout.setVerticalGroup(
             jPanelReadLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelReadLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -597,43 +640,63 @@ public class MantUser extends javax.swing.JPanel {
             }
         });
 
+        tblUsersAccount.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        tblUsersAccount.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "PRIVILEGIOS DEL SISTEMA"
+            }
+        ));
+        jScrollPane5.setViewportView(tblUsersAccount);
+
         javax.swing.GroupLayout jPanelControlLayout = new javax.swing.GroupLayout(jPanelControl);
         jPanelControl.setLayout(jPanelControlLayout);
         jPanelControlLayout.setHorizontalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelControlLayout.createSequentialGroup()
-                .addGap(247, 247, 247)
-                .addComponent(btnDropUser)
-                .addContainerGap(314, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelControlLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
                     .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(btnLockUser)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelControlLayout.createSequentialGroup()
+                            .addGap(47, 47, 47)
+                            .addComponent(btnLockUser))
+                        .addGroup(jPanelControlLayout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnUnlockUser, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                                .addComponent(btnDropUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanelControlLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnUnlockUser)))
-                .addGap(202, 202, 202))
+                        .addGap(32, 32, 32)
+                        .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(75, 75, 75)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanelControlLayout.setVerticalGroup(
             jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelControlLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(jPanelControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLockUser)
-                    .addComponent(btnUnlockUser))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel18)
+                .addGap(18, 18, 18)
+                .addComponent(jcbuser4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnLockUser)
+                .addGap(18, 18, 18)
+                .addComponent(btnUnlockUser)
                 .addGap(18, 18, 18)
                 .addComponent(btnDropUser)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
+            .addGroup(jPanelControlLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("CONTROLAR", jPanelControl);
@@ -653,10 +716,11 @@ public class MantUser extends javax.swing.JPanel {
                 "USUARIOS CONECTADOS"
             }
         ));
+        tblUserConnected.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         jScrollPane2.setViewportView(tblUserConnected);
 
-        jtableprivi.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
-        jtableprivi.setModel(new javax.swing.table.DefaultTableModel(
+        tblSessionXProgram.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        tblSessionXProgram.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
                 {null},
@@ -667,7 +731,21 @@ public class MantUser extends javax.swing.JPanel {
                 "PRIVILEGIOS DEL SISTEMA"
             }
         ));
-        jScrollPane1.setViewportView(jtableprivi);
+        jScrollPane1.setViewportView(tblSessionXProgram);
+
+        tblCursoresAbiertos.setFont(new java.awt.Font("sansserif", 0, 16)); // NOI18N
+        tblCursoresAbiertos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "PRIVILEGIOS DEL SISTEMA"
+            }
+        ));
+        jScrollPane4.setViewportView(tblCursoresAbiertos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -683,7 +761,9 @@ public class MantUser extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -699,7 +779,9 @@ public class MantUser extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(182, 182, 182)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -721,6 +803,7 @@ public class MantUser extends javax.swing.JPanel {
                 String usergrant=(String)jcbuser3.getSelectedItem();
                 if(usuDAO.AddPrivilegeToUser(usergrant, (String)jcbprivi.getSelectedItem())){
                     actualizar();
+                    jcbuser3.setSelectedItem(usergrant);
                         JOptionPane.showMessageDialog(null,"Privilegio "+(String)jcbprivi.getSelectedItem()+
                                 " ha sido otorgado a "+usergrant);
                     }
@@ -862,6 +945,7 @@ public class MantUser extends javax.swing.JPanel {
         String user = (String) jcbuser4.getSelectedItem();
         if(usuDAO.LockUser(user)){
             actualizar();
+            jcbuser4.setSelectedItem(user);
             System.out.println("Satifactorio");
     }
         
@@ -887,6 +971,7 @@ public class MantUser extends javax.swing.JPanel {
         String role = (String) jcbRoles.getSelectedItem();
         if(usuDAO.AddRoleToUser(user, role)){
             actualizar();
+            jcbuser4.setSelectedItem(user);
             System.out.println("Satisfactorio");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -896,6 +981,7 @@ public class MantUser extends javax.swing.JPanel {
         String user= (String) jcbuser4.getSelectedItem();
         if(usuDAO.UnlockUser(user)){
             actualizar();
+            jcbuser4.setSelectedItem(user);
             System.out.println("Satisfactorio");
         }
     }//GEN-LAST:event_btnUnlockUserActionPerformed
@@ -913,6 +999,9 @@ public class MantUser extends javax.swing.JPanel {
         this.tblUserConnected.setModel(vDAO.Obt_date1("VW_STATUSUSER"));
         this.tblReadUser.setModel(vDAO.Obt_date1("VW_DBA_USERS"));
         this.jcbRoles.setModel(vDAO.Obt_date2("ROLE","DBA_ROLES"));
+        this.tblSessionXProgram.setModel(vDAO.Obt_date1("VW_SESSIONXPROGRAM"));
+        this.tblCursoresAbiertos.setModel(vDAO.Obt_date1("VW_CURSORESABIERTOS"));
+        this.tblUsersAccount.setModel(vDAO.Obt_ColumnsTable("USERNAME, ACCOUNT_STATUS", "VW_DBA_USERS"));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -928,6 +1017,7 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxtablespace;
     private javax.swing.JComboBox<String> cbxtemptablespace;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -941,9 +1031,11 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelControl;
     private javax.swing.JPanel jPanelCrear;
     private javax.swing.JPanel jPanelModificar;
@@ -953,6 +1045,8 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcbRoles;
     private javax.swing.JComboBox<String> jcbprivi;
@@ -963,15 +1057,17 @@ public class MantUser extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jcbuser3;
     private javax.swing.JComboBox<String> jcbuser4;
     private javax.swing.JComboBox<String> jcbuser5;
-    private javax.swing.JTable jtableprivi;
     private javax.swing.JRadioButton rdbK;
     private javax.swing.JRadioButton rdbK1;
     private javax.swing.JRadioButton rdbM;
     private javax.swing.JRadioButton rdbM1;
     private javax.swing.JRadioButton rdbU;
     private javax.swing.JRadioButton rdbU1;
+    private javax.swing.JTable tblCursoresAbiertos;
     private javax.swing.JTable tblReadUser;
+    private javax.swing.JTable tblSessionXProgram;
     private javax.swing.JTable tblUserConnected;
+    private javax.swing.JTable tblUsersAccount;
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtNewPass;
     private javax.swing.JTextField txtNewQuota;

@@ -13,6 +13,7 @@ public class FrmLogin extends javax.swing.JFrame {
         
     public FrmLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
         txtServer.setText("localhost");
         txtPort.setText("1521");
         txtSid.setText("xe");

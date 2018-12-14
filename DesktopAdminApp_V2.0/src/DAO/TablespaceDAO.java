@@ -66,7 +66,7 @@ public class TablespaceDAO {
             cn.close();
             return true;
         }catch(SQLException ex){
-            System.out.println("af"+ex);
+            System.out.println(""+ex);
             return false;
         }
     }
@@ -74,7 +74,7 @@ public class TablespaceDAO {
     public boolean alterTablespace (String tablespace, String newtable,
             String datafilenew, String sizenew){
         consultaSQL="ALTER TABLESPACE "+tablespace+
-                " ADD DATAFILE "+datafilenew+"/"+newtable+".dbf"+
+                " ADD DATAFILE '"+datafilenew+newtable+".dbf'"+
                 " SIZE "+sizenew;
         try{
             cn=getConex();
@@ -84,9 +84,25 @@ public class TablespaceDAO {
             clst.close();
             cn.close();
             return true;
-        }catch(SQLException e){
-            
+        }catch(SQLException ex){
+            System.out.println(""+ex);
          return false;   
+        }
+    }
+    
+    public boolean dropTablespace (String tablespace){
+        consultaSQL="DROP TABLESPACE "+tablespace+" INCLUDING CONTENTS";
+        try{
+            cn=getConex();
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException ex){
+            System.out.println(""+ex);
+            return false;
         }
     }
 }

@@ -55,4 +55,20 @@ public class RoleDAO {
         }
         
     }
+    
+    public boolean RevokePrivilegeToRole(String role, String privilege){
+        consultaSQL="REVOKE "+privilege+" FROM "+role;
+        try{
+            cn=getConex();
+            System.out.println("Consulta : "+consultaSQL);
+            clst=cn.prepareCall(consultaSQL);
+            clst.execute();
+            clst.close();
+            cn.close();
+            return true;
+        }catch(SQLException ex){
+            System.out.println("Ocurrió un error en RevokePrivilegeToRole : "+ex);
+            return false;
+        }
+    }
 }
