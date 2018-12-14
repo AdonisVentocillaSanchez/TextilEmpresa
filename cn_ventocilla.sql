@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - miércoles-diciembre-12-2018   
+-- Archivo creado  - jueves-diciembre-13-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table CAMION_BAK
@@ -518,6 +518,149 @@ SET DEFINE OFF;
   ALTER TABLE "VENTOCILLA"."PRODUCTO_BAK" MODIFY ("DNI_EMP" NOT NULL ENABLE);
   ALTER TABLE "VENTOCILLA"."PRODUCTO_BAK" MODIFY ("COD_PROVI" NOT NULL ENABLE);
   ALTER TABLE "VENTOCILLA"."PRODUCTO_BAK" MODIFY ("COD_PROD" NOT NULL ENABLE);
+--------------------------------------------------------
+--  DDL for Trigger TR_CAMIONBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_CAMIONBAK" 
+BEFORE DELETE ON CAMION
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.CAMION_BAK(MAT_CAR,MOD_CAR,POT_CAR,TIPO_CAR) 
+  VALUES (:old.MAT_CAR,:old.MOD_CAR,:old.POT_CAR,:old.TIPO_CAR);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_CAMIONBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_CAMIONEROBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_CAMIONEROBAK" 
+BEFORE DELETE ON CAMIONERO
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.CAMIONERO_BAK(APE_CAM,DIR_CAM,NOM_CAM,SAL_CAM,TELEF_CAM,POB_CAM,DNI_CAM)
+  VALUES(:old.APE_CAM,:old.DIR_CAM,:old.NOM_CAM,:old.SAL_CAM,:old.TELEF_CAM,:old.POB_CAM,:old.DNI_CAM);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_CAMIONEROBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_CARGOBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_CARGOBAK" 
+BEFORE DELETE ON CARGO 
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.CARGO_BAK(COD_CARG,DNI_EMP,DNI_JEF,NOM_CARG)
+  VALUES (:old.COD_CARG,:old.DNI_EMP,:old.DNI_JEF,:old.NOM_CARG);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_CARGOBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_CLIENTEBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_CLIENTEBAK" 
+BEFORE DELETE ON CLIENTE 
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.CLIENTE_BAK(APE_CLIE,DIR_CLIE,DNI_CLIE,NOM_CLIE,TELEF_CLIE)
+  VALUES (:old.APE_CLIE,:old.DIR_CLIE,:old.DNI_CLIE,:old.NOM_CLIE,:old.TELEF_CLIE);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_CLIENTEBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_COMPRABAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_COMPRABAK" 
+BEFORE DELETE ON COMPRA
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.COMPRA_BAK(CANT_COM,COD_PROD,DNI_CLIE,FECHA_COM)
+  VALUES (:old.CANT_COM,:old.COD_PROD,:old.DNI_CLIE,:old.FECHA_COM);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_COMPRABAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_CONDUCEBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_CONDUCEBAK" 
+BEFORE DELETE ON CONDUCE 
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.CONDUCE_BAK(DNI_CAM,FFINISH_CON,FSTART_CON,LLEGADA_CON,MAT_CAR,PARTIDA_CON)
+  VALUES (:old.DNI_CAM,:old.FFINISH_CON,:old.FSTART_CON,:old.LLEGADA_CON,:old.MAT_CAR,:old.PARTIDA_CON);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_CONDUCEBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_EMPLEADOBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_EMPLEADOBAK" 
+BEFORE DELETE ON EMPLEADO 
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.EMPLEADO_BAK(DIR_EMP,DNI_EMP,NOM_EMP,PASS_EMP,TELEF_EMP,USER_EMP,APE_EMP)
+  VALUES (:old.DIR_EMP,:old.DNI_EMP,:old.NOM_EMP,:old.PASS_EMP,:old.TELEF_EMP,:old.USER_EMP,:old.APE_EMP);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_EMPLEADOBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_JEFEAREABAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_JEFEAREABAK" 
+BEFORE DELETE ON JEFEAREA
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.JEFEAREA_BAK (APE_JEF,DIR_JEF,DNI_JEF,NOM_JEF,PASS_JEF,TELEF_JEF,USER_JEF)
+  VALUES (:old.APE_JEF,:old.DIR_JEF,:old.DNI_JEF,:old.NOM_JEF,:old.PASS_JEF,:old.TELEF_JEF,:old.USER_JEF);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_JEFEAREABAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_PRODUCTOBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_PRODUCTOBAK" 
+BEFORE DELETE ON PRODUCTO
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.PRODUCTO_BAK (COD_PROD,COD_PROVI,DESC_PROD,DNI_CAM,DNI_EMP,NIF_PROVE,NOM_PROD,PREC_PROD)
+  VALUES (:old.COD_PROD,:old.COD_PROVI,:old.DESC_PROD,:old.DNI_CAM,:old.DNI_EMP,:old.NIF_PROVE,:old.NOM_PROD,:old.PREC_PROD);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_PRODUCTOBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_PROVEEDORBAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_PROVEEDORBAK" 
+BEFORE DELETE ON PROVEEDOR 
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.PROVEEDOR_BAK (DIR_PROV,NIF_PROVE,NOM_PROV)
+  VALUES (:old.DIR_PROV,:old.NIF_PROVE,:old.NOM_PROV);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_PROVEEDORBAK" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_PROVINCIABAK
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "VENTOCILLA"."TR_PROVINCIABAK" 
+BEFORE DELETE ON PROVINCIA 
+FOR EACH ROW
+BEGIN
+  INSERT INTO VENTOCILLA.PROVINCIA_BAK (COD_PROVI,NOM_PROVI)
+  VALUES (:old.COD_PROVI,:old.NOM_PROVI);
+END;
+/
+ALTER TRIGGER "VENTOCILLA"."TR_PROVINCIABAK" ENABLE;
 --------------------------------------------------------
 --  DDL for Synonymn CAMIONERO_SIN
 --------------------------------------------------------

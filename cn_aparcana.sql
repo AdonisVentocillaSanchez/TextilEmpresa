@@ -1,5 +1,5 @@
 --------------------------------------------------------
--- Archivo creado  - miércoles-diciembre-12-2018   
+-- Archivo creado  - jueves-diciembre-13-2018   
 --------------------------------------------------------
 --------------------------------------------------------
 --  DDL for Table CAMION
@@ -168,6 +168,21 @@
   STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
   PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
   TABLESPACE "EMPRESATEXTIL" ;
+--------------------------------------------------------
+--  DDL for Table USUARIO
+--------------------------------------------------------
+
+  CREATE TABLE "APARCANA"."USUARIO" 
+   (	"ID_USER" NUMBER(*,0), 
+	"DNI_USER" CHAR(8 BYTE), 
+	"US_USER" VARCHAR2(50 BYTE), 
+	"PASS_USER" VARCHAR2(50 BYTE), 
+	"TIPO_USER" CHAR(15 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "EMPRESATEXTIL" ;
 REM INSERTING into APARCANA.CAMION
 SET DEFINE OFF;
 REM INSERTING into APARCANA.CAMIONERO
@@ -189,6 +204,8 @@ SET DEFINE OFF;
 REM INSERTING into APARCANA.PROVEEDOR
 SET DEFINE OFF;
 REM INSERTING into APARCANA.PROVINCIA
+SET DEFINE OFF;
+REM INSERTING into APARCANA.USUARIO
 SET DEFINE OFF;
 --------------------------------------------------------
 --  DDL for Index XPKCOMPRA
@@ -330,6 +347,19 @@ SET DEFINE OFF;
   TABLESPACE "EMPRESATEXTIL"  ENABLE;
   ALTER TABLE "APARCANA"."CAMION" MODIFY ("MAT_CAR" NOT NULL ENABLE);
 --------------------------------------------------------
+--  Constraints for Table USUARIO
+--------------------------------------------------------
+
+  ALTER TABLE "APARCANA"."USUARIO" ADD PRIMARY KEY ("ID_USER")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "EMPRESATEXTIL"  ENABLE;
+  ALTER TABLE "APARCANA"."USUARIO" MODIFY ("TIPO_USER" NOT NULL ENABLE);
+  ALTER TABLE "APARCANA"."USUARIO" MODIFY ("PASS_USER" NOT NULL ENABLE);
+  ALTER TABLE "APARCANA"."USUARIO" MODIFY ("US_USER" NOT NULL ENABLE);
+  ALTER TABLE "APARCANA"."USUARIO" MODIFY ("DNI_USER" NOT NULL ENABLE);
+--------------------------------------------------------
 --  Constraints for Table PRODUCTO
 --------------------------------------------------------
 
@@ -445,3 +475,221 @@ SET DEFINE OFF;
 	  REFERENCES "APARCANA"."CAMIONERO" ("DNI_CAM") ENABLE;
   ALTER TABLE "APARCANA"."PRODUCTO" ADD CONSTRAINT "R/9" FOREIGN KEY ("COD_PROVI")
 	  REFERENCES "APARCANA"."PROVINCIA" ("COD_PROVI") ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_INSERTARENUSUARIO_EMPLE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "APARCANA"."TR_INSERTARENUSUARIO_EMPLE" 
+   BEFORE INSERT
+   ON EMPLEADO
+   FOR EACH ROW
+DECLARE
+   v_user VARCHAR2(50);
+   v_pass VARCHAR2(50);
+   v_dni CHAR(8);
+
+BEGIN
+   SELECT :NEW.user_emp 
+
+     INTO v_user
+     FROM DUAL ;
+   SELECT :NEW.pass_emp 
+
+     INTO v_pass
+     FROM DUAL ;
+   SELECT :NEW.dni_emp 
+
+     INTO v_dni
+     FROM DUAL ;
+   INSERT INTO USUARIO
+     ( dni_user, us_user, pass_user, tipo_user )
+     VALUES ( v_dni, v_user, v_pass, 'EMPLEADO' );
+
+END;
+/
+ALTER TRIGGER "APARCANA"."TR_INSERTARENUSUARIO_EMPLE" ENABLE;
+--------------------------------------------------------
+--  DDL for Trigger TR_INSERTARENUSUARIO_JEFE
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "APARCANA"."TR_INSERTARENUSUARIO_JEFE" 
+   BEFORE INSERT
+   ON JEFEAREA
+   FOR EACH ROW
+DECLARE
+   v_user VARCHAR2(50);
+   v_pass VARCHAR2(50);
+   v_dni CHAR(8);
+
+BEGIN
+   SELECT :NEW.user_jef 
+
+     INTO v_user
+     FROM DUAL ;
+   SELECT :NEW.pass_jef 
+
+     INTO v_pass
+     FROM DUAL ;
+   SELECT :NEW.dni_jef 
+
+     INTO v_dni
+     FROM DUAL ;
+   INSERT INTO USUARIO
+     ( dni_user, us_user, pass_user, tipo_user )
+     VALUES ( v_dni, v_user, v_pass, 'ADMINISTRADOR' );
+
+END;
+/
+ALTER TRIGGER "APARCANA"."TR_INSERTARENUSUARIO_JEFE" ENABLE;
+--------------------------------------------------------
+--  DDL for Procedure SP_BUSCARCLIENTE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_BUSCARCLIENTE" 
+(
+  v_busq IN VARCHAR2
+)
+AS
+   v_cursor SYS_REFCURSOR;
+
+BEGIN
+   OPEN  v_cursor FOR
+      SELECT * 
+        FROM CLIENTE 
+       WHERE  dni_clie LIKE v_busq
+                OR nom_clie LIKE v_busq
+                OR ape_clie LIKE v_busq
+        ORDER BY ape_clie ASC ;
+
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_BUSCARCLIENTEXNOMBRE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_BUSCARCLIENTEXNOMBRE" 
+(
+  v_bus IN VARCHAR2
+)
+AS
+   v_cursor SYS_REFCURSOR;
+
+BEGIN
+   OPEN  v_cursor FOR
+      SELECT * 
+        FROM CLIENTE 
+       WHERE  nom_clie LIKE v_bus
+        ORDER BY dni_clie ASC ;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_CLIENTE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_CLIENTE" 
+AS
+   v_cursor SYS_REFCURSOR;
+
+BEGIN
+   OPEN  v_cursor FOR
+      SELECT * 
+        FROM CLIENTE 
+        ORDER BY nom_clie ASC ;
+
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_ELIMINARCLIENTE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_ELIMINARCLIENTE" 
+(
+  v_inf IN VARCHAR2
+)
+AS
+
+BEGIN
+   DELETE CLIENTE
+
+    WHERE  dni_clie = v_inf;
+
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_LOGIN
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_LOGIN" 
+(
+  v_user IN VARCHAR2,
+  v_pass IN VARCHAR2
+)
+AS
+   v_cursor SYS_REFCURSOR;
+
+BEGIN
+   OPEN  v_cursor FOR
+      SELECT u.tipo_user 
+        FROM USUARIO u
+       WHERE  u.us_user = v_user
+                AND u.pass_user = v_pass ;
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_MODIFICARCLIENTE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_MODIFICARCLIENTE" 
+(
+  v_dni IN CHAR,
+  v_nom IN VARCHAR2,
+  v_ape IN VARCHAR2,
+  v_dir IN VARCHAR2,
+  v_tel IN CHAR
+)
+AS
+
+BEGIN
+   UPDATE CLIENTE
+      SET nom_clie = v_nom,
+          ape_clie = v_ape,
+          dir_clie = v_dir,
+          telef_clie = v_tel
+    WHERE  dni_clie = v_dni;
+
+END;
+
+/
+--------------------------------------------------------
+--  DDL for Procedure SP_NUEVOCLIENTE
+--------------------------------------------------------
+set define off;
+
+  CREATE OR REPLACE PROCEDURE "APARCANA"."SP_NUEVOCLIENTE" 
+(
+  v_dni IN CHAR,
+  v_nom IN VARCHAR2,
+  v_ape IN VARCHAR2,
+  v_dir IN VARCHAR2,
+  v_telef IN CHAR
+)
+AS
+
+BEGIN
+   INSERT INTO CLIENTE
+     VALUES ( v_dni, v_nom, v_ape, v_dir, v_telef );
+
+END;
+
+/

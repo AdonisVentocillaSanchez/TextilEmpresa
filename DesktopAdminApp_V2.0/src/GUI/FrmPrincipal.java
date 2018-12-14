@@ -10,7 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 /**
  *
- * @author adoni
+ * @author GRUPOADONIS
  */
 public class FrmPrincipal extends javax.swing.JFrame {
 
